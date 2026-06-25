@@ -53,12 +53,6 @@
   .d4 { animation-delay: .4s }
   .d5 { animation-delay: .5s }
 
-  .pulse-dot { animation: pulse 2s infinite; }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.7); }
-    50% { opacity: .8; box-shadow: 0 0 0 8px rgba(74,222,128,0); }
-  }
-
   .avatar-ring {
     background: conic-gradient(from 0deg, #6366f1, #a855f7, #ec4899, #6366f1);
     animation: rotate 8s linear infinite;
@@ -78,7 +72,7 @@
   }
 
   .header { text-align: center; }
-  .avatar-wrap { position: relative; width: 112px; height: 112px; margin: 0 auto 20px; }
+  .avatar-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 20px; }
   .avatar-ring { position: absolute; inset: -3px; border-radius: 50%; }
   .avatar {
     position: relative; width: 100%; height: 100%;
@@ -91,13 +85,8 @@
   .avatar img {
     width: 100%; height: 100%; object-fit: cover;
     object-position: center 30%;
-    transform: scale(1.6);
-    transform-origin: center center;
-  }
-  .online-dot {
-    position: absolute; bottom: 2px; right: 2px;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: #4ade80; border: 3px solid #0a0a15;
+    transform: scale(1.8);
+    transform-origin: center 30%;
   }
   .name { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
   .role {
@@ -122,21 +111,34 @@
   }
 
   .insight {
-    margin-top: 28px; padding: 20px; border-radius: 16px;
-    background: rgba(99,102,241,0.06);
-    border: 1px solid rgba(99,102,241,0.15);
+    margin-top: 32px; padding: 24px 20px 20px 28px; border-radius: 16px;
+    background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(168,85,247,0.04) 100%);
+    border-left: 3px solid;
+    border-image: linear-gradient(180deg, #6366f1, #a855f7, #ec4899) 1;
+    border-image-slice: 1;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-radius: 0 16px 16px 0;
   }
   .insight-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
-    color: #818cf8; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: #a5b4fc; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
   }
   .insight-label::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: #6366f1; flex-shrink: 0;
+    content: '✦'; font-size: 10px;
+    color: #818cf8; flex-shrink: 0;
   }
   .insight-text {
-    font-size: 14px; color: #d1d5db; line-height: 1.7;
+    font-size: 14px; color: #e5e7eb; line-height: 1.7;
+    padding-left: 12px;
+    border-left: 1px solid rgba(99,102,241,0.2);
+    margin-bottom: 14px;
+  }
+  .insight-text:last-child {
+    margin-bottom: 0;
   }
   .insight-text strong { color: #fff; font-weight: 600; }
 
@@ -247,13 +249,13 @@
   @media (min-width: 768px) {
     .page { padding: 40px 24px; }
     .card { padding: 48px 52px; border-radius: 28px; }
-    .avatar-wrap { width: 140px; height: 140px; margin-bottom: 24px; }
+    .avatar-wrap { width: 150px; height: 150px; margin-bottom: 24px; }
     .avatar { font-size: 2.8rem; }
     .name { font-size: 40px; }
     .role { font-size: 14px; }
     .role-sub { font-size: 16px; max-width: 480px; }
     .hook { font-size: 17px; max-width: 480px; }
-    .insight { padding: 24px 28px; margin-top: 32px; }
+    .insight { padding: 28px 24px 24px 32px; margin-top: 32px; }
     .insight-text { font-size: 15px; }
     .steps { margin-top: 16px; }
     .step { padding: 20px 0; gap: 18px; }
@@ -309,7 +311,6 @@
           <div class="avatar">
             <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли">
           </div>
-          <div class="online-dot pulse-dot"></div>
         </div>
         <h1 class="name">Игорь Ли</h1>
         <p class="role">AI-менеджер</p>
