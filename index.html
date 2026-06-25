@@ -84,9 +84,9 @@
   }
   .avatar img {
     width: 100%; height: 100%; object-fit: cover;
-    object-position: center 30%;
+    object-position: center center;
     transform: scale(1.8);
-    transform-origin: center 30%;
+    transform-origin: center center;
   }
   .name { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
   .role {
@@ -111,15 +111,19 @@
   }
 
   .insight {
-    margin-top: 32px; padding: 24px 20px 20px 28px; border-radius: 16px;
+    position: relative;
+    margin-top: 32px; padding: 24px 20px 20px 28px;
+    border-radius: 16px;
     background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(168,85,247,0.04) 100%);
-    border-left: 3px solid;
-    border-image: linear-gradient(180deg, #6366f1, #a855f7, #ec4899) 1;
-    border-image-slice: 1;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-right: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    border-radius: 0 16px 16px 0;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .insight::before {
+    content: '';
+    position: absolute;
+    left: 4px; top: 4px; bottom: 4px;
+    width: 3px;
+    background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
+    border-radius: 999px;
   }
   .insight-label {
     font-family: 'JetBrains Mono', monospace;
@@ -281,8 +285,8 @@
         border-color: rgba(168,85,247,0.3);
       }
       .insight:hover {
-        border-color: rgba(99,102,241,0.3);
-        background: rgba(99,102,241,0.08);
+        background: rgba(99,102,241,0.12);
+        border-color: rgba(99,102,241,0.2);
       }
       .competency:hover, .format:hover, .benefit:hover {
         border-color: rgba(168,85,247,0.3);
