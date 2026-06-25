@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Игорь Ли — AI-трансформационный менеджер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a15; color: #fff;
+    min-height: 100dvh; overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .glass {
+    background: rgba(255,255,255,0.04);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .blobs { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+  .blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(100px); opacity: 0.25;
+    animation: float 12s ease-in-out infinite;
+  }
+  .b1 { width: 420px; height: 420px; top: -140px; left: -140px; background: #4f46e5; }
+  .b2 { width: 380px; height: 380px; bottom: -120px; right: -120px; background: #db2777; animation-delay: 4s; }
+  .b3 { width: 280px; height: 280px; top: 45%; left: 50%; transform: translate(-50%,-50%); background: #9333ea; animation-delay: 8s; }
+  @keyframes float {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(25px,-25px) scale(1.08); }
+  }
+
+  .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease forwards; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .d1 { animation-delay: .1s }
+  .d2 { animation-delay: .2s }
+  .d3 { animation-delay: .3s }
+  .d4 { animation-delay: .4s }
+  .d5 { animation-delay: .5s }
+
+  .pulse-dot { animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74,222,128,0.7); }
+    50% { opacity: .8; box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+  }
+
+  .avatar-ring {
+    background: conic-gradient(from 0deg, #6366f1, #a855f7, #ec4899, #6366f1);
+    animation: rotate 8s linear infinite;
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  .page {
+    position: relative; z-index: 1;
+    min-height: 100dvh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px 16px 32px;
+  }
+  .wrap { max-width: 720px; width: 100%; }
+  .card {
+    border-radius: 24px; padding: 28px 20px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  }
+
+  .header { text-align: center; }
+  .avatar-wrap { position: relative; width: 112px; height: 112px; margin: 0 auto 20px; }
+  .avatar-ring { position: absolute; inset: -3px; border-radius: 50%; }
+  .avatar {
+    position: relative; width: 100%; height: 100%;
+    border-radius: 50%; border: 3px solid #0a0a15;
+    overflow: hidden;
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; font-weight: 700; color: #fff;
+  }
+  .avatar img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.6);
+    transform-origin: center center;
+  }
+  .online-dot {
+    position: absolute; bottom: 2px; right: 2px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #4ade80; border: 3px solid #0a0a15;
+  }
+  .name { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
+  .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: #818cf8; line-height: 1.6; margin-bottom: 16px;
+  }
+  .role-sub {
+    font-size: 14px; color: #d1d5db; line-height: 1.6;
+    max-width: 440px; margin: 0 auto;
+  }
+  .role-sub em {
+    font-style: normal; color: #fff; font-weight: 500;
+  }
+
+  .hook {
+    font-size: 15px; color: #e5e7eb; line-height: 1.7;
+    max-width: 440px; margin: 0 auto;
+  }
+  .hook em {
+    font-style: normal; color: #fff; font-weight: 600;
+    border-bottom: 1px solid rgba(99,102,241,0.4);
+  }
+
+  .insight {
+    margin-top: 28px; padding: 20px; border-radius: 16px;
+    background: rgba(99,102,241,0.06);
+    border: 1px solid rgba(99,102,241,0.15);
+  }
+  .insight-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: #818cf8; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
+  }
+  .insight-label::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: #6366f1; flex-shrink: 0;
+  }
+  .insight-text {
+    font-size: 14px; color: #d1d5db; line-height: 1.7;
+  }
+  .insight-text strong { color: #fff; font-weight: 600; }
+
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: #818cf8; margin-bottom: 12px; margin-top: 28px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .section-title::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: #6366f1; flex-shrink: 0;
+  }
+
+  .steps { margin-top: 16px; }
+  .step {
+    display: flex; gap: 14px; padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    align-items: flex-start;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500; color: #6366f1;
+    background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+    width: 28px; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .step-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .step-desc { font-size: 13px; color: #9ca3af; line-height: 1.55; }
+
+  .competencies {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    margin-top: 16px;
+  }
+  .competency {
+    padding: 10px 12px; border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px; color: #d1d5db; line-height: 1.4;
+  }
+
+  .formats {
+    margin-top: 16px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .format {
+    padding: 12px; border-radius: 10px;
+    background: rgba(99,102,241,0.06);
+    border: 1px solid rgba(99,102,241,0.15);
+  }
+  .format-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .format-desc { font-size: 11px; color: #9ca3af; line-height: 1.4; }
+
+  .clients {
+    margin-top: 16px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .client-tag {
+    font-size: 11px; padding: 5px 10px; border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #d1d5db;
+  }
+
+  .benefits {
+    margin-top: 16px;
+    display: grid; gap: 8px;
+  }
+  .benefit {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 12px; border-radius: 10px;
+    background: rgba(16,185,129,0.04);
+    border: 1px solid rgba(16,185,129,0.12);
+    font-size: 13px; color: #d1d5db; line-height: 1.5;
+  }
+  .benefit::before {
+    content: '→'; color: #10b981; flex-shrink: 0; font-weight: 600;
+  }
+
+  .contact-section { margin-top: 28px; }
+  .contact-label {
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: #4b5563; margin-bottom: 14px;
+  }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .contact-card {
+    border-radius: 14px; padding: 16px 8px; text-align: center;
+    transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .contact-card:active { transform: scale(0.95); }
+  .contact-card svg { width: 20px; height: 20px; margin: 0 auto 8px; display: block; }
+  .contact-card span { font-size: 11px; color: #d1d5db; }
+
+  .footer {
+    margin-top: 28px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center; font-size: 11px; color: #374151;
+    line-height: 1.6;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0a0a15; }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #6366f1, #ec4899); border-radius: 2px; }
+
+  @media (min-width: 768px) {
+    .page { padding: 40px 24px; }
+    .card { padding: 48px 52px; border-radius: 28px; }
+    .avatar-wrap { width: 140px; height: 140px; margin-bottom: 24px; }
+    .avatar { font-size: 2.8rem; }
+    .name { font-size: 40px; }
+    .role { font-size: 14px; }
+    .role-sub { font-size: 16px; max-width: 480px; }
+    .hook { font-size: 17px; max-width: 480px; }
+    .insight { padding: 24px 28px; margin-top: 32px; }
+    .insight-text { font-size: 15px; }
+    .steps { margin-top: 16px; }
+    .step { padding: 20px 0; gap: 18px; }
+    .step-num { width: 32px; height: 32px; font-size: 12px; }
+    .step-title { font-size: 16px; }
+    .step-desc { font-size: 14px; }
+    .competencies { gap: 10px; }
+    .competency { font-size: 13px; padding: 12px 14px; }
+    .formats { gap: 12px; }
+    .format { padding: 14px; }
+    .format-title { font-size: 14px; }
+    .format-desc { font-size: 12px; }
+    .benefit { font-size: 14px; padding: 12px 14px; }
+    .contact-grid { gap: 14px; }
+    .contact-card { padding: 20px 12px; }
+    .contact-card svg { width: 22px; height: 22px; margin-bottom: 10px; }
+    .contact-card span { font-size: 13px; }
+
+    @media (hover: hover) {
+      .contact-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(99,102,241,0.2);
+        border-color: rgba(168,85,247,0.3);
+      }
+      .insight:hover {
+        border-color: rgba(99,102,241,0.3);
+        background: rgba(99,102,241,0.08);
+      }
+      .competency:hover, .format:hover, .benefit:hover {
+        border-color: rgba(168,85,247,0.3);
+        background: rgba(255,255,255,0.05);
+      }
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="blobs">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<main class="page">
+  <div class="wrap">
+    <div class="card glass">
+
+      <!-- HEADER -->
+      <div class="header fade-up">
+        <div class="avatar-wrap">
+          <div class="avatar-ring"></div>
+          <div class="avatar">
+            <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли">
+          </div>
+          <div class="online-dot pulse-dot"></div>
+        </div>
+        <h1 class="name">Игорь Ли</h1>
+        <p class="role">AI-трансформационный менеджер</p>
+        <p class="role-sub">
+          Помогаю компаниям <em>внедрять ИИ в рабочие процессы</em> и обучать команды работать с нейросетями как с инструментом, а не угрозой.
+        </p>
+      </div>
+
+      <!-- HOOK -->
+      <p class="hook fade-up d1" style="margin-top: 24px;">
+        Работаю с компаниями, где команда тратит время на <em>рутинные задачи</em>, которые уже можно делегировать ИИ. Сотрудники не увольняются — они начинают делать более ценную работу.
+      </p>
+
+      <!-- INSIGHT -->
+      <div class="insight fade-up d2">
+        <div class="insight-label">Ключевой принцип работы</div>
+        <p class="insight-text">
+          Навык работы с ИИ — это <strong>не промпты</strong>. Это <strong>операционный менеджмент</strong>: сформулировать задачу, найти ресурсы, оценить результат, построить пайплайн. Код, дизайн, аналитику — всё ИИ сделает сам. А вот <strong>менеджмент не делегируется</strong> — и именно здесь я помогаю командам вырасти.
+        </p>
+      </div>
+
+      <!-- COMPETENCIES -->
+      <div class="fade-up d2">
+        <div class="section-title">Компетенции</div>
+        <div class="competencies">
+          <div class="competency">Аудит процессов под автоматизацию</div>
+          <div class="competency">Внедрение AI-инструментов (ChatGPT, Claude, кастомные решения)</div>
+          <div class="competency">Обучение команд работе с ИИ</div>
+          <div class="competency">Помогаю командам принять ИИ без саботажа</div>
+          <div class="competency">Настраиваю процессы, где ИИ берёт рутину, а люди — результат</div>
+          <div class="competency">Учу руководителей ставить задачи ИИ как сотрудникам</div>
+        </div>
+      </div>
+
+      <!-- STEPS -->
+      <div class="fade-up d3">
+        <div class="section-title">Как я работаю</div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <div class="step-title">Аудит процессов</div>
+              <div class="step-desc">Нахожу операции, которые команда делает руками, хотя ИИ делает их быстрее и без ошибок.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <div class="step-title">Внедрение за 30 дней</div>
+              <div class="step-desc">Конкретное внедрение в процессы с измеримым результатом к концу месяца.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <div class="step-title">Обучение команды</div>
+              <div class="step-desc">Превращаю исполнителей в операторов ИИ. Производительность растёт без сокращений.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <div class="step-title">Автономная система</div>
+              <div class="step-desc">AI-пайплайны работают без постоянного участия. Руководители контролируют, не выполняют.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMATS -->
+      <div class="fade-up d3">
+        <div class="section-title">Формат работы</div>
+        <div class="formats">
+          <div class="format">
+            <div class="format-title">Консалтинг</div>
+            <div class="format-desc">Проект 1–3 месяца с измеримым результатом</div>
+          </div>
+          <div class="format">
+            <div class="format-title">Штатная позиция</div>
+            <div class="format-desc">AI-менеджер</div>
+          </div>
+          <div class="format">
+            <div class="format-title">Корпоративное обучение</div>
+            <div class="format-desc">Воркшопы и программы для команд</div>
+          </div>
+          <div class="format">
+            <div class="format-title">Разовые консультации</div>
+            <div class="format-desc">Для руководителей и HRD</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLIENTS -->
+      <div class="fade-up d4">
+        <div class="section-title">С кем работаю</div>
+        <div class="clients">
+          <span class="client-tag">Компании от 50 сотрудников</span>
+          <span class="client-tag">IT и digital</span>
+          <span class="client-tag">E-commerce</span>
+          <span class="client-tag">Образование</span>
+          <span class="client-tag">Услуги</span>
+          <span class="client-tag">Производство</span>
+        </div>
+      </div>
+
+      <!-- BENEFITS -->
+      <div class="fade-up d4">
+        <div class="section-title">Что получает компания</div>
+        <div class="benefits">
+          <div class="benefit">Сотрудники тратят время на задачи, где они создают ценность, а не на рутину</div>
+          <div class="benefit">Снижение операционных затрат на 20–40% без сокращения штата</div>
+          <div class="benefit">Команда освоила AI-инструменты без сопротивления и саботажа</div>
+          <div class="benefit">Руководители получили управляемые AI-пайплайны и прозрачные метрики</div>
+        </div>
+      </div>
+
+      <!-- CONTACTS -->
+      <div class="contact-section fade-up d5">
+        <p class="contact-label">// Обсудить сотрудничество</p>
+        <div class="contact-grid">
+          <a href="tel:+79538081276" class="contact-card glass">
+            <svg fill="none" stroke="#818cf8" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Позвонить</span>
+          </a>
+          <a href="mailto:igorli.work@gmail.com" class="contact-card glass">
+            <svg fill="none" stroke="#c084fc" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer fade-up d5">
+        © 2026 Игорь Ли · Москва<br>
+        AI-трансформация · Обучение команд · Операционный менеджмент
+      </div>
+
+    </div>
+  </div>
+</main>
+
+</body>
+</html>
