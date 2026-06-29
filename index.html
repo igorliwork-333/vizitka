@@ -69,83 +69,73 @@
   .card {
     border-radius: 24px; padding: 28px 20px;
     box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-  }
-
   .header { text-align: center; }
-  .avatar-wrap { position: relative; width: 100%; max-width: 320px; margin: 0 auto 24px; aspect-ratio: 16/9; }
-  .avatar-ring { position: absolute; inset: -3px; border-radius: 12px; }
-  .avatar {
-    position: relative; width: 100%; height: 100%;
-    border-radius: 12px; border: 3px solid #0a0a15;
-    overflow: hidden;
-    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .avatar img {
-    width: 100%; height: 100%; object-fit: cover;
-    object-position: center 35%;
-    transform: scale(1.2);
-    transform-origin: center 35%;
-  }
-  .name { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
-  .role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; color: #818cf8; line-height: 1.6; margin-bottom: 16px;
-  }
-  .role-sub {
-    font-size: 14px; color: #d1d5db; line-height: 1.6;
-    max-width: 440px; margin: 0 auto;
-  }
-  .role-sub em {
-    font-style: normal; color: #fff; font-weight: 500;
-  }
-
-  .hook {
-    font-size: 15px; color: #e5e7eb; line-height: 1.7;
-    max-width: 440px; margin: 0 auto;
-  }
-  .hook em {
-    font-style: normal; color: #fff; font-weight: 600;
-    border-bottom: 1px solid rgba(99,102,241,0.4);
-  }
-
-  .insight {
-    position: relative;
-    margin-top: 32px; padding: 24px 20px 20px 28px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(168,85,247,0.04) 100%);
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .insight::before {
-    content: '';
-    position: absolute;
-    left: 4px; top: 4px; bottom: 4px;
-    width: 3px;
-    background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
-    border-radius: 999px;
-  }
-  .insight-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
-    color: #a5b4fc; margin-bottom: 16px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .insight-label::before {
-    content: '✦'; font-size: 10px;
-    color: #818cf8; flex-shrink: 0;
-  }
-  .insight-text {
-    font-size: 14px; color: #e5e7eb; line-height: 1.7;
-    padding-left: 12px;
-    border-left: 1px solid rgba(99,102,241,0.2);
-    margin-bottom: 14px;
-  }
-  .insight-text:last-child {
-    margin-bottom: 0;
-  }
-  .insight-text strong { color: #fff; font-weight: 600; }
-
-  .section-title {
+    .avatar-wrap { position: relative; width: 100%; margin: 0 0 48px; }
+    .avatar-ring { position: absolute; inset: -3px; border-radius: 12px; }
+    .avatar {
+      position: relative; width: 100%; height: auto;
+      border-radius: 12px; border: 3px solid #0a0a15;
+      overflow: hidden;
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+      display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 16/9;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .name { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
+    .role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: #818cf8; line-height: 1.6; margin-bottom: 16px;
+    }
+    .role-sub {
+      font-size: 14px; color: #d1d5db; line-height: 1.6;
+      max-width: 440px; margin: 0 auto;
+    }
+    .role-sub em {
+      font-style: normal; color: #fff; font-weight: 500;
+    }
+    .hook {
+      font-size: 15px; color: #e5e7eb; line-height: 1.7;
+      max-width: 440px; margin: 0 auto;
+    }
+    .hook em {
+      font-style: normal; color: #fff; font-weight: 600;
+      border-bottom: 1px solid rgba(99,102,241,0.4);
+    }
+    .insight {
+      position: relative;
+      margin-top: 32px; padding: 24px 20px 20px 28px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(168,85,247,0.04) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .insight::before {
+      content: '';
+      position: absolute;
+      left: 4px; top: 4px; bottom: 4px;
+      width: 3px;
+      background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
+      border-radius: 999px;
+    }
+    .insight-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+      color: #a5b4fc; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .insight-label::before {
+      content: '✦'; font-size: 10px;
+      color: #818cf8; flex-shrink: 0;
+    }
+    .insight-text {
+      font-size: 14px; color: #e5e7eb; line-height: 1.7;
+      padding-left: 12px;
+      border-left: 1px solid rgba(99,102,241,0.2);
+      margin-bottom: 14px;
+    }
+    .insight-text:last-child {
+      margin-bottom: 0;
+    }
+    .insight-text strong { color: #fff; font-weight: 600; }
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
     color: #818cf8; margin-bottom: 12px; margin-top: 28px;
