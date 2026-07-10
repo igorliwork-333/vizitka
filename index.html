@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Игорь Ли — интегратор Битрикс24</title>
+  <title>Игорь Ли — автоматизация отделов продаж на Битрикс24</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,14 +24,10 @@
     button { border: none; background: none; cursor: pointer; font: inherit; }
     input, textarea { font: inherit; }
 
-    /* === UTILITIES === */
     .container { max-width: 1152px; margin: 0 auto; padding: 0 24px; }
     .serif { font-family: 'Playfair Display', Georgia, serif; }
     .grotesk { font-family: 'Space Grotesk', 'Inter', sans-serif; }
-    .tracking-tight { letter-spacing: -0.025em; }
-    .uppercase { text-transform: uppercase; }
 
-    /* === ANIMATIONS === */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -63,7 +59,6 @@
     .fl  { animation: float 6s ease-in-out infinite; }
     .fld { animation: floatD 6s ease-in-out 2s infinite; }
 
-    /* === GLASS === */
     .glass {
       background: rgba(255,255,255,0.6);
       -webkit-backdrop-filter: blur(20px);
@@ -83,7 +78,6 @@
       border: 1px solid rgba(255,255,255,0.25);
     }
 
-    /* === DOT BG === */
     .dots {
       background-image: radial-gradient(circle at 2px 2px, rgba(15,23,42,0.06) 1px, transparent 0);
       background-size: 24px 24px;
@@ -93,13 +87,11 @@
       background-size: 24px 24px;
     }
 
-    /* === MASK === */
     .mask-x {
       -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
       mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
     }
 
-    /* === HOVER === */
     .card-up {
       transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), box-shadow 0.5s cubic-bezier(0.23,1,0.32,1);
     }
@@ -121,7 +113,6 @@
     }
     .link-ul:hover::after { width: 100%; }
 
-    /* === SCROLL REVEAL === */
     .sr {
       opacity: 0;
       transform: translateY(28px);
@@ -129,12 +120,10 @@
     }
     .sr.vis { opacity: 1; transform: translateY(0); }
 
-    /* === SCROLLBAR === */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #F4F4F5; }
     ::-webkit-scrollbar-thumb { background: #D4D4D8; border-radius: 3px; }
 
-    /* === RESPONSIVE GRID === */
     .grid-2 { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media(min-width:640px)  { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
     .grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
@@ -150,7 +139,6 @@
     @media(min-width:640px)  { .grid-footer { grid-template-columns: repeat(2, 1fr); } }
     @media(min-width:1024px) { .grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; } }
 
-    /* === BUTTONS === */
     .btn-primary {
       display: inline-flex; align-items: center; gap: 12px;
       background: #18181B; color: #fff;
@@ -170,7 +158,6 @@
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.6); }
 
-    /* === TAGS === */
     .tag {
       display: inline-block;
       font-size: 10px; font-weight: 700;
@@ -234,6 +221,13 @@
       border: 1px solid rgba(16,185,129,0.15);
     }
     .ben-item::before { content: '→'; color: #10B981; font-weight: 700; flex-shrink: 0; }
+
+    /* === DASHBOARD MOCK === */
+    .mock { border-radius:16px;padding:24px;background:rgba(255,255,255,0.6);border:1px solid rgba(228,228,231,0.6); }
+    .mock-head { display:flex;align-items:center;justify-content:space-between;margin-bottom:8px; }
+    .mock-row { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(228,228,231,0.5); }
+    .mock-row:last-child { border-bottom:none; }
+    .mock-bar { height:6px;border-radius:999px;background:linear-gradient(90deg,#A855F7,#06B6D4);flex:1;max-width:130px; }
   </style>
 </head>
 <body>
@@ -250,6 +244,7 @@
         </a>
         <div style="display:flex;align-items:center;gap:4px" class="hide-mobile">
           <a href="#directions" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Направления</a>
+          <a href="#dashboards" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Дашборды</a>
           <a href="#services" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Услуги</a>
           <a href="#process" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Как работаю</a>
           <a href="#contact" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Контакт</a>
@@ -281,6 +276,7 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:4px">
         <a href="#directions" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Направления</a>
+        <a href="#dashboards" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Дашборды</a>
         <a href="#services" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Услуги</a>
         <a href="#process" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Как работаю</a>
         <a href="#contact" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Контакт</a>
@@ -303,18 +299,17 @@
           <div class="anim-fu">
             <div class="glass-sm" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 16px;margin-bottom:32px">
               <div style="width:8px;height:8px;background:#A855F7;border-radius:50%;animation:pulse 2s ease-in-out infinite"></div>
-              <span style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#71717A">Интегратор Битрикс24</span>
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#71717A">Автоматизация отделов продаж</span>
             </div>
           </div>
 
           <h1 class="anim-fu d1" style="font-size:clamp(40px,7vw,64px);font-weight:500;line-height:0.98;letter-spacing:-0.03em;margin-bottom:28px">
-            Перестраиваю продажи<br>
-            и сервис на<br>
-            <span class="serif" style="font-style:italic;color:#A1A1AA">Битрикс24</span>
+            Настраиваю отделы<br>
+            продаж на <span class="serif" style="font-style:italic;color:#A1A1AA">Битрикс24</span>
           </h1>
 
           <p class="anim-fu d2" style="font-size:clamp(16px,2vw,18px);color:#71717A;font-weight:500;line-height:1.6;max-width:440px;margin-bottom:40px">
-            Помогаю компаниям перестроить продажи и сервис на Битрикс24 — воронки, партнёрские порталы, отчётность без рутины.
+            Воронки без потерянных лидов, контроль просрочек и дашборды через REST API — прозрачность для собственника, а не отчёты менеджеров.
           </p>
 
           <div class="anim-fu d3" style="display:flex;flex-wrap:wrap;gap:16px">
@@ -336,7 +331,7 @@
           </div>
           <div class="glass fld" style="position:absolute;right:-24px;bottom:80px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:flex;align-items:center;gap:10px">
             <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#06B6D4;font-size:18px"></iconify-icon>
-            <span style="font-size:13px;font-weight:600">CRM-автоматизация</span>
+            <span style="font-size:13px;font-weight:600">Дашборды</span>
           </div>
         </div>
       </div>
@@ -354,33 +349,25 @@
   <section style="padding:40px 0;border-top:1px solid rgba(228,228,231,0.6);border-bottom:1px solid rgba(228,228,231,0.6);overflow:hidden">
     <div class="mask-x">
       <div style="display:flex;animation:marquee 28s linear infinite;white-space:nowrap">
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Битрикс24</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отдел продаж</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Внедрение</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки продаж</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Контроль просрочек</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Партнёрские порталы</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Дашборды REST API</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Интеграции</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Прозрачность для РОПа</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Обучение команды</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отдел продаж</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отчётность</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Битрикс24</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Контроль просрочек</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Внедрение</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Дашборды REST API</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки продаж</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Партнёрские порталы</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Интеграции</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Обучение команды</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отчётность</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Прозрачность для РОПа</span>
         <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
       </div>
     </div>
@@ -389,101 +376,174 @@
   <!-- DIRECTIONS -->
   <section id="directions" style="padding:96px 0 128px">
     <div class="container">
-      <div class="sr" style="max-width:640px;margin-bottom:64px">
+      <div class="sr" style="max-width:680px;margin-bottom:64px">
         <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Направления</span>
         <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;margin-bottom:24px">Для кого <span class="serif" style="font-style:italic;color:#A1A1AA">работаю</span></h2>
         <p style="font-size:clamp(15px,2vw,17px);color:#71717A;font-weight:500;line-height:1.6">
-          Часто бизнес путает автоматизацию процессов с покупкой софта. Думает, что берёт программу, а нужна перестройка того, как работает команда. Возможно, прямо сейчас мои услуги вам не очевидны. Ниже разобрал по трём типам бизнеса — где именно закрываю боль, а где нет.
+          Фокус — на три модели, где моя помощь понятна сразу и не нужно доказывать ценность. В каждом направлении сначала честно: возможно, мои услуги вам пока не очевидны. А ниже — где именно закрываю боль.
         </p>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:24px">
 
-        <!-- Direction 1 -->
+        <!-- Direction 1: B2B -->
         <div class="sr card-up glass dir-card">
-          <span class="dir-label">Кто ищет сам — B2B, сложный B2C, D2C</span>
+          <span class="dir-label">B2B — отделы продаж (до 10 менеджеров)</span>
           <div class="dir-opener">
-            Возможно, мои услуги вам сейчас вообще не нужны. У вас есть отдел продаж, CRM и человек, который её администрирует. Вы и так знаете, что такое воронка и сквозная аналитика. Оставил этот блок на всякий случай: где именно я делаю быстрее и без багов, чем ваш штатный программист.
+            Возможно, мои услуги вам сейчас не нужны. У вас есть CRM и отдел продаж, и вы думаете, что автоматизация — это про «красивые воронки». Но чаще боль в другом: лиды висят без движения, CRM перегружена мусором, а РОП не видит, где застряли сделки. Оставил блок на случай, если узнаете свою ситуацию.
           </div>
           <div class="dir-cols">
             <div>
               <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
               <div class="dir-list">
-                <div class="dir-item pain">Лид со звонка не попал в CRM — менеджер перепутал, клиент висит неделю, потом звонит конкуренту</div>
-                <div class="dir-item pain">Сделка застряла на этапе «согласование» — никто не видит, где именно, и когда сорвётся срок</div>
-                <div class="dir-item pain">Отчёт директору собирается вручную из трёх Excel к четвергу, а к понедельнику уже неактуален</div>
-                <div class="dir-item pain">Клиент перезванивает — его не узнали, потому что данные дублируются между менеджерами</div>
-                <div class="dir-item pain">Штатный айти правит месяц и с багами, а продажи ждут вчера</div>
+                <div class="dir-item pain">Менеджер забыл перезвонить — лид остыл и ушёл к конкуренту, а в CRM он «в работе»</div>
+                <div class="dir-item pain">Карточка забита лишними полями — менеджеры не заполняют, данные теряются</div>
+                <div class="dir-item pain">РОП не видит движение сделок — непонятно, кто сливает лиды, а кто реально работает</div>
+                <div class="dir-item pain">Счета и договоры собираются вручную по 40 минут на каждую сделку</div>
+                <div class="dir-item pain">Продажи и бухгалтерия в разных системах — менеджер не видит оплату и остатки на складе</div>
               </div>
             </div>
             <div>
-              <div class="dir-block-title"><span class="dot-grow"></span>Куда расти / что уже работает вручную</div>
+              <div class="dir-block-title"><span class="dot-grow"></span>Что я делаю</div>
               <div class="dir-list">
-                <div class="dir-item grow">Масштабировать продажи без найма ещё пяти менеджеров</div>
-                <div class="dir-item grow">Видеть воронку в реальном времени, а не постфактум</div>
-                <div class="dir-item grow">Предсказуемый конвейер: каждый лид на своём месте, ничего не теряется</div>
+                <div class="dir-item grow">Механизм напоминаний: просроченный лид не теряется, сам всплывает в задачах</div>
+                <div class="dir-item grow">Чистка воронки: убираю поля, которые никто не заполняет, — остаётся только то, что влияет на продажу</div>
+                <div class="dir-item grow">Прозрачность движения сделок: РОП видит, где застряло и кто сливает</div>
+                <div class="dir-item grow">Сквозная аналитика: конверсия по этапам, а не отчёты менеджеров</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Direction 2 -->
+        <!-- Direction 2: Complex B2C -->
         <div class="sr card-up glass dir-card">
-          <span class="dir-label">Кто чувствует боль, но ищет не меня — B2B2C, B2E, C2C/C2B</span>
+          <span class="dir-label">Сложный B2C — недвижимость, авто, медицина, обучение, юруслуги</span>
           <div class="dir-opener">
-            Скорее всего, обо мне вы ещё не думали. Первая мысль — написать свой уникальный софт или купить дорогую узкопрофильную систему. Про Битрик24 думаете как про «коробку для отдела продаж». А ваша боль закрывается партнёрским порталом на его базе. Ниже — где именно.
+            Возможно, вы думаете, что автоматизация — для скучных B2B с длинными сделками, а у вас массовый поток и важен «живой» менеджер. Но без автоматизации вы теряете деньги на каждом втором лиде — и «живой» менеджер этого не видит.
           </div>
           <div class="dir-cols">
             <div>
               <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
               <div class="dir-list">
-                <div class="dir-item pain">Партнёры сидят в Excel и Telegram — не видят статус своей заявки, звонят уточнять каждый час</div>
-                <div class="dir-item pain">Онбординг нового партнёра или франчайзи идёт неделями, всё на почте и в голове</div>
-                <div class="dir-item pain">Тысячи заявок от пользователей валятся в одну почту — половина без ответа, репутация падает</div>
-                <div class="dir-item pain">Каждый новый процесс = отдельный дорогой софт, который не стыкуется с остальным</div>
-                <div class="dir-item pain">Разработка с нуля съела полгода и миллионы, а запустить хотели через месяц</div>
+                <div class="dir-item pain">Клиент пишет в WhatsApp, Telegram, VK, Instagram — ответы теряются между каналами</div>
+                <div class="dir-item pain">Лид пришёл ночью, а к утру остыл и уже смотрит конкурентов</div>
+                <div class="dir-item pain">Клиент ушёл с сайта и забыл про вас — заявка сгорела</div>
+                <div class="dir-item pain">Менеджеры не видят всю историю общения — переспрашивают, раздражают</div>
+                <div class="dir-item pain">Неясно, какой канал рекламы окупается, а какой сливает бюджет</div>
               </div>
             </div>
             <div>
-              <div class="dir-block-title"><span class="dot-grow"></span>Куда расти / что уже работает вручную</div>
+              <div class="dir-block-title"><span class="dot-grow"></span>Что я делаю</div>
               <div class="dir-list">
-                <div class="dir-item grow">Поднять партнёрский портал на Битрик24 за недели, а не за год</div>
-                <div class="dir-item grow">Партнёры сами видят статусы и документы — без звонков вам</div>
-                <div class="dir-item grow">Заявки автоматом распределяются и попадают к нужному исполнителю</div>
-                <div class="dir-item grow">Онбординг сжать с недель до дней</div>
+                <div class="dir-item grow">Все каналы в одном окне CRM — единая карточка клиента со всей перепиской</div>
+                <div class="dir-item grow">Авто-распределение заявок: ночные — дежурному, скорость реакции — секунды</div>
+                <div class="dir-item grow">Триггеры на брошенные заявки: напоминание через час, предложение через сутки</div>
+                <div class="dir-item grow">Дашборд ROMI/CAC по каждому каналу — видно, где прибыль, а где слив</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Direction 3 -->
+        <!-- Direction 3: D2C -->
         <div class="sr card-up glass dir-card">
-          <span class="dir-label">Кому нужен в точку — B2G, G2B, G2C, B2D</span>
+          <span class="dir-label">D2C — собственные бренды и крупный e-commerce</span>
           <div class="dir-opener">
-            Честно — вашему бизнесу мои услуги в большинстве точек не нужны. У вас свои контуры, тендеры, регламенты. Красивые воронки продаж вас не греют. Но есть узкие места, где я реально помогаю — автоматизация конкретного отдела. Где именно:
+            Возможно, вы думаете, что автоматизация — для посредников, а вы производитель и важнее качество продукта. Но без автоматизации вы теряете клиентов на логистике и возвратах, а повторные продажи отдаёте конкурентам.
           </div>
           <div class="dir-cols">
             <div>
               <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
               <div class="dir-list">
-                <div class="dir-item pain">Отчётность под регламент собирается вручную — часы работы, которые никто не ценит</div>
-                <div class="dir-item pain">Согласования идут по цепочке, никто не видит, на ком застряло</div>
-                <div class="dir-item pain">Служба поддержки или отдел продаж сидит на почте — нет единой картины по обращениям</div>
-                <div class="dir-item pain">Нужно просто сдать отчёт и пройти проверку, а не строить «цифровую трансформацию»</div>
-                <div class="dir-item pain">Разработчики в Jira и GitHub считают Битрик24 тяжёлым — но отдел продаж от этого страдает</div>
+                <div class="dir-item pain">Клиент не знает, где его заказ, и звонит в поддержку уточнять статус</div>
+                <div class="dir-item pain">Возвраты и брак обрабатываются неделями — клиент уходит с негативом</div>
+                <div class="dir-item pain">Нет повторных продаж — купили один раз и забыли</div>
+                <div class="dir-item pain">Данные размазаны по сайту, CRM, 1С и складу — нет единой картины</div>
+                <div class="dir-item pain">Не видно, какие товары замораживают деньги на складе</div>
               </div>
             </div>
             <div>
-              <div class="dir-block-title"><span class="dot-grow"></span>Куда расти / что уже работает вручную</div>
+              <div class="dir-block-title"><span class="dot-grow"></span>Что я делаю</div>
               <div class="dir-list">
-                <div class="dir-item grow">Автоматизировать отдел продаж или поддержки, не трогая остальной контур</div>
-                <div class="dir-item grow">Регламентная отчётность собирается сама, без ручного сбора</div>
-                <div class="dir-item grow">Прозрачность согласований — видно, где бумага застряла</div>
+                <div class="dir-item grow">Интеграция CRM со службами доставки — клиент сам получает трек и статус</div>
+                <div class="dir-item grow">Процесс возврата от заявки до денег — автоматически, без недель ожидания</div>
+                <div class="dir-item grow">Триггеры повтора: предложение сопутствующих товаров, напоминание о новом заказе</div>
+                <div class="dir-item grow">Единый дашборд операционки: оборачиваемость, выкуп, логистика в разрезе SKU</div>
               </div>
             </div>
           </div>
         </div>
 
+      </div>
+
+      <div class="sr" style="margin-top:32px;font-size:13px;color:#A1A1AA;font-weight:500;text-align:center">
+        Работаю и с другими моделями (B2G, B2B2C, C2C, B2E) — но глубокая экспертиза и фокус в трёх направлениях выше.
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARDS -->
+  <section id="dashboards" style="padding:96px 0 128px;position:relative">
+    <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
+    <div class="container" style="position:relative">
+      <div class="grid-2" style="align-items:center;gap:64px">
+        <div class="sr">
+          <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Дашборды через REST API</span>
+          <h2 style="font-size:clamp(32px,4vw,44px);font-weight:500;line-height:0.98;letter-spacing:-0.03em;margin-bottom:24px">Не для отчёта<br><span class="serif" style="font-style:italic;color:#A1A1AA">сотрудника</span> —<br>для контроля <span class="serif" style="font-style:italic;color:#A1A1AA">собственника</span></h2>
+          <p style="font-size:15px;color:#71717A;font-weight:500;line-height:1.65;margin-bottom:24px">
+            Дашборд, который нужен линейному менеджеру, — это расход: красивые графики его активности, которые оправдывают зарплату. Дашборд для собственника — это инвестиция: где бизнес теряет деньги, а не кто красивее отчитался.
+          </p>
+          <p style="font-size:15px;color:#71717A;font-weight:500;line-height:1.65;margin-bottom:28px">
+            Я собираю данные из Битрикс24, 1С и сайта через REST API и строю панели управления, где видно реальную конверсию по этапам, причины отказов и загрузку менеджеров. Бизнесу плевать, на чём это написано — важно, чтобы работало и не ломалось.
+          </p>
+          <a href="#contact" class="btn-primary" style="border-radius:16px">
+            Обсудить панель под вашу задачу
+            <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:14px"></iconify-icon>
+          </a>
+        </div>
+
+        <div class="sr">
+          <div class="glass mock" style="box-shadow:0 25px 50px -12px rgba(0,0,0,0.12)">
+            <div class="mock-head">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:36px;height:36px;background:rgba(168,85,247,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center">
+                  <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#A855F7;font-size:16px"></iconify-icon>
+                </div>
+                <div style="font-size:14px;font-weight:600;letter-spacing:-0.025em">Панель собственника</div>
+              </div>
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A855F7">REST API</span>
+            </div>
+            <div style="height:1px;background:rgba(228,228,231,0.6);margin:16px 0"></div>
+            <div class="mock-row">
+              <div style="display:flex;align-items:center;gap:10px">
+                <iconify-icon icon="solar:clock-circle-bold-duotone" style="color:#F59E0B;font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#3F3F46">Просроченные лиды</span>
+              </div>
+              <span style="font-size:12px;font-weight:600;color:#10B981">под контролем</span>
+            </div>
+            <div class="mock-row">
+              <div style="display:flex;align-items:center;gap:10px">
+                <iconify-icon icon="solar:filter-bold-duotone" style="color:#A855F7;font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#3F3F46">Конверсия по этапам</span>
+              </div>
+              <div class="mock-bar"></div>
+            </div>
+            <div class="mock-row">
+              <div style="display:flex;align-items:center;gap:10px">
+                <iconify-icon icon="solar:users-group-rounded-bold-duotone" style="color:#06B6D4;font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#3F3F46">Кто сливает лиды</span>
+              </div>
+              <span style="font-size:12px;font-weight:600;color:#18181B">видно</span>
+            </div>
+            <div class="mock-row">
+              <div style="display:flex;align-items:center;gap:10px">
+                <iconify-icon icon="solar:coin-bold-duotone" style="color:#22C55E;font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#3F3F46">Маржа по сделке</span>
+              </div>
+              <div class="mock-bar"></div>
+            </div>
+            <div style="margin-top:16px;font-size:11px;color:#A1A1AA;font-weight:500">макет панели управления</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -502,48 +562,48 @@
           <div style="width:56px;height:56px;background:rgba(168,85,247,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(168,85,247,0.2)'" onmouseout="this.style.background='rgba(168,85,247,0.1)'">
             <iconify-icon icon="solar:widget-2-bold-duotone" style="color:#A855F7;font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Внедрение Битрикс24</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Настройка и адаптация под процессы компании, а не под коробку.</p>
-        </div>
-
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(6,182,212,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(6,182,212,0.2)'" onmouseout="this.style.background='rgba(6,182,212,0.1)'">
-            <iconify-icon icon="solar:plug-circle-bold-duotone" style="color:#06B6D4;font-size:24px"></iconify-icon>
-          </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Интеграции</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Телефония, почта, сайт, 1С, мессенджеры — всё в одной системе.</p>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Настройка отдела продаж</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Битрик24 под процессы команды: структура воронки, права, роли, этапы сделки.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
           <div style="width:56px;height:56px;background:rgba(249,115,22,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(249,115,22,0.2)'" onmouseout="this.style.background='rgba(249,115,22,0.1)'">
-            <iconify-icon icon="solar:users-group-rounded-bold-duotone" style="color:#F97316;font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:alarm-bold-duotone" style="color:#F97316;font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Партнёрские порталы</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Экстранет на базе CRM — партнёры видят статусы сами.</p>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Контроль просрочек</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Механизм напоминаний и автоматических задач, чтобы ни один лид не висел без движения.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(236,72,153,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(236,72,153,0.2)'" onmouseout="this.style.background='rgba(236,72,153,0.1)'">
-            <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#EC4899;font-size:24px"></iconify-icon>
+          <div style="width:56px;height:56px;background:rgba(6,182,212,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(6,182,212,0.2)'" onmouseout="this.style.background='rgba(6,182,212,0.1)'">
+            <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#06B6D4;font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Воронки и аналитика</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Сквозная аналитика — картина в реальном времени, а не постфактум.</p>
-        </div>
-
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(34,197,94,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(34,197,94,0.2)'" onmouseout="this.style.background='rgba(34,197,94,0.1)'">
-            <iconify-icon icon="solar:settings-bold-duotone" style="color:#22C55E;font-size:24px"></iconify-icon>
-          </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Автоматизация рутины</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Роботы, триггеры, бизнес-процессы — рутина делает себя сама.</p>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Дашборды через REST API</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Панели управления для собственника: реальная конверсия, причины отказов, загрузка менеджеров.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
           <div style="width:56px;height:56px;background:rgba(99,102,241,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(99,102,241,0.2)'" onmouseout="this.style.background='rgba(99,102,241,0.1)'">
-            <iconify-icon icon="solar:graduation-bold-duotone" style="color:#6366F1;font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:plug-circle-bold-duotone" style="color:#6366F1;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Интеграции</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Телефония, 1С, сайт, мессенджеры — все каналы и данные в одной системе.</p>
+        </div>
+
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(236,72,153,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(236,72,153,0.2)'" onmouseout="this.style.background='rgba(236,72,153,0.1)'">
+            <iconify-icon icon="solar:brush-bold-duotone" style="color:#EC4899;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Чистка и гигиена CRM</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Убираю мусорные поля, которые менеджеры не заполняют, — CRM перестаёт тормозить работу.</p>
+        </div>
+
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(34,197,94,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(34,197,94,0.2)'" onmouseout="this.style.background='rgba(34,197,94,0.1)'">
+            <iconify-icon icon="solar:graduation-bold-duotone" style="color:#22C55E;font-size:24px"></iconify-icon>
           </div>
           <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Обучение команды</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Люди работают в системе, а не в обход неё.</p>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе, а не в обход неё. Саботажа не возникает.</p>
         </div>
       </div>
     </div>
@@ -560,30 +620,29 @@
       <div class="grid-4">
         <div class="sr" style="position:relative">
           <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">01</div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Аудит процессов</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Нахожу операции, которые команда делает руками, хотя Битрик24 делает их сам.</p>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Аудит отдела продаж</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Нахожу операции, которые команда делает руками: просроченные лиды, мусор в полях, непрозрачное движение сделок.</p>
           <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
         </div>
         <div class="sr" style="position:relative">
           <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">02</div>
           <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Внедрение за 30 дней</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Рабочая система с измеримым результатом к концу месяца.</p>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Рабочая система с контролем просрочек и прозрачностью к концу месяца.</p>
           <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
         </div>
         <div class="sr" style="position:relative">
           <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">03</div>
           <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Обучение команды</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Люди работают в системе, а не в обход неё. Саботажа не возникает.</p>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе. Люди заполняют только то, что влияет на продажу.</p>
           <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
         </div>
         <div class="sr">
           <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">04</div>
           <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Автономная работа</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Пайплайны крутятся без постоянного участия. Руководители контролируют, не выполняют.</p>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Воронка крутится сама, РОП видит картину в реальном времени, а не постфактум.</p>
         </div>
       </div>
 
-      <!-- Formats -->
       <div class="sr" style="margin-top:80px">
         <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;text-align:center;margin-bottom:28px">Формат работы</h3>
         <div class="grid-4">
@@ -597,7 +656,7 @@
           </div>
           <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
             <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Корпоративное обучение</div>
-            <div style="font-size:12px;color:#71717A;font-weight:500">Воркшопы и программы для команд</div>
+            <div style="font-size:12px;color:#71717A;font-weight:500">Воркшопи для отдела продаж</div>
           </div>
           <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
             <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Разовые консультации</div>
@@ -657,7 +716,7 @@
             </div>
             <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Продаю результат</h3>
           </div>
-          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Поэтому в нишах с низкой осознанностью я продаю не интеграции, а результат: меньше штата, защита от штрафов, быстрее выпуск продукта.</p>
+          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">В нишах с низкой осознанностью я продаю не интеграции, а результат: меньше штата, защита от штрафов, быстрее выпуск продукта.</p>
         </div>
       </div>
     </div>
@@ -673,21 +732,21 @@
       </div>
 
       <div class="grid-2" style="margin-bottom:72px">
-        <div class="sr ben-item">Лиды не теряются между менеджерами — каждый на своём месте в воронке</div>
-        <div class="sr ben-item">Отчёты готовы сами, без сбора Excel по четвергам</div>
-        <div class="sr ben-item">Партнёры видят статусы сами — звонков вам меньше</div>
+        <div class="sr ben-item">Лиды не теряются — просроченные сами всплывают в задачах, а не висят «в работе»</div>
+        <div class="sr ben-item">РОП видит реальную воронку, а не отчёты менеджеров</div>
+        <div class="sr ben-item">Отчёты и выгрузки собираются сами, без Excel по четвергам</div>
         <div class="sr ben-item">Руководитель видит картину в реальном времени, а не постфактум</div>
       </div>
 
       <div class="sr" style="text-align:center">
         <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:24px">С кем работаю</h3>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
-          <span class="tag-l">B2B и сложный B2C</span>
+          <span class="tag-l">B2B — отделы продаж</span>
+          <span class="tag-l">Сложный B2C (недвижимость, авто, медицина)</span>
           <span class="tag-l">D2C и e-commerce</span>
-          <span class="tag-l">Маркетплейсы и платформы</span>
-          <span class="tag-l">B2B2C и партнёрские сети</span>
-          <span class="tag-l">Госзаказ и окологосударственные</span>
-          <span class="tag-l">Производство и услуги</span>
+          <span class="tag-l">Производство и опт</span>
+          <span class="tag-l">Услуги для бизнеса</span>
+          <span class="tag-l">и другие модели — по запросу</span>
         </div>
       </div>
     </div>
@@ -702,7 +761,7 @@
       <div class="sr">
         <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Контакт</span>
         <h2 style="font-size:clamp(36px,6vw,60px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;margin-bottom:24px">Есть задача по<br><span class="serif" style="font-style:italic;color:#A1A1AA">Битрикс24?</span></h2>
-        <p style="font-size:clamp(16px,2vw,18px);color:#71717A;font-weight:500;line-height:1.6;max-width:512px;margin:0 auto 40px">Расскажите о процессах — покажу, где Битрикс24 закроет боль и что можно автоматизировать уже сейчас.</p>
+        <p style="font-size:clamp(16px,2vw,18px);color:#71717A;font-weight:500;line-height:1.6;max-width:512px;margin:0 auto 40px">Расскажите о процессах отдела продаж — покажу, где теряются лиды и что можно автоматизировать уже сейчас.</p>
       </div>
 
       <div class="sr glass" style="border-radius:24px;padding:clamp(24px,4vw,40px);max-width:512px;margin:0 auto">
@@ -734,12 +793,13 @@
             </div>
             <span style="font-weight:600;letter-spacing:-0.025em;font-size:14px">Игорь Ли</span>
           </div>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6;max-width:280px">Перестраиваю продажи и сервис на Битрикс24 — воронки, партнёрские порталы, отчётность без рутины.</p>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6;max-width:280px">Настраиваю отделы продаж на Битрикс24: контроль просроченных лидов, прозрачность воронки и дашборды через REST API для собственника.</p>
         </div>
         <div>
           <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Навигация</h4>
           <div style="display:flex;flex-direction:column;gap:12px">
             <a href="#directions" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Направления</a>
+            <a href="#dashboards" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Дашборды</a>
             <a href="#services" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Услуги</a>
             <a href="#process" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Как работаю</a>
             <a href="#contact" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Контакт</a>
@@ -748,10 +808,10 @@
         <div>
           <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Услуги</h4>
           <div style="display:flex;flex-direction:column;gap:12px">
-            <span style="font-size:14px;font-weight:500;color:#71717A">Внедрение Битрикс24</span>
-            <span style="font-size:14px;font-weight:500;color:#71717A">Интеграции</span>
-            <span style="font-size:14px;font-weight:500;color:#71717A">Партнёрские порталы</span>
-            <span style="font-size:14px;font-weight:500;color:#71717A">Обучение команды</span>
+            <span style="font-size:14px;font-weight:500;color:#71717A">Настройка отдела продаж</span>
+            <span style="font-size:14px;font-weight:500;color:#71717A">Контроль просрочек</span>
+            <span style="font-size:14px;font-weight:500;color:#71717A">Дашборды REST API</span>
+            <span style="font-size:14px;font-weight:500;color:#71717A">Интеграции и обучение</span>
           </div>
         </div>
         <div>
@@ -766,14 +826,13 @@
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:32px;border-top:1px solid rgba(228,228,231,0.6)">
         <p style="font-size:12px;color:#A1A1AA;font-weight:500">&copy; 2026 Игорь Ли · Новосибирск</p>
         <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#A1A1AA;font-weight:500">
-          Битрикс24 · CRM-автоматизация · Партнёрские порталы
+          Битрикс24 · CRM-автоматизация · Дашборды через REST API
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Mobile menu
     var mobileMenu = document.getElementById('mobileMenu');
     var menuPanel = document.getElementById('menuPanel');
 
@@ -798,7 +857,6 @@
       mobLinks[i].addEventListener('click', closeMenu);
     }
 
-    // Nav scroll
     var nav = document.getElementById('nav');
     window.addEventListener('scroll', function() {
       if (window.scrollY > 80) {
@@ -810,7 +868,6 @@
       }
     });
 
-    // Scroll reveal
     var srEls = document.querySelectorAll('.sr');
     var observer = new IntersectionObserver(function(entries) {
       for (var i = 0; i < entries.length; i++) {
@@ -824,7 +881,6 @@
       observer.observe(srEls[i]);
     }
 
-    // Smooth scroll
     var anchors = document.querySelectorAll('a[href^="#"]');
     for (var i = 0; i < anchors.length; i++) {
       anchors[i].addEventListener('click', function(e) {
