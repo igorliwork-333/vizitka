@@ -1,593 +1,840 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Игорь Ли — интегратор Битрикс24</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #0a0a15; color: #fff;
-    min-height: 100dvh; overflow-x: hidden;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Игорь Ли — интегратор Битрикс24</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     -webkit-font-smoothing: antialiased;
-  }
-  a { text-decoration: none; color: inherit; }
-  img { display: block; max-width: 100%; }
-  .mono { font-family: 'JetBrains Mono', monospace; }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-
-  .glass {
-    background: rgba(255,255,255,0.04);
-    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .blobs { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
-  .blob {
-    position: absolute; border-radius: 50%;
-    filter: blur(100px); opacity: 0.25;
-    animation: float 12s ease-in-out infinite;
-  }
-  .b1 { width: 420px; height: 420px; top: -140px; left: -140px; background: #4f46e5; }
-  .b2 { width: 380px; height: 380px; bottom: -120px; right: -120px; background: #db2777; animation-delay: 4s; }
-  .b3 { width: 280px; height: 280px; top: 45%; left: 50%; transform: translate(-50%,-50%); background: #9333ea; animation-delay: 8s; }
-  @keyframes float {
-    0%, 100% { transform: translate(0,0) scale(1); }
-    50% { transform: translate(25px,-25px) scale(1.08); }
-  }
-
-  .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.7s ease forwards; }
-  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-  .d1 { animation-delay: .1s }
-  .d2 { animation-delay: .2s }
-  .d3 { animation-delay: .3s }
-  .d4 { animation-delay: .4s }
-  .d5 { animation-delay: .5s }
-
-  .avatar-ring {
-    background: conic-gradient(from 0deg, #6366f1, #a855f7, #ec4899, #6366f1);
-    animation: rotate 8s linear infinite;
-  }
-  @keyframes rotate { to { transform: rotate(360deg); } }
-
-  .page {
-    position: relative; z-index: 1;
-    min-height: 100dvh;
-    display: flex; align-items: center; justify-content: center;
-    padding: 20px 16px 32px;
-  }
-  .wrap { max-width: 720px; width: 100%; }
-  .card {
-    border-radius: 24px; padding: 28px 20px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-  }
-
-  .header { text-align: center; }
-  .avatar-wrap { position: relative; width: 120px; height: 120px; margin: 0 auto 20px; }
-  .avatar-ring { position: absolute; inset: -3px; border-radius: 50%; }
-  .avatar {
-    position: relative; width: 100%; height: 100%;
-    border-radius: 50%; border: 3px solid #0a0a15;
-    overflow: hidden;
-    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; font-weight: 700; color: #fff;
-  }
-  .avatar img {
-    width: 100%; height: 100%; object-fit: cover;
-    object-position: center center;
-  }
-  .name { font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
-  .role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; color: #818cf8; line-height: 1.6; margin-bottom: 16px;
-  }
-  .role-sub {
-    font-size: 14px; color: #d1d5db; line-height: 1.6;
-    max-width: 440px; margin: 0 auto;
-  }
-  .role-sub em {
-    font-style: normal; color: #fff; font-weight: 500;
-  }
-
-  .hook {
-    font-size: 15px; color: #e5e7eb; line-height: 1.7;
-    max-width: 440px; margin: 0 auto;
-  }
-  .hook em {
-    font-style: normal; color: #fff; font-weight: 600;
-    border-bottom: 1px solid rgba(99,102,241,0.4);
-  }
-
-  .insight {
-    position: relative;
-    margin-top: 32px; padding: 24px 20px 20px 28px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(168,85,247,0.04) 100%);
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .insight::before {
-    content: '';
-    position: absolute;
-    left: 4px; top: 4px; bottom: 4px;
-    width: 3px;
-    background: linear-gradient(180deg, #6366f1, #a855f7, #ec4899);
-    border-radius: 999px;
-  }
-  .insight-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
-    color: #a5b4fc; margin-bottom: 16px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .insight-label::before {
-    content: '✦'; font-size: 10px;
-    color: #818cf8; flex-shrink: 0;
-  }
-  .insight-text {
-    font-size: 14px; color: #e5e7eb; line-height: 1.7;
-    padding-left: 12px;
-    border-left: 1px solid rgba(99,102,241,0.2);
-    margin-bottom: 14px;
-  }
-  .insight-text:last-child {
-    margin-bottom: 0;
-  }
-  .insight-text strong { color: #fff; font-weight: 600; }
-
-  .section-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em;
-    color: #818cf8; margin-bottom: 12px; margin-top: 28px;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .section-title::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: #6366f1; flex-shrink: 0;
-  }
-
-  /* DIRECTIONS */
-  .dir {
-    margin-top: 14px; padding: 20px 18px;
-    border-radius: 16px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
-  }
-  .dir-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
-    color: #818cf8; margin-bottom: 12px;
-    display: flex; align-items: center; gap: 8px; line-height: 1.4;
-  }
-  .dir-label::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: #a855f7; flex-shrink: 0;
-  }
-  .dir-opener {
-    font-size: 13px; color: #9ca3af; line-height: 1.65;
-    padding: 12px 14px; margin-bottom: 18px;
-    border-radius: 10px;
-    background: rgba(129,140,248,0.06);
-    border-left: 2px solid rgba(129,140,248,0.4);
-  }
-  .dir-block-title {
-    font-size: 12px; font-weight: 600; color: #e5e7eb;
-    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
-  }
-  .dir-block-title .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .dot-pain { background: #f59e0b; }
-  .dot-grow { background: #10b981; }
-  .dir-list { display: grid; gap: 8px; margin-bottom: 18px; }
-  .dir-list:last-child { margin-bottom: 0; }
-  .dir-item {
-    display: flex; gap: 10px; align-items: flex-start;
-    font-size: 13px; color: #d1d5db; line-height: 1.55;
-    padding: 10px 12px; border-radius: 10px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.05);
-  }
-  .dir-item::before { font-weight: 700; flex-shrink: 0; }
-  .dir-item.pain::before { content: '!'; color: #f59e0b; }
-  .dir-item.growth::before { content: '→'; color: #10b981; }
-
-  .steps { margin-top: 16px; }
-  .step {
-    display: flex; gap: 14px; padding: 16px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    align-items: flex-start;
-  }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 500; color: #6366f1;
-    background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
-    width: 28px; height: 28px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 1px;
-  }
-  .step-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
-  .step-desc { font-size: 13px; color: #9ca3af; line-height: 1.55; }
-
-  .competencies {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-    margin-top: 16px;
-  }
-  .competency {
-    padding: 12px 14px; border-radius: 10px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    font-size: 12px; color: #d1d5db; line-height: 1.4;
-    display: flex; align-items: center; justify-content: center;
-    text-align: center;
-  }
-
-  .formats {
-    margin-top: 16px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  }
-  .format {
-    padding: 12px; border-radius: 10px;
-    background: rgba(99,102,241,0.06);
-    border: 1px solid rgba(99,102,241,0.15);
-  }
-  .format-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 2px; }
-  .format-desc { font-size: 11px; color: #9ca3af; line-height: 1.4; }
-
-  .clients {
-    margin-top: 16px;
-    display: flex; flex-wrap: wrap; gap: 6px;
-  }
-  .client-tag {
-    font-size: 11px; padding: 5px 10px; border-radius: 999px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    color: #d1d5db;
-  }
-
-  .benefits {
-    margin-top: 16px;
-    display: grid; gap: 8px;
-  }
-  .benefit {
-    display: flex; gap: 10px; align-items: flex-start;
-    padding: 10px 12px; border-radius: 10px;
-    background: rgba(16,185,129,0.04);
-    border: 1px solid rgba(16,185,129,0.12);
-    font-size: 13px; color: #d1d5db; line-height: 1.5;
-  }
-  .benefit::before {
-    content: '→'; color: #10b981; flex-shrink: 0; font-weight: 600;
-  }
-
-  .contact-section { margin-top: 28px; }
-  .contact-label {
-    text-align: center; font-family: 'JetBrains Mono', monospace;
-    font-size: 12px; color: #4b5563; margin-bottom: 14px;
-  }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .contact-card {
-    border-radius: 14px; padding: 16px 8px; text-align: center;
-    transition: transform 0.2s ease;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .contact-card:active { transform: scale(0.95); }
-  .contact-card svg { width: 20px; height: 20px; margin: 0 auto 8px; display: block; }
-  .contact-card span { font-size: 11px; color: #d1d5db; }
-
-  .footer {
-    margin-top: 28px; padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    text-align: center; font-size: 11px; color: #374151;
-    line-height: 1.6;
-  }
-
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #0a0a15; }
-  ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #6366f1, #ec4899); border-radius: 2px; }
-
-  @media (min-width: 768px) {
-    .page { padding: 40px 24px; }
-    .card { padding: 48px 52px; border-radius: 28px; }
-    .avatar-wrap { width: 150px; height: 150px; margin-bottom: 24px; }
-    .avatar { font-size: 2.8rem; }
-    .name { font-size: 40px; }
-    .role { font-size: 14px; }
-    .role-sub { font-size: 16px; max-width: 480px; }
-    .hook { font-size: 17px; max-width: 480px; }
-    .insight { padding: 28px 24px 24px 32px; margin-top: 32px; }
-    .insight-text { font-size: 15px; }
-    .dir { padding: 24px 26px; margin-top: 16px; }
-    .dir-opener { font-size: 14px; }
-    .dir-item { font-size: 14px; padding: 12px 14px; }
-    .steps { margin-top: 16px; }
-    .step { padding: 20px 0; gap: 18px; }
-    .step-num { width: 32px; height: 32px; font-size: 12px; }
-    .step-title { font-size: 16px; }
-    .step-desc { font-size: 14px; }
-    .competencies { gap: 10px; }
-    .competency { font-size: 13px; padding: 12px 14px; }
-    .formats { gap: 12px; }
-    .format { padding: 14px; }
-    .format-title { font-size: 14px; }
-    .format-desc { font-size: 12px; }
-    .benefit { font-size: 14px; padding: 12px 14px; }
-    .contact-grid { gap: 14px; }
-    .contact-card { padding: 20px 12px; }
-    .contact-card svg { width: 22px; height: 22px; margin-bottom: 10px; }
-    .contact-card span { font-size: 13px; }
-  }
-
-  @media (hover: hover) {
-    .contact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(99,102,241,0.2);
-      border-color: rgba(168,85,247,0.3);
+    -moz-osx-font-smoothing: grayscale;
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F4F4F5;
+      color: #18181B;
+      overflow-x: hidden;
+      line-height: 1.5;
     }
-    .insight:hover {
-      background: rgba(99,102,241,0.12);
-      border-color: rgba(99,102,241,0.2);
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; cursor: pointer; font: inherit; }
+    input, textarea { font: inherit; }
+
+    /* === UTILITIES === */
+    .container { max-width: 1152px; margin: 0 auto; padding: 0 24px; }
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+    .grotesk { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+    .tracking-tight { letter-spacing: -0.025em; }
+    .uppercase { text-transform: uppercase; }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-    .dir:hover {
-      border-color: rgba(168,85,247,0.25);
-      background: rgba(255,255,255,0.05);
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
     }
-    .competency:hover, .format:hover, .benefit:hover {
-      border-color: rgba(168,85,247,0.3);
-      background: rgba(255,255,255,0.05);
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-18px); }
     }
-  }
-</style>
+    @keyframes floatD {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.5; }
+    }
+    .anim-fu { animation: fadeUp 0.8s cubic-bezier(0.23,1,0.32,1) both; }
+    .anim-si { animation: scaleIn 0.7s cubic-bezier(0.23,1,0.32,1) both; }
+    .d1 { animation-delay: .1s } .d2 { animation-delay: .2s }
+    .d3 { animation-delay: .35s } .d4 { animation-delay: .5s } .d5 { animation-delay: .65s }
+    .fl  { animation: float 6s ease-in-out infinite; }
+    .fld { animation: floatD 6s ease-in-out 2s infinite; }
+
+    /* === GLASS === */
+    .glass {
+      background: rgba(255,255,255,0.6);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    .glass-dk {
+      background: rgba(15,23,42,0.8);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .glass-sm {
+      background: rgba(255,255,255,0.35);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    /* === DOT BG === */
+    .dots {
+      background-image: radial-gradient(circle at 2px 2px, rgba(15,23,42,0.06) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    .dots-l {
+      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.12) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* === MASK === */
+    .mask-x {
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+
+    /* === HOVER === */
+    .card-up {
+      transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), box-shadow 0.5s cubic-bezier(0.23,1,0.32,1);
+    }
+    .card-up:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+    }
+    .img-z { transition: transform 0.7s cubic-bezier(0.23,1,0.32,1); }
+    .img-z:hover { transform: scale(1.05); }
+
+    .link-ul { position: relative; }
+    .link-ul::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 2px;
+      background: #18181B;
+      transition: width 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    .link-ul:hover::after { width: 100%; }
+
+    /* === SCROLL REVEAL === */
+    .sr {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1);
+    }
+    .sr.vis { opacity: 1; transform: translateY(0); }
+
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #F4F4F5; }
+    ::-webkit-scrollbar-thumb { background: #D4D4D8; border-radius: 3px; }
+
+    /* === RESPONSIVE GRID === */
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media(min-width:640px)  { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media(min-width:640px)  { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media(min-width:1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .grid-4 { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media(min-width:640px)  { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media(min-width:1024px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+    .grid-hero { display: grid; grid-template-columns: 1fr; gap: 64px; align-items: center; }
+    @media(min-width:1024px) { .grid-hero { grid-template-columns: 1fr 1fr; gap: 80px; } }
+
+    .grid-footer { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media(min-width:640px)  { .grid-footer { grid-template-columns: repeat(2, 1fr); } }
+    @media(min-width:1024px) { .grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+
+    /* === BUTTONS === */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #18181B; color: #fff;
+      font-size: 14px; font-weight: 500;
+      padding: 16px 28px; border-radius: 16px;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover {
+      background: #27272A;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: 14px; font-weight: 500;
+      padding: 16px 28px; border-radius: 16px;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.6); }
+
+    /* === TAGS === */
+    .tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.1);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      padding: 6px 12px; border-radius: 999px;
+    }
+    .tag-l {
+      display: inline-block;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #52525B;
+      background: rgba(255,255,255,0.6);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(228,228,231,0.6);
+      padding: 7px 14px; border-radius: 999px;
+    }
+
+    .hidden { display: none !important; }
+
+    /* === DIRECTION CARDS === */
+    .dir-card { border-radius: 24px; padding: clamp(24px, 4vw, 40px); }
+    .dir-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #A855F7; margin-bottom: 16px; display: block;
+    }
+    .dir-opener {
+      font-size: 14px; color: #71717A; font-weight: 500; line-height: 1.6;
+      background: rgba(168,85,247,0.06);
+      border-left: 2px solid rgba(168,85,247,0.4);
+      padding: 16px 20px; border-radius: 12px; margin-bottom: 28px;
+    }
+    .dir-cols { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media(min-width:768px) { .dir-cols { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    .dir-block-title {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; color: #18181B; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .dot-pain { width: 8px; height: 8px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; }
+    .dot-grow { width: 8px; height: 8px; border-radius: 50%; background: #10B981; flex-shrink: 0; }
+    .dir-list { display: grid; gap: 12px; }
+    .dir-item {
+      font-size: 14px; color: #3F3F46; font-weight: 500; line-height: 1.55;
+      padding-left: 24px; position: relative;
+    }
+    .dir-item::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+    .dir-item.pain::before { content: '!'; color: #F59E0B; }
+    .dir-item.grow::before { content: '→'; color: #10B981; }
+
+    /* === BENEFIT LIST === */
+    .ben-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 14px; color: #3F3F46; font-weight: 500; line-height: 1.55;
+      padding: 16px 20px; border-radius: 14px;
+      background: rgba(16,185,129,0.05);
+      border: 1px solid rgba(16,185,129,0.15);
+    }
+    .ben-item::before { content: '→'; color: #10B981; font-weight: 700; flex-shrink: 0; }
+  </style>
 </head>
 <body>
 
-<div class="blobs">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-</div>
+  <!-- NAV -->
+  <nav id="nav" style="position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 0;transition:padding 0.4s">
+    <div class="container">
+      <div class="glass" style="border-radius:16px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
+        <a href="#" style="display:flex;align-items:center;gap:10px">
+          <div style="width:32px;height:32px;background:#18181B;border-radius:10px;display:flex;align-items:center;justify-content:center">
+            <iconify-icon icon="solar:widget-2-bold" style="color:#fff;font-size:14px"></iconify-icon>
+          </div>
+          <span style="font-weight:600;letter-spacing:-0.025em;font-size:14px">Игорь Ли</span>
+        </a>
+        <div style="display:flex;align-items:center;gap:4px" class="hide-mobile">
+          <a href="#directions" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Направления</a>
+          <a href="#services" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Услуги</a>
+          <a href="#process" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Как работаю</a>
+          <a href="#contact" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Контакт</a>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <a href="#contact" class="btn-primary hide-mobile" style="padding:10px 20px;border-radius:12px;font-size:13px">
+            Обсудить задачу
+            <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:12px"></iconify-icon>
+          </a>
+          <button id="menuBtn" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px;transition:background 0.3s" onmouseover="this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.background='transparent'">
+            <iconify-icon icon="solar:hamburger-menu-linear" style="font-size:20px"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<main class="page">
-  <div class="wrap">
-    <div class="card glass">
+  <style>.hide-mobile{display:flex}@media(max-width:767px){.hide-mobile{display:none!important}}</style>
 
-      <!-- HEADER -->
-      <div class="header fade-up">
-        <div class="avatar-wrap">
-          <div class="avatar-ring"></div>
-          <div class="avatar">
-            <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли">
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" style="position:fixed;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity 0.3s">
+    <div id="menuOverlay" style="position:absolute;inset:0;background:rgba(0,0,0,0.4);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)"></div>
+    <div id="menuPanel" style="position:absolute;right:0;top:0;bottom:0;width:320px;background:rgba(255,255,255,0.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.23,1,0.32,1);padding:32px;display:flex;flex-direction:column">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
+        <span style="font-weight:600;letter-spacing:-0.025em">Меню</span>
+        <button id="menuClose" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px;transition:background 0.3s" onmouseover="this.style.background='#F4F4F5'" onmouseout="this.style.background='transparent'">
+          <iconify-icon icon="solar:close-circle-linear" style="font-size:20px"></iconify-icon>
+        </button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <a href="#directions" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Направления</a>
+        <a href="#services" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Услуги</a>
+        <a href="#process" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Как работаю</a>
+        <a href="#contact" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Контакт</a>
+      </div>
+      <div style="margin-top:auto">
+        <a href="#contact" class="mob-link btn-primary" style="justify-content:center;width:100%;padding:14px 24px">Обсудить задачу <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:14px"></iconify-icon></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 64px;overflow:hidden">
+    <div style="position:absolute;top:128px;right:-128px;width:384px;height:384px;background:rgba(168,85,247,0.1);border-radius:50%;filter:blur(100px)" class="fl"></div>
+    <div style="position:absolute;bottom:128px;left:-128px;width:320px;height:320px;background:rgba(6,182,212,0.1);border-radius:50%;filter:blur(100px)" class="fld"></div>
+    <div style="position:absolute;inset:0" class="dots"></div>
+
+    <div class="container" style="position:relative">
+      <div class="grid-hero">
+        <div>
+          <div class="anim-fu">
+            <div class="glass-sm" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 16px;margin-bottom:32px">
+              <div style="width:8px;height:8px;background:#A855F7;border-radius:50%;animation:pulse 2s ease-in-out infinite"></div>
+              <span style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#71717A">Интегратор Битрикс24</span>
+            </div>
+          </div>
+
+          <h1 class="anim-fu d1" style="font-size:clamp(40px,7vw,64px);font-weight:500;line-height:0.98;letter-spacing:-0.03em;margin-bottom:28px">
+            Перестраиваю продажи<br>
+            и сервис на<br>
+            <span class="serif" style="font-style:italic;color:#A1A1AA">Битрикс24</span>
+          </h1>
+
+          <p class="anim-fu d2" style="font-size:clamp(16px,2vw,18px);color:#71717A;font-weight:500;line-height:1.6;max-width:440px;margin-bottom:40px">
+            Помогаю компаниям перестроить продажи и сервис на Битрикс24 — воронки, партнёрские порталы, отчётность без рутины.
+          </p>
+
+          <div class="anim-fu d3" style="display:flex;flex-wrap:wrap;gap:16px">
+            <a href="#directions" class="btn-primary" style="border-radius:20px">
+              Смотреть направления
+              <iconify-icon icon="solar:arrow-down-linear" style="font-size:14px"></iconify-icon>
+            </a>
+            <a href="#contact" class="btn-ghost glass-sm" style="border-radius:20px">Обсудить задачу</a>
           </div>
         </div>
-        <h1 class="name">Игорь Ли</h1>
-        <p class="role">Интегратор Битрикс24</p>
-        <p class="role-sub">
-          Помогаю компаниям перестроить <em>продажи и сервис на Битрикс24</em> — воронки, партнёрские порталы, отчётность без рутины.
+
+        <div class="anim-si d3 hide-mobile" style="position:relative">
+          <div class="glass" style="border-radius:24px;padding:20px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.1)">
+            <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли" style="width:100%;height:440px;object-fit:cover;border-radius:16px" class="img-z">
+          </div>
+          <div class="glass fl" style="position:absolute;left:-32px;top:48px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:flex;align-items:center;gap:10px">
+            <iconify-icon icon="solar:widget-2-bold-duotone" style="color:#A855F7;font-size:18px"></iconify-icon>
+            <span style="font-size:13px;font-weight:600">Битрикс24</span>
+          </div>
+          <div class="glass fld" style="position:absolute;right:-24px;bottom:80px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:flex;align-items:center;gap:10px">
+            <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#06B6D4;font-size:18px"></iconify-icon>
+            <span style="font-size:13px;font-weight:600">CRM-автоматизация</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="anim-fu d5" style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px">
+      <span style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#A1A1AA">Скролл</span>
+      <div style="width:20px;height:32px;border:2px solid #D4D4D8;border-radius:999px;display:flex;justify-content:center;padding-top:6px">
+        <div style="width:4px;height:8px;background:#A1A1AA;border-radius:2px;animation:float 2s ease-in-out infinite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section style="padding:40px 0;border-top:1px solid rgba(228,228,231,0.6);border-bottom:1px solid rgba(228,228,231,0.6);overflow:hidden">
+    <div class="mask-x">
+      <div style="display:flex;animation:marquee 28s linear infinite;white-space:nowrap">
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Битрикс24</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Внедрение</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки продаж</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Партнёрские порталы</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Интеграции</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Обучение команды</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отчётность</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Битрикс24</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Внедрение</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки продаж</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Партнёрские порталы</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Интеграции</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Обучение команды</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отчётность</span>
+        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTIONS -->
+  <section id="directions" style="padding:96px 0 128px">
+    <div class="container">
+      <div class="sr" style="max-width:640px;margin-bottom:64px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Направления</span>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;margin-bottom:24px">Для кого <span class="serif" style="font-style:italic;color:#A1A1AA">работаю</span></h2>
+        <p style="font-size:clamp(15px,2vw,17px);color:#71717A;font-weight:500;line-height:1.6">
+          Часто бизнес путает автоматизацию процессов с покупкой софта. Думает, что берёт программу, а нужна перестройка того, как работает команда. Возможно, прямо сейчас мои услуги вам не очевидны. Ниже разобрал по трём типам бизнеса — где именно закрываю боль, а где нет.
         </p>
       </div>
 
-      <!-- HOOK -->
-      <p class="hook fade-up d1" style="margin-top: 24px;">
-        Часто бизнес путает автоматизацию процессов с <em>покупкой софта</em>. Думает, что берёт программу, а нужна перестройка того, как работает команда. Возможно, прямо сейчас мои услуги вам не очевидны. Ниже разобрал по трём типам бизнеса — где именно закрываю боль, а где нет.
-      </p>
-
-      <!-- INSIGHT -->
-      <div class="insight fade-up d2">
-        <div class="insight-label">Главный барьер</div>
-        <p class="insight-text">
-          Автоматизация процессов — это <strong>не покупка программы</strong>.
-        </p>
-        <p class="insight-text">
-          Бизнес думает, что берёт софт, а нужна <strong>перестройка того, как работает команда</strong>.
-        </p>
-        <p class="insight-text">
-          Чем дальше компания от прямых продаж, тем сложнее это объяснить.
-        </p>
-        <p class="insight-text">
-          Поэтому в нишах с низкой осознанностью я продаю не интеграции, а <strong>результат</strong>: меньше штата, защита от штрафов, быстрее выпуск продукта.
-        </p>
-      </div>
-
-      <!-- DIRECTIONS -->
-      <div class="fade-up d2">
-        <div class="section-title">Направления</div>
+      <div style="display:flex;flex-direction:column;gap:24px">
 
         <!-- Direction 1 -->
-        <div class="dir">
-          <div class="dir-label">Кто ищет сам — B2B, сложный B2C, D2C</div>
+        <div class="sr card-up glass dir-card">
+          <span class="dir-label">Кто ищет сам — B2B, сложный B2C, D2C</span>
           <div class="dir-opener">
             Возможно, мои услуги вам сейчас вообще не нужны. У вас есть отдел продаж, CRM и человек, который её администрирует. Вы и так знаете, что такое воронка и сквозная аналитика. Оставил этот блок на всякий случай: где именно я делаю быстрее и без багов, чем ваш штатный программист.
           </div>
-          <div class="dir-block-title"><span class="dot dot-pain"></span>Где болит прямо сейчас</div>
-          <div class="dir-list">
-            <div class="dir-item pain">Лид со звонка не попал в CRM — менеджер перепутал, клиент висит неделю, потом звонит конкуренту</div>
-            <div class="dir-item pain">Сделка застряла на этапе «согласование» — никто не видит, где именно, и когда сорвётся срок</div>
-            <div class="dir-item pain">Отчёт директору собирается вручную из трёх Excel к четвергу, а к понедельнику уже неактуален</div>
-            <div class="dir-item pain">Клиент перезванивает — его не узнали, потому что данные дублируются между менеджерами</div>
-            <div class="dir-item pain">Штатный айти правит месяц и с багами, а продажи ждут вчера</div>
-          </div>
-          <div class="dir-block-title"><span class="dot dot-grow"></span>Куда расти / что уже работает вручную</div>
-          <div class="dir-list">
-            <div class="dir-item growth">Масштабировать продажи без найма ещё пяти менеджеров</div>
-            <div class="dir-item growth">Видеть воронку в реальном времени, а не постфактум</div>
-            <div class="dir-item growth">Предсказуемый конвейер: каждый лид на своём месте, ничего не теряется</div>
+          <div class="dir-cols">
+            <div>
+              <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
+              <div class="dir-list">
+                <div class="dir-item pain">Лид со звонка не попал в CRM — менеджер перепутал, клиент висит неделю, потом звонит конкуренту</div>
+                <div class="dir-item pain">Сделка застряла на этапе «согласование» — никто не видит, где именно, и когда сорвётся срок</div>
+                <div class="dir-item pain">Отчёт директору собирается вручную из трёх Excel к четвергу, а к понедельнику уже неактуален</div>
+                <div class="dir-item pain">Клиент перезванивает — его не узнали, потому что данные дублируются между менеджерами</div>
+                <div class="dir-item pain">Штатный айти правит месяц и с багами, а продажи ждут вчера</div>
+              </div>
+            </div>
+            <div>
+              <div class="dir-block-title"><span class="dot-grow"></span>Куда расти / что уже работает вручную</div>
+              <div class="dir-list">
+                <div class="dir-item grow">Масштабировать продажи без найма ещё пяти менеджеров</div>
+                <div class="dir-item grow">Видеть воронку в реальном времени, а не постфактум</div>
+                <div class="dir-item grow">Предсказуемый конвейер: каждый лид на своём месте, ничего не теряется</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Direction 2 -->
-        <div class="dir">
-          <div class="dir-label">Кто чувствует боль, но ищет не меня — B2B2C, B2E, C2C/C2B</div>
+        <div class="sr card-up glass dir-card">
+          <span class="dir-label">Кто чувствует боль, но ищет не меня — B2B2C, B2E, C2C/C2B</span>
           <div class="dir-opener">
             Скорее всего, обо мне вы ещё не думали. Первая мысль — написать свой уникальный софт или купить дорогую узкопрофильную систему. Про Битрик24 думаете как про «коробку для отдела продаж». А ваша боль закрывается партнёрским порталом на его базе. Ниже — где именно.
           </div>
-          <div class="dir-block-title"><span class="dot dot-pain"></span>Где болит прямо сейчас</div>
-          <div class="dir-list">
-            <div class="dir-item pain">Партнёры сидят в Excel и Telegram — не видят статус своей заявки, звонят уточнять каждый час</div>
-            <div class="dir-item pain">Онбординг нового партнёра или франчайзи идёт неделями, всё на почте и в голове</div>
-            <div class="dir-item pain">Тысячи заявок от пользователей валятся в одну почту — половина без ответа, репутация падает</div>
-            <div class="dir-item pain">Каждый новый процесс = отдельный дорогой софт, который не стыкуется с остальным</div>
-            <div class="dir-item pain">Разработка с нуля съела полгода и миллионы, а запустить хотели через месяц</div>
-          </div>
-          <div class="dir-block-title"><span class="dot dot-grow"></span>Куда расти / что уже работает вручную</div>
-          <div class="dir-list">
-            <div class="dir-item growth">Поднять партнёрский портал на Битрик24 за недели, а не за год</div>
-            <div class="dir-item growth">Партнёры сами видят статусы и документы — без звонков вам</div>
-            <div class="dir-item growth">Заявки автоматом распределяются и попадают к нужному исполнителю</div>
-            <div class="dir-item growth">Онбординг сжать с недель до дней</div>
+          <div class="dir-cols">
+            <div>
+              <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
+              <div class="dir-list">
+                <div class="dir-item pain">Партнёры сидят в Excel и Telegram — не видят статус своей заявки, звонят уточнять каждый час</div>
+                <div class="dir-item pain">Онбординг нового партнёра или франчайзи идёт неделями, всё на почте и в голове</div>
+                <div class="dir-item pain">Тысячи заявок от пользователей валятся в одну почту — половина без ответа, репутация падает</div>
+                <div class="dir-item pain">Каждый новый процесс = отдельный дорогой софт, который не стыкуется с остальным</div>
+                <div class="dir-item pain">Разработка с нуля съела полгода и миллионы, а запустить хотели через месяц</div>
+              </div>
+            </div>
+            <div>
+              <div class="dir-block-title"><span class="dot-grow"></span>Куда расти / что уже работает вручную</div>
+              <div class="dir-list">
+                <div class="dir-item grow">Поднять партнёрский портал на Битрик24 за недели, а не за год</div>
+                <div class="dir-item grow">Партнёры сами видят статусы и документы — без звонков вам</div>
+                <div class="dir-item grow">Заявки автоматом распределяются и попадают к нужному исполнителю</div>
+                <div class="dir-item grow">Онбординг сжать с недель до дней</div>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Direction 3 -->
-        <div class="dir">
-          <div class="dir-label">Кому нужен в точку — B2G, G2B, G2C, B2D</div>
+        <div class="sr card-up glass dir-card">
+          <span class="dir-label">Кому нужен в точку — B2G, G2B, G2C, B2D</span>
           <div class="dir-opener">
             Честно — вашему бизнесу мои услуги в большинстве точек не нужны. У вас свои контуры, тендеры, регламенты. Красивые воронки продаж вас не греют. Но есть узкие места, где я реально помогаю — автоматизация конкретного отдела. Где именно:
           </div>
-          <div class="dir-block-title"><span class="dot dot-pain"></span>Где болит прямо сейчас</div>
-          <div class="dir-list">
-            <div class="dir-item pain">Отчётность под регламент собирается вручную — часы работы, которые никто не ценит</div>
-            <div class="dir-item pain">Согласования идут по цепочке, никто не видит, на ком застряло</div>
-            <div class="dir-item pain">Служба поддержки или отдел продаж сидит на почте — нет единой картины по обращениям</div>
-            <div class="dir-item pain">Нужно просто сдать отчёт и пройти проверку, а не строить «цифровую трансформацию»</div>
-            <div class="dir-item pain">Разработчики в Jira и GitHub считают Битрик24 тяжёлым — но отдел продаж от этого страдает</div>
-          </div>
-          <div class="dir-block-title"><span class="dot dot-grow"></span>Куда расти / что уже работает вручную</div>
-          <div class="dir-list">
-            <div class="dir-item growth">Автоматизировать отдел продаж или поддержки, не трогая остальной контур</div>
-            <div class="dir-item growth">Регламентная отчётность собирается сама, без ручного сбора</div>
-            <div class="dir-item growth">Прозрачность согласований — видно, где бумага застряла</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- COMPETENCIES -->
-      <div class="fade-up d2">
-        <div class="section-title">Что я делаю</div>
-        <div class="competencies">
-          <div class="competency">Внедрение и настройка Битрикс24 под процессы</div>
-          <div class="competency">Интеграции: телефония, почта, сайт, 1С, мессенджеры</div>
-          <div class="competency">Партнёрские порталы и экстранет на базе CRM</div>
-          <div class="competency">Воронки продаж и сквозная аналитика</div>
-          <div class="competency">Автоматизация рутины: роботы, триггеры, бизнес-процессы</div>
-          <div class="competency">Обучение команды работе в системе</div>
-        </div>
-      </div>
-
-      <!-- STEPS -->
-      <div class="fade-up d3">
-        <div class="section-title">Как я работаю</div>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">01</div>
-            <div class="step-body">
-              <div class="step-title">Аудит процессов</div>
-              <div class="step-desc">Нахожу операции, которые команда делает руками, хотя Битрик24 делает их сам.</div>
+          <div class="dir-cols">
+            <div>
+              <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
+              <div class="dir-list">
+                <div class="dir-item pain">Отчётность под регламент собирается вручную — часы работы, которые никто не ценит</div>
+                <div class="dir-item pain">Согласования идут по цепочке, никто не видит, на ком застряло</div>
+                <div class="dir-item pain">Служба поддержки или отдел продаж сидит на почте — нет единой картины по обращениям</div>
+                <div class="dir-item pain">Нужно просто сдать отчёт и пройти проверку, а не строить «цифровую трансформацию»</div>
+                <div class="dir-item pain">Разработчики в Jira и GitHub считают Битрик24 тяжёлым — но отдел продаж от этого страдает</div>
+              </div>
             </div>
-          </div>
-          <div class="step">
-            <div class="step-num">02</div>
-            <div class="step-body">
-              <div class="step-title">Внедрение за 30 дней</div>
-              <div class="step-desc">Рабочая система с измеримым результатом к концу месяца.</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">03</div>
-            <div class="step-body">
-              <div class="step-title">Обучение команды</div>
-              <div class="step-desc">Люди работают в системе, а не в обход неё. Саботажа не возникает.</div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">04</div>
-            <div class="step-body">
-              <div class="step-title">Автономная работа</div>
-              <div class="step-desc">Пайплайны крутятся без постоянного участия. Руководители контролируют, не выполняют.</div>
+            <div>
+              <div class="dir-block-title"><span class="dot-grow"></span>Куда расти / что уже работает вручную</div>
+              <div class="dir-list">
+                <div class="dir-item grow">Автоматизировать отдел продаж или поддержки, не трогая остальной контур</div>
+                <div class="dir-item grow">Регламентная отчётность собирается сама, без ручного сбора</div>
+                <div class="dir-item grow">Прозрачность согласований — видно, где бумага застряла</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- FORMATS -->
-      <div class="fade-up d3">
-        <div class="section-title">Формат работы</div>
-        <div class="formats">
-          <div class="format">
-            <div class="format-title">Консалтинг</div>
-            <div class="format-desc">Проект 1–3 месяца с измеримым результатом</div>
-          </div>
-          <div class="format">
-            <div class="format-title">Штатная позиция</div>
-            <div class="format-desc">Интегратор / администратор Битрик24</div>
-          </div>
-          <div class="format">
-            <div class="format-title">Корпоративное обучение</div>
-            <div class="format-desc">Воркшопы и программы для команд</div>
-          </div>
-          <div class="format">
-            <div class="format-title">Разовые консультации</div>
-            <div class="format-desc">Для руководителей и ИТ-отделов</div>
-          </div>
-        </div>
       </div>
-
-      <!-- CLIENTS -->
-      <div class="fade-up d4">
-        <div class="section-title">С кем работаю</div>
-        <div class="clients">
-          <span class="client-tag">B2B и сложный B2C</span>
-          <span class="client-tag">D2C и e-commerce</span>
-          <span class="client-tag">Маркетплейсы и платформы</span>
-          <span class="client-tag">B2B2C и партнёрские сети</span>
-          <span class="client-tag">Госзаказ и окологосударственные</span>
-          <span class="client-tag">Производство и услуги</span>
-        </div>
-      </div>
-
-      <!-- BENEFITS -->
-      <div class="fade-up d4">
-        <div class="section-title">Что получает компания</div>
-        <div class="benefits">
-          <div class="benefit">Лиды не теряются между менеджерами — каждый на своём месте в воронке</div>
-          <div class="benefit">Отчёты готовы сами, без сбора Excel по четвергам</div>
-          <div class="benefit">Партнёры видят статусы сами — звонков вам меньше</div>
-          <div class="benefit">Руководитель видит картину в реальном времени, а не постфактум</div>
-        </div>
-      </div>
-
-      <!-- CONTACTS -->
-      <div class="contact-section fade-up d5">
-        <p class="contact-label">// Обсудить задачу</p>
-        <div class="contact-grid">
-          <a href="tel:+795****1276" class="contact-card glass">
-            <svg fill="none" stroke="#818cf8" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>Позвонить</span>
-          </a>
-          <a href="mailto:igorli.work@gmail.com" class="contact-card glass">
-            <svg fill="none" stroke="#c084fc" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <span>Email</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- FOOTER -->
-      <div class="footer fade-up d5">
-        © 2026 Игорь Ли · Новосибирск<br>
-        Битрикс24 · CRM-автоматизация · Партнёрские порталы
-      </div>
-
     </div>
-  </div>
-</main>
+  </section>
 
+  <!-- SERVICES -->
+  <section id="services" style="padding:96px 0 128px;position:relative">
+    <div style="position:absolute;inset:0;opacity:0.5" class="dots"></div>
+    <div class="container" style="position:relative">
+      <div class="sr" style="text-align:center;margin-bottom:64px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Что я делаю</span>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em">Мои <span class="serif" style="font-style:italic;color:#A1A1AA">услуги</span></h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(168,85,247,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(168,85,247,0.2)'" onmouseout="this.style.background='rgba(168,85,247,0.1)'">
+            <iconify-icon icon="solar:widget-2-bold-duotone" style="color:#A855F7;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Внедрение Битрикс24</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Настройка и адаптация под процессы компании, а не под коробку.</p>
+        </div>
+
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(6,182,212,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(6,182,212,0.2)'" onmouseout="this.style.background='rgba(6,182,212,0.1)'">
+            <iconify-icon icon="solar:plug-circle-bold-duotone" style="color:#06B6D4;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Интеграции</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Телефония, почта, сайт, 1С, мессенджеры — всё в одной системе.</p>
+        </div>
+
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(249,115,22,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(249,115,22,0.2)'" onmouseout="this.style.background='rgba(249,115,22,0.1)'">
+            <iconify-icon icon="solar:users-group-rounded-bold-duotone" style="color:#F97316;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Партнёрские порталы</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Экстранет на базе CRM — партнёры видят статусы сами.</p>
+        </div>
+
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(236,72,153,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(236,72,153,0.2)'" onmouseout="this.style.background='rgba(236,72,153,0.1)'">
+            <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#EC4899;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Воронки и аналитика</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Сквозная аналитика — картина в реальном времени, а не постфактум.</p>
+        </div>
+
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(34,197,94,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(34,197,94,0.2)'" onmouseout="this.style.background='rgba(34,197,94,0.1)'">
+            <iconify-icon icon="solar:settings-bold-duotone" style="color:#22C55E;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Автоматизация рутины</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Роботы, триггеры, бизнес-процессы — рутина делает себя сама.</p>
+        </div>
+
+        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
+          <div style="width:56px;height:56px;background:rgba(99,102,241,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(99,102,241,0.2)'" onmouseout="this.style.background='rgba(99,102,241,0.1)'">
+            <iconify-icon icon="solar:graduation-bold-duotone" style="color:#6366F1;font-size:24px"></iconify-icon>
+          </div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Обучение команды</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Люди работают в системе, а не в обход неё.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" style="padding:96px 0 128px;overflow:hidden">
+    <div class="container">
+      <div class="sr" style="text-align:center;margin-bottom:64px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Процесс</span>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em">Как я <span class="serif" style="font-style:italic;color:#A1A1AA">работаю</span></h2>
+      </div>
+
+      <div class="grid-4">
+        <div class="sr" style="position:relative">
+          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">01</div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Аудит процессов</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Нахожу операции, которые команда делает руками, хотя Битрик24 делает их сам.</p>
+          <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
+        </div>
+        <div class="sr" style="position:relative">
+          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">02</div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Внедрение за 30 дней</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Рабочая система с измеримым результатом к концу месяца.</p>
+          <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
+        </div>
+        <div class="sr" style="position:relative">
+          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">03</div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Обучение команды</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Люди работают в системе, а не в обход неё. Саботажа не возникает.</p>
+          <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
+        </div>
+        <div class="sr">
+          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">04</div>
+          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Автономная работа</h3>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Пайплайны крутятся без постоянного участия. Руководители контролируют, не выполняют.</p>
+        </div>
+      </div>
+
+      <!-- Formats -->
+      <div class="sr" style="margin-top:80px">
+        <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;text-align:center;margin-bottom:28px">Формат работы</h3>
+        <div class="grid-4">
+          <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
+            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Консалтинг</div>
+            <div style="font-size:12px;color:#71717A;font-weight:500">Проект 1–3 месяца с результатом</div>
+          </div>
+          <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
+            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Штатная позиция</div>
+            <div style="font-size:12px;color:#71717A;font-weight:500">Интегратор / админ Битрикс24</div>
+          </div>
+          <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
+            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Корпоративное обучение</div>
+            <div style="font-size:12px;color:#71717A;font-weight:500">Воркшопы и программы для команд</div>
+          </div>
+          <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
+            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Разовые консультации</div>
+            <div style="font-size:12px;color:#71717A;font-weight:500">Для руководителей и ИТ-отделов</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BARRIER (dark) -->
+  <section style="padding:96px 0 128px;background:#18181B;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0" class="dots-l"></div>
+    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:rgba(168,85,247,0.05);border-radius:50%;filter:blur(120px)"></div>
+
+    <div class="container" style="position:relative">
+      <div class="sr" style="text-align:center;margin-bottom:64px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C084FC;display:block;margin-bottom:16px">Главный барьер</span>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;color:#fff">Автоматизация — <span class="serif" style="font-style:italic;color:#71717A">это не софт</span></h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:40px;height:40px;background:rgba(168,85,247,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:shield-warning-bold-duotone" style="color:#C084FC;font-size:18px"></iconify-icon>
+            </div>
+            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Не покупка программы</h3>
+          </div>
+          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Автоматизация процессов — это не покупка программы.</p>
+        </div>
+
+        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:40px;height:40px;background:rgba(6,182,212,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:refresh-bold-duotone" style="color:#06B6D4;font-size:18px"></iconify-icon>
+            </div>
+            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Перестройка команды</h3>
+          </div>
+          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Бизнес думает, что берёт софт, а нужна перестройка того, как работает команда.</p>
+        </div>
+
+        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:40px;height:40px;background:rgba(249,115,22,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:map-bold-duotone" style="color:#F97316;font-size:18px"></iconify-icon>
+            </div>
+            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Чем дальше от продаж</h3>
+          </div>
+          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Чем дальше компания от прямых продаж, тем сложнее это объяснить.</p>
+        </div>
+
+        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:40px;height:40px;background:rgba(34,197,94,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:target-bold-duotone" style="color:#22C55E;font-size:18px"></iconify-icon>
+            </div>
+            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Продаю результат</h3>
+          </div>
+          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Поэтому в нишах с низкой осознанностью я продаю не интеграции, а результат: меньше штата, защита от штрафов, быстрее выпуск продукта.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS + CLIENTS -->
+  <section style="padding:96px 0 128px;position:relative">
+    <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
+    <div class="container" style="position:relative">
+      <div class="sr" style="text-align:center;margin-bottom:56px">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Результат</span>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em">Что получает <span class="serif" style="font-style:italic;color:#A1A1AA">компания</span></h2>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:72px">
+        <div class="sr ben-item">Лиды не теряются между менеджерами — каждый на своём месте в воронке</div>
+        <div class="sr ben-item">Отчёты готовы сами, без сбора Excel по четвергам</div>
+        <div class="sr ben-item">Партнёры видят статусы сами — звонков вам меньше</div>
+        <div class="sr ben-item">Руководитель видит картину в реальном времени, а не постфактум</div>
+      </div>
+
+      <div class="sr" style="text-align:center">
+        <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:24px">С кем работаю</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+          <span class="tag-l">B2B и сложный B2C</span>
+          <span class="tag-l">D2C и e-commerce</span>
+          <span class="tag-l">Маркетплейсы и платформы</span>
+          <span class="tag-l">B2B2C и партнёрские сети</span>
+          <span class="tag-l">Госзаказ и окологосударственные</span>
+          <span class="tag-l">Производство и услуги</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding:96px 0 128px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:rgba(168,85,247,0.05);border-radius:50%;filter:blur(120px)"></div>
+    <div style="position:absolute;inset:0;opacity:0.3" class="dots"></div>
+
+    <div class="container" style="position:relative;max-width:768px;text-align:center">
+      <div class="sr">
+        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Контакт</span>
+        <h2 style="font-size:clamp(36px,6vw,60px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;margin-bottom:24px">Есть задача по<br><span class="serif" style="font-style:italic;color:#A1A1AA">Битрикс24?</span></h2>
+        <p style="font-size:clamp(16px,2vw,18px);color:#71717A;font-weight:500;line-height:1.6;max-width:512px;margin:0 auto 40px">Расскажите о процессах — покажу, где Битрикс24 закроет боль и что можно автоматизировать уже сейчас.</p>
+      </div>
+
+      <div class="sr glass" style="border-radius:24px;padding:clamp(24px,4vw,40px);max-width:512px;margin:0 auto">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <a href="tel:+795****1276" class="btn-primary" style="justify-content:center;padding:18px;border-radius:14px;transition:all 0.3s">
+            <iconify-icon icon="solar:phone-bold" style="font-size:16px"></iconify-icon>
+            Позвонить
+          </a>
+          <a href="mailto:igorli.work@gmail.com" class="btn-ghost glass-sm" style="justify-content:center;padding:18px;border-radius:14px;border:1px solid rgba(228,228,231,0.6)">
+            <iconify-icon icon="solar:letter-bold" style="font-size:16px"></iconify-icon>
+            Email
+          </a>
+        </div>
+        <div style="margin-top:24px;font-size:12px;color:#A1A1AA;font-weight:500;line-height:1.6">
+          igorli.work@gmail.com · Новосибирск
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid rgba(228,228,231,0.6);padding:64px 0">
+    <div class="container">
+      <div class="grid-footer" style="margin-bottom:64px">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+            <div style="width:32px;height:32px;background:#18181B;border-radius:10px;display:flex;align-items:center;justify-content:center">
+              <iconify-icon icon="solar:widget-2-bold" style="color:#fff;font-size:14px"></iconify-icon>
+            </div>
+            <span style="font-weight:600;letter-spacing:-0.025em;font-size:14px">Игорь Ли</span>
+          </div>
+          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6;max-width:280px">Перестраиваю продажи и сервис на Битрикс24 — воронки, партнёрские порталы, отчётность без рутины.</p>
+        </div>
+        <div>
+          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Навигация</h4>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="#directions" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Направления</a>
+            <a href="#services" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Услуги</a>
+            <a href="#process" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Как работаю</a>
+            <a href="#contact" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Контакт</a>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Услуги</h4>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font-size:14px;font-weight:500;color:#71717A">Внедрение Битрикс24</span>
+            <span style="font-size:14px;font-weight:500;color:#71717A">Интеграции</span>
+            <span style="font-size:14px;font-weight:500;color:#71717A">Партнёрские порталы</span>
+            <span style="font-size:14px;font-weight:500;color:#71717A">Обучение команды</span>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Контакты</h4>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="mailto:igorli.work@gmail.com" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">igorli.work@gmail.com</a>
+            <a href="tel:+795****1276" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">+7 995 *** 12-76</a>
+            <p style="font-size:14px;color:#A1A1AA;font-weight:500">Новосибирск, Россия</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:32px;border-top:1px solid rgba(228,228,231,0.6)">
+        <p style="font-size:12px;color:#A1A1AA;font-weight:500">&copy; 2026 Игорь Ли · Новосибирск</p>
+        <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#A1A1AA;font-weight:500">
+          Битрикс24 · CRM-автоматизация · Партнёрские порталы
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    var mobileMenu = document.getElementById('mobileMenu');
+    var menuPanel = document.getElementById('menuPanel');
+
+    document.getElementById('menuBtn').addEventListener('click', function() {
+      mobileMenu.style.opacity = '1';
+      mobileMenu.style.pointerEvents = 'auto';
+      menuPanel.style.transform = 'translateX(0)';
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMenu() {
+      mobileMenu.style.opacity = '0';
+      mobileMenu.style.pointerEvents = 'none';
+      menuPanel.style.transform = 'translateX(100%)';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('menuClose').addEventListener('click', closeMenu);
+    document.getElementById('menuOverlay').addEventListener('click', closeMenu);
+    var mobLinks = document.querySelectorAll('.mob-link');
+    for (var i = 0; i < mobLinks.length; i++) {
+      mobLinks[i].addEventListener('click', closeMenu);
+    }
+
+    // Nav scroll
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 80) {
+        nav.style.paddingTop = '8px';
+        nav.style.paddingBottom = '8px';
+      } else {
+        nav.style.paddingTop = '16px';
+        nav.style.paddingBottom = '16px';
+      }
+    });
+
+    // Scroll reveal
+    var srEls = document.querySelectorAll('.sr');
+    var observer = new IntersectionObserver(function(entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('vis');
+          observer.unobserve(entries[i].target);
+        }
+      }
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    for (var i = 0; i < srEls.length; i++) {
+      observer.observe(srEls[i]);
+    }
+
+    // Smooth scroll
+    var anchors = document.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < anchors.length; i++) {
+      anchors[i].addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        var t = document.querySelector(href);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  </script>
 </body>
 </html>
