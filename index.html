@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Игорь Ли — AI-менеджер</title>
+<title>Игорь Ли — интегратор Битрикс24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -155,6 +155,50 @@
     background: #6366f1; flex-shrink: 0;
   }
 
+  /* DIRECTIONS */
+  .dir {
+    margin-top: 14px; padding: 20px 18px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .dir-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #818cf8; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px; line-height: 1.4;
+  }
+  .dir-label::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: #a855f7; flex-shrink: 0;
+  }
+  .dir-opener {
+    font-size: 13px; color: #9ca3af; line-height: 1.65;
+    padding: 12px 14px; margin-bottom: 18px;
+    border-radius: 10px;
+    background: rgba(129,140,248,0.06);
+    border-left: 2px solid rgba(129,140,248,0.4);
+  }
+  .dir-block-title {
+    font-size: 12px; font-weight: 600; color: #e5e7eb;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+  .dir-block-title .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-pain { background: #f59e0b; }
+  .dot-grow { background: #10b981; }
+  .dir-list { display: grid; gap: 8px; margin-bottom: 18px; }
+  .dir-list:last-child { margin-bottom: 0; }
+  .dir-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: #d1d5db; line-height: 1.55;
+    padding: 10px 12px; border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .dir-item::before { font-weight: 700; flex-shrink: 0; }
+  .dir-item.pain::before { content: '!'; color: #f59e0b; }
+  .dir-item.growth::before { content: '→'; color: #10b981; }
+
   .steps { margin-top: 16px; }
   .step {
     display: flex; gap: 14px; padding: 16px 0;
@@ -261,6 +305,9 @@
     .hook { font-size: 17px; max-width: 480px; }
     .insight { padding: 28px 24px 24px 32px; margin-top: 32px; }
     .insight-text { font-size: 15px; }
+    .dir { padding: 24px 26px; margin-top: 16px; }
+    .dir-opener { font-size: 14px; }
+    .dir-item { font-size: 14px; padding: 12px 14px; }
     .steps { margin-top: 16px; }
     .step { padding: 20px 0; gap: 18px; }
     .step-num { width: 32px; height: 32px; font-size: 12px; }
@@ -288,6 +335,10 @@
     .insight:hover {
       background: rgba(99,102,241,0.12);
       border-color: rgba(99,102,241,0.2);
+    }
+    .dir:hover {
+      border-color: rgba(168,85,247,0.25);
+      background: rgba(255,255,255,0.05);
     }
     .competency:hover, .format:hover, .benefit:hover {
       border-color: rgba(168,85,247,0.3);
@@ -317,47 +368,117 @@
           </div>
         </div>
         <h1 class="name">Игорь Ли</h1>
-        <p class="role">AI-менеджер</p>
+        <p class="role">Интегратор Битрикс24</p>
         <p class="role-sub">
-          Помогаю компаниям <em>внедрять ИИ в рабочие процессы</em> и обучать команды работать с нейросетями как с инструментом, а не угрозой.
+          Помогаю компаниям перестроить <em>продажи и сервис на Битрикс24</em> — воронки, партнёрские порталы, отчётность без рутины.
         </p>
       </div>
 
       <!-- HOOK -->
       <p class="hook fade-up d1" style="margin-top: 24px;">
-        Работаю с компаниями, где команда тратит время на <em>рутинные задачи</em>, которые уже можно делегировать ИИ. Сотрудники не увольняются — они начинают делать более ценную работу.
+        Часто бизнес путает автоматизацию процессов с <em>покупкой софта</em>. Думает, что берёт программу, а нужна перестройка того, как работает команда. Возможно, прямо сейчас мои услуги вам не очевидны. Ниже разобрал по трём типам бизнеса — где именно закрываю боль, а где нет.
       </p>
 
       <!-- INSIGHT -->
       <div class="insight fade-up d2">
-        <div class="insight-label">Ключевой принцип работы</div>
+        <div class="insight-label">Главный барьер</div>
         <p class="insight-text">
-          Навык работы с ИИ — это <strong>не промпты</strong>.
+          Автоматизация процессов — это <strong>не покупка программы</strong>.
         </p>
+        <p class="insight-text">
+          Бизнес думает, что берёт софт, а нужна <strong>перестройка того, как работает команда</strong>.
+        </p>
+        <p class="insight-text">
+          Чем дальше компания от прямых продаж, тем сложнее это объяснить.
+        </p>
+        <p class="insight-text">
+          Поэтому в нишах с низкой осознанностью я продаю не интеграции, а <strong>результат</strong>: меньше штата, защита от штрафов, быстрее выпуск продукта.
+        </p>
+      </div>
 
-        <p class="insight-text">
-          Это <strong>операционный менеджмент</strong>: сформулировать задачу, найти ресурсы, оценить результат, построить пайплайн.
-        </p>
+      <!-- DIRECTIONS -->
+      <div class="fade-up d2">
+        <div class="section-title">Направления</div>
 
-        <p class="insight-text">
-          Код, дизайн, аналитику — это ИИ сделает сам.
-        </p>
+        <!-- Direction 1 -->
+        <div class="dir">
+          <div class="dir-label">Кто ищет сам — B2B, сложный B2C, D2C</div>
+          <div class="dir-opener">
+            Возможно, мои услуги вам сейчас вообще не нужны. У вас есть отдел продаж, CRM и человек, который её администрирует. Вы и так знаете, что такое воронка и сквозная аналитика. Оставил этот блок на всякий случай: где именно я делаю быстрее и без багов, чем ваш штатный программист.
+          </div>
+          <div class="dir-block-title"><span class="dot dot-pain"></span>Где болит прямо сейчас</div>
+          <div class="dir-list">
+            <div class="dir-item pain">Лид со звонка не попал в CRM — менеджер перепутал, клиент висит неделю, потом звонит конкуренту</div>
+            <div class="dir-item pain">Сделка застряла на этапе «согласование» — никто не видит, где именно, и когда сорвётся срок</div>
+            <div class="dir-item pain">Отчёт директору собирается вручную из трёх Excel к четвергу, а к понедельнику уже неактуален</div>
+            <div class="dir-item pain">Клиент перезванивает — его не узнали, потому что данные дублируются между менеджерами</div>
+            <div class="dir-item pain">Штатный айти правит месяц и с багами, а продажи ждут вчера</div>
+          </div>
+          <div class="dir-block-title"><span class="dot dot-grow"></span>Куда расти / что уже работает вручную</div>
+          <div class="dir-list">
+            <div class="dir-item growth">Масштабировать продажи без найма ещё пяти менеджеров</div>
+            <div class="dir-item growth">Видеть воронку в реальном времени, а не постфактум</div>
+            <div class="dir-item growth">Предсказуемый конвейер: каждый лид на своём месте, ничего не теряется</div>
+          </div>
+        </div>
 
-        <p class="insight-text">
-          А вот <strong>менеджмент не делегируется</strong> — и именно здесь я помогаю командам вырасти.
-        </p>
+        <!-- Direction 2 -->
+        <div class="dir">
+          <div class="dir-label">Кто чувствует боль, но ищет не меня — B2B2C, B2E, C2C/C2B</div>
+          <div class="dir-opener">
+            Скорее всего, обо мне вы ещё не думали. Первая мысль — написать свой уникальный софт или купить дорогую узкопрофильную систему. Про Битрик24 думаете как про «коробку для отдела продаж». А ваша боль закрывается партнёрским порталом на его базе. Ниже — где именно.
+          </div>
+          <div class="dir-block-title"><span class="dot dot-pain"></span>Где болит прямо сейчас</div>
+          <div class="dir-list">
+            <div class="dir-item pain">Партнёры сидят в Excel и Telegram — не видят статус своей заявки, звонят уточнять каждый час</div>
+            <div class="dir-item pain">Онбординг нового партнёра или франчайзи идёт неделями, всё на почте и в голове</div>
+            <div class="dir-item pain">Тысячи заявок от пользователей валятся в одну почту — половина без ответа, репутация падает</div>
+            <div class="dir-item pain">Каждый новый процесс = отдельный дорогой софт, который не стыкуется с остальным</div>
+            <div class="dir-item pain">Разработка с нуля съела полгода и миллионы, а запустить хотели через месяц</div>
+          </div>
+          <div class="dir-block-title"><span class="dot dot-grow"></span>Куда расти / что уже работает вручную</div>
+          <div class="dir-list">
+            <div class="dir-item growth">Поднять партнёрский портал на Битрик24 за недели, а не за год</div>
+            <div class="dir-item growth">Партнёры сами видят статусы и документы — без звонков вам</div>
+            <div class="dir-item growth">Заявки автоматом распределяются и попадают к нужному исполнителю</div>
+            <div class="dir-item growth">Онбординг сжать с недель до дней</div>
+          </div>
+        </div>
+
+        <!-- Direction 3 -->
+        <div class="dir">
+          <div class="dir-label">Кому нужен в точку — B2G, G2B, G2C, B2D</div>
+          <div class="dir-opener">
+            Честно — вашему бизнесу мои услуги в большинстве точек не нужны. У вас свои контуры, тендеры, регламенты. Красивые воронки продаж вас не греют. Но есть узкие места, где я реально помогаю — автоматизация конкретного отдела. Где именно:
+          </div>
+          <div class="dir-block-title"><span class="dot dot-pain"></span>Где болит прямо сейчас</div>
+          <div class="dir-list">
+            <div class="dir-item pain">Отчётность под регламент собирается вручную — часы работы, которые никто не ценит</div>
+            <div class="dir-item pain">Согласования идут по цепочке, никто не видит, на ком застряло</div>
+            <div class="dir-item pain">Служба поддержки или отдел продаж сидит на почте — нет единой картины по обращениям</div>
+            <div class="dir-item pain">Нужно просто сдать отчёт и пройти проверку, а не строить «цифровую трансформацию»</div>
+            <div class="dir-item pain">Разработчики в Jira и GitHub считают Битрик24 тяжёлым — но отдел продаж от этого страдает</div>
+          </div>
+          <div class="dir-block-title"><span class="dot dot-grow"></span>Куда расти / что уже работает вручную</div>
+          <div class="dir-list">
+            <div class="dir-item growth">Автоматизировать отдел продаж или поддержки, не трогая остальной контур</div>
+            <div class="dir-item growth">Регламентная отчётность собирается сама, без ручного сбора</div>
+            <div class="dir-item growth">Прозрачность согласований — видно, где бумага застряла</div>
+          </div>
+        </div>
+
       </div>
 
       <!-- COMPETENCIES -->
       <div class="fade-up d2">
-        <div class="section-title">Компетенции</div>
+        <div class="section-title">Что я делаю</div>
         <div class="competencies">
-          <div class="competency">Аудит процессов под автоматизацию</div>
-          <div class="competency">Внедрение AI-инструментов (ChatGPT, Claude, кастомные решения)</div>
-          <div class="competency">Обучение команд работе с ИИ</div>
-          <div class="competency">Помогаю командам принять ИИ без саботажа</div>
-          <div class="competency">Настраиваю процессы, где ИИ берёт рутину, а люди — результат</div>
-          <div class="competency">Учу руководителей ставить задачи ИИ как сотрудникам</div>
+          <div class="competency">Внедрение и настройка Битрикс24 под процессы</div>
+          <div class="competency">Интеграции: телефония, почта, сайт, 1С, мессенджеры</div>
+          <div class="competency">Партнёрские порталы и экстранет на базе CRM</div>
+          <div class="competency">Воронки продаж и сквозная аналитика</div>
+          <div class="competency">Автоматизация рутины: роботы, триггеры, бизнес-процессы</div>
+          <div class="competency">Обучение команды работе в системе</div>
         </div>
       </div>
 
@@ -369,28 +490,28 @@
             <div class="step-num">01</div>
             <div class="step-body">
               <div class="step-title">Аудит процессов</div>
-              <div class="step-desc">Нахожу операции, которые команда делает руками, хотя ИИ делает их быстрее и без ошибок.</div>
+              <div class="step-desc">Нахожу операции, которые команда делает руками, хотя Битрик24 делает их сам.</div>
             </div>
           </div>
           <div class="step">
             <div class="step-num">02</div>
             <div class="step-body">
               <div class="step-title">Внедрение за 30 дней</div>
-              <div class="step-desc">Конкретное внедрение в процессы с измеримым результатом к концу месяца.</div>
+              <div class="step-desc">Рабочая система с измеримым результатом к концу месяца.</div>
             </div>
           </div>
           <div class="step">
             <div class="step-num">03</div>
             <div class="step-body">
               <div class="step-title">Обучение команды</div>
-              <div class="step-desc">Превращаю исполнителей в операторов ИИ. Производительность растёт без сокращений.</div>
+              <div class="step-desc">Люди работают в системе, а не в обход неё. Саботажа не возникает.</div>
             </div>
           </div>
           <div class="step">
             <div class="step-num">04</div>
             <div class="step-body">
-              <div class="step-title">Автономная система</div>
-              <div class="step-desc">AI-пайплайны работают без постоянного участия. Руководители контролируют, не выполняют.</div>
+              <div class="step-title">Автономная работа</div>
+              <div class="step-desc">Пайплайны крутятся без постоянного участия. Руководители контролируют, не выполняют.</div>
             </div>
           </div>
         </div>
@@ -406,7 +527,7 @@
           </div>
           <div class="format">
             <div class="format-title">Штатная позиция</div>
-            <div class="format-desc">AI-менеджер</div>
+            <div class="format-desc">Интегратор / администратор Битрик24</div>
           </div>
           <div class="format">
             <div class="format-title">Корпоративное обучение</div>
@@ -414,7 +535,7 @@
           </div>
           <div class="format">
             <div class="format-title">Разовые консультации</div>
-            <div class="format-desc">Для руководителей и HRD</div>
+            <div class="format-desc">Для руководителей и ИТ-отделов</div>
           </div>
         </div>
       </div>
@@ -423,12 +544,12 @@
       <div class="fade-up d4">
         <div class="section-title">С кем работаю</div>
         <div class="clients">
-          <span class="client-tag">Компании от 50 сотрудников</span>
-          <span class="client-tag">IT и digital</span>
-          <span class="client-tag">E-commerce</span>
-          <span class="client-tag">Образование</span>
-          <span class="client-tag">Услуги</span>
-          <span class="client-tag">Производство</span>
+          <span class="client-tag">B2B и сложный B2C</span>
+          <span class="client-tag">D2C и e-commerce</span>
+          <span class="client-tag">Маркетплейсы и платформы</span>
+          <span class="client-tag">B2B2C и партнёрские сети</span>
+          <span class="client-tag">Госзаказ и окологосударственные</span>
+          <span class="client-tag">Производство и услуги</span>
         </div>
       </div>
 
@@ -436,18 +557,18 @@
       <div class="fade-up d4">
         <div class="section-title">Что получает компания</div>
         <div class="benefits">
-          <div class="benefit">Сотрудники тратят время на задачи, где они создают ценность, а не на рутину</div>
-          <div class="benefit">Снижение операционных затрат на 20–40% без сокращения штата</div>
-          <div class="benefit">Команда освоила AI-инструменты без сопротивления и саботажа</div>
-          <div class="benefit">Руководители получили управляемые AI-пайплайны и прозрачные метрики</div>
+          <div class="benefit">Лиды не теряются между менеджерами — каждый на своём месте в воронке</div>
+          <div class="benefit">Отчёты готовы сами, без сбора Excel по четвергам</div>
+          <div class="benefit">Партнёры видят статусы сами — звонков вам меньше</div>
+          <div class="benefit">Руководитель видит картину в реальном времени, а не постфактум</div>
         </div>
       </div>
 
       <!-- CONTACTS -->
       <div class="contact-section fade-up d5">
-        <p class="contact-label">// Обсудить сотрудничество</p>
+        <p class="contact-label">// Обсудить задачу</p>
         <div class="contact-grid">
-          <a href="tel:+79538081276" class="contact-card glass">
+          <a href="tel:+795****1276" class="contact-card glass">
             <svg fill="none" stroke="#818cf8" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             <span>Позвонить</span>
           </a>
@@ -461,7 +582,7 @@
       <!-- FOOTER -->
       <div class="footer fade-up d5">
         © 2026 Игорь Ли · Новосибирск<br>
-        AI-трансформация · Обучение команд · Операционный менеджмент
+        Битрикс24 · CRM-автоматизация · Партнёрские порталы
       </div>
 
     </div>
