@@ -99,6 +99,8 @@
     .accent-bar { width: 48px; height: 4px; background: var(--accent); border-radius: 2px; }
 
     .hm { display: none; }
+    .nav-link { transition: all .3s; color: #5e5d59; }
+    .nav-link:hover { color: #141413 !important; background: rgba(255,255,255,.5); }
     @media(max-width:767px) { .hm { display: flex; } .hd { display: none !important; } }
 
     /* DIRECTION CARDS */
@@ -139,11 +141,11 @@
           <span style="font-weight:600;letter-spacing:-.025em;font-size:14px">Игорь Ли</span>
         </a>
         <div class="hd" style="display:flex;align-items:center;gap:4px">
-          <a href="#directions" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Направления</a>
-          <a href="#dashboards" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Дашборды</a>
-          <a href="#services" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Услуги</a>
-          <a href="#process" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Как работаю</a>
-          <a href="#contact" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Контакт</a>
+          <a href="#directions" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Направления</a>
+          <a href="#dashboards" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Дашборды</a>
+          <a href="#services" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Услуги</a>
+          <a href="#process" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Как работаю</a>
+          <a href="#contact" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Контакт</a>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
           <a href="#contact" class="btn-accent hd" style="padding:10px 20px;border-radius:12px;font-size:13px">Обсудить задачу</a>
