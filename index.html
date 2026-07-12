@@ -4,10 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Игорь Ли — автоматизация отделов продаж на Битрикс24</title>
+  <meta name="description" content="Настраиваю Битрикс24 под отдел продаж: воронка, контроль просрочек, дашборды для собственника. Запуск за 30 дней.">
+  <meta property="og:title" content="Игорь Ли — автоматизация отделов продаж на Битрикс24">
+  <meta property="og:description" content="Настраиваю Битрикс24 под отдел продаж: воронка, контроль просрочек, дашборды для собственника. Запуск за 30 дней.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <link rel="canonical" href="https://igorli.ru">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script defer src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -101,6 +107,66 @@
     .hm { display: none; }
     .nav-link { transition: all .3s; color: #5e5d59; }
     .nav-link:hover { color: #141413 !important; background: rgba(255,255,255,.5); }
+    .nav-desktop { display:flex; align-items:center; gap:4px; }
+    .nav-actions { display:flex; align-items:center; gap:12px; }
+    .logo-link { display:flex; align-items:center; gap:10px; }
+    .logo-icon { width:32px; height:32px; background:var(--accent); border-radius:10px; display:flex; align-items:center; justify-content:center; }
+    .logo-icon iconify-icon { color:#fff; font-size:16px; }
+    .logo-brand { font-weight:600; letter-spacing:-.025em; font-size:14px; }
+    .nav-cta { padding:10px 20px; border-radius:12px; font-size:13px; }
+    .burger { width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:12px; transition:background .3s; }
+    .burger:hover { background:rgba(255,255,255,.5); }
+    .burger iconify-icon { font-size:20px; }
+    .mob-fix { position:fixed; inset:0; z-index:60; opacity:0; pointer-events:none; transition:opacity .3s; }
+    .mob-bg { position:absolute; inset:0; background:rgba(0,0,0,.4); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+    .mob-panel { position:absolute; right:0; top:0; bottom:0; width:320px; background:rgba(250,249,245,0.98); -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px); transform:translateX(100%); transition:transform .5s cubic-bezier(.23,1,.32,1); padding:32px; display:flex; flex-direction:column; }
+    .mob-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:48px; }
+    .mob-close { width:40px; height:40px; display:flex; align-items:center; justify-content:center; }
+    .mob-close iconify-icon { font-size:20px; }
+    .mob-links { display:flex; flex-direction:column; gap:4px; }
+    .mob-cta { justify-content:center; width:100%; padding:14px 24px; }
+    .mob-hd { margin-top:auto; }
+
+    
+    .srv-grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); }
+    .srv-num { font-size:36px; font-family:Georgia,serif; font-style:italic; font-weight:400; color:#b0aea5; line-height:1; margin-bottom:12px; }
+    .srv-body { position:relative; }
+    .srv-ico-wrap { width:44px; height:44px; border-radius:14px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+    .srv-ico { color:var(--accent); font-size:24px; }
+    .srv-note { margin-top:20px; }
+    .srv-note-inner { display:flex; gap:20px; flex-wrap:wrap; align-items:center; justify-content:center; }
+    .srv-note-wrap { width:32px; height:32px; border-radius:10px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; }
+    .srv-note-txt { font-size:12px; font-weight:500; color:#87867f; letter-spacing:.04em; }
+
+    .dots-50 { position:absolute; inset:0; opacity:0.5; }
+    .sec-rel { position:relative; }
+    .sr-center { text-align:center; margin-bottom:64px; }
+    .accent-bar-center { margin:0 auto 20px; }
+    .srv-icon iconify-icon { color:var(--accent); font-size:24px; }
+    .dash-icon iconify-icon { font-size:24px; }
+.hero-sec { position:relative; min-height:100vh; display:flex; align-items:center; padding:120px 0 80px; overflow:hidden; }
+    .hero-glow-1 { position:absolute; top:128px; right:-128px; width:400px; height:400px; background:rgba(201,100,66,0.06); border-radius:50%; filter:blur(100px); }
+    .hero-glow-2 { position:absolute; bottom:80px; left:-128px; width:320px; height:320px; background:rgba(201,100,66,0.04); border-radius:50%; filter:blur(100px); }
+    .hero-badge { display:inline-flex; align-items:center; gap:10px; border-radius:999px; padding:8px 18px; margin-bottom:36px; }
+    .hero-dot { width:8px; height:8px; background:#10b981; border-radius:50%; animation:pulse2 2s ease-in-out infinite; }
+    .hero-badge-text { font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#5e5d59; }
+    .hero-h1 { font-size:clamp(40px,7vw,64px); font-weight:600; line-height:.95; letter-spacing:-.035em; margin-bottom:24px; max-width:620px; }
+    .hero-sub { font-size:17px; color:#5e5d59; font-weight:500; line-height:1.7; max-width:500px; margin-bottom:36px; }
+    .hero-stats { display:flex; gap:36px; margin-bottom:36px; }
+    .hero-stat-val { font-size:13px; font-weight:600; color:#141413; }
+    .hero-stat-lbl { font-size:12px; color:#87867f; font-weight:500; }
+    .hero-stat-div { width:1px; background:#e8e6dc; }
+    .hero-ctas { display:flex; flex-wrap:wrap; gap:12px; }
+    .hero-cta { border-radius:20px; padding:16px 32px; font-size:15px; }
+    .hero-cta-g { border-radius:20px; padding:16px 28px; border:1px solid #f0eee6; }
+    .hero-ico { font-size:14px; }
+    .hero-pcol { position:relative; }
+    .hero-pwrap { border-radius:24px; overflow:hidden; box-shadow:0 25px 50px -12px rgba(0,0,0,.1); }
+    .hero-img { width:100%; height:500px; object-fit:cover; }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.35),transparent 60%); }
+    .ps-sec { background:#141413; padding:32px 0; overflow:hidden; }
+    .ps-track { display:flex; animation:marquee 30s linear infinite; white-space:nowrap; }
+    .sec-rel { position:relative; }
     #nav { position:fixed; top:0; left:0; right:0; z-index:50; padding:16px 0; transition:padding .4s; }
     #nav.nav-compact { padding:8px 0; }
     .mob-link { font-size: 22px; font-weight: 500; letter-spacing: -.025em; padding: 12px 0; border-bottom: 1px solid #f0eee6; }
@@ -153,6 +219,8 @@
     .contact-desc { font-size:clamp(16px,2vw,18px); color:#5e5d59; font-weight:500; line-height:1.6; max-width:512px; margin:0 auto 40px; }
     .contact-card { border-radius:24px; padding:clamp(24px,4vw,40px); max-width:512px; margin:0 auto; }
     .contact-btn { justify-content:center; padding:18px; border-radius:14px; }
+    .sec-pad { padding:96px 0; }
+    .sec-pad-lg { padding:96px 0 128px; }
     .contact-meta { margin-top:24px; font-size:12px; color:#87867f; font-weight:500; line-height:1.6; }
     .btn-icon { font-size:16px; }
     .footer-main { border-top:1px solid #f0eee6; padding:64px 0; }
@@ -162,7 +230,7 @@
     .footer-logo-icon iconify-icon { color:#fff; font-size:16px; }
     .footer-brand { font-weight:600; letter-spacing:-.025em; font-size:14px; }
     .footer-desc { font-size:14px; color:#5e5d59; font-weight:500; line-height:1.6; max-width:280px; }
-    .footer-h4 { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#87867f; margin-bottom:16px; }
+    .footer-h3 { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#87867f; margin-bottom:16px; }
     .footer-col { display:flex; flex-direction:column; gap:12px; }
     .footer-link { font-size:14px; font-weight:500; color:#5e5d59; transition:color .3s; width:fit-content; }
     .footer-link:hover { color:#141413; }
@@ -181,119 +249,134 @@
     .mock-row:last-child { border-bottom: none; }
     .mock-bar { height: 6px; border-radius: 999px; background: linear-gradient(90deg, var(--accent), #d97757); flex: 1; max-width: 130px; }
   </style>
-</head>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Игорь Ли — автоматизация отделов продаж на Битрикс24",
+    "description": "Настраиваю Битрикс24 под отдел продаж: воронка, контроль просрочек, дашборды для собственника.",
+    "url": "https://igorli.ru",
+    "areaServed": "Россия",
+    "priceRange": "$$"
+  }
+  </script></head>
 <body>
 
   <!-- NAV -->
   <nav id="nav">
     <div class="container">
       <div class="glass" style="border-radius:16px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
-        <a href="#" style="display:flex;align-items:center;gap:10px">
-          <div style="width:32px;height:32px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center">
-            <iconify-icon icon="solar:bolt-bold" style="color:#fff;font-size:16px"></iconify-icon>
+        <a href="#" class="logo-link">
+          <div class="logo-icon">
+            <iconify-icon icon="solar:bolt-bold"></iconify-icon>
           </div>
-          <span style="font-weight:600;letter-spacing:-.025em;font-size:14px">Игорь Ли</span>
+          <span class="logo-brand">Игорь Ли</span>
         </a>
-        <div class="hd" style="display:flex;align-items:center;gap:4px">
-          <a href="#directions" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Направления</a>
-          <a href="#dashboards" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Дашборды</a>
-          <a href="#services" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Услуги</a>
-          <a href="#process" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Как работаю</a>
-          <a href="#contact" class="nav-link" style="padding:8px 16px;font-size:14px;font-weight:500;border-radius:12px">Контакт</a>
+        <div class="hd nav-desktop">
+          <a href="#directions" class="nav-link">Направления</a>
+          <a href="#dashboards" class="nav-link">Дашборды</a>
+          <a href="#services" class="nav-link">Услуги</a>
+          <a href="#process" class="nav-link">Как работаю</a>
+          <a href="#contact" class="nav-link">Контакт</a>
         </div>
-        <div style="display:flex;align-items:center;gap:12px">
-          <a href="#contact" class="btn-accent hd" style="padding:10px 20px;border-radius:12px;font-size:13px">Обсудить задачу</a>
-          <button id="menuBtn" class="hm" style="width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;transition:background .3s" onmouseover="this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.background='transparent'">
-            <iconify-icon icon="solar:hamburger-menu-linear" style="font-size:20px"></iconify-icon>
+        <div class="nav-actions">
+          <a href="#contact" class="btn-accent hd nav-cta">Обсудить задачу</a>
+          <button id="menuBtn" class="hm burger" aria-label="Открыть меню" aria-expanded="false">
+            <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
           </button>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- MOBILE MENU -->
-  <div id="mobileMenu" style="position:fixed;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity .3s">
-    <div id="menuOverlay" style="position:absolute;inset:0;background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)"></div>
-    <div id="menuPanel" style="position:absolute;right:0;top:0;bottom:0;width:320px;background:rgba(250,249,245,0.98);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:translateX(100%);transition:transform .5s cubic-bezier(.23,1,.32,1);padding:32px;display:flex;flex-direction:column">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
-        <span style="font-weight:600;letter-spacing:-.025em">Меню</span>
-        <button id="menuClose" class="mob-close" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center">
-          <iconify-icon icon="solar:close-circle-linear" style="font-size:20px"></iconify-icon>
+  
+
+<!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mob-fix">
+    <div id="menuOverlay" class="mob-bg"></div>
+    <div id="menuPanel" class="mob-panel">
+      <div class="mob-head">
+        <span class="logo-brand">Меню</span>
+        <button id="menuClose" class="mob-close" aria-label="Закрыть меню">
+          <iconify-icon icon="solar:close-circle-linear"></iconify-icon>
         </button>
       </div>
-      <div style="display:flex;flex-direction:column;gap:4px">
-        <a href="#directions" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Направления</a>
-        <a href="#dashboards" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Дашборды</a>
-        <a href="#services" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Услуги</a>
-        <a href="#process" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Как работаю</a>
-        <a href="#contact" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Контакт</a>
+      <div class="mob-links">
+        <a href="#directions" class="mob-link">Направления</a>
+        <a href="#dashboards" class="mob-link">Дашборды</a>
+        <a href="#services" class="mob-link">Услуги</a>
+        <a href="#process" class="mob-link">Как работаю</a>
+        <a href="#contact" class="mob-link">Контакт</a>
       </div>
-      <div style="margin-top:auto">
-        <a href="#contact" class="mob-link btn-accent" style="justify-content:center;width:100%;padding:14px 24px">Обсудить задачу</a>
+      <div class="mob-hd">
+        <a href="#contact" class="mob-link btn-accent mob-cta">Обсудить задачу</a>
       </div>
     </div>
   </div>
 
-  <!-- HERO -->
-  <section style="position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden">
-    <div style="position:absolute;top:128px;right:-128px;width:400px;height:400px;background:rgba(201,100,66,0.06);border-radius:50%;filter:blur(100px)" class="fl1"></div>
-    <div style="position:absolute;bottom:80px;left:-128px;width:320px;height:320px;background:rgba(201,100,66,0.04);border-radius:50%;filter:blur(100px)" class="fl2"></div>
+  
+
+<!-- HERO -->
+  <section class="hero-sec">
+    <div class="hero-glow-1 fl1"></div>
+    <div class="hero-glow-2 fl2"></div>
     <div style="position:absolute;inset:0" class="dots"></div>
 
-    <div class="container" style="position:relative">
+    <div class="container sec-rel">
       <div class="g-hero">
         <div>
           <div class="anim-fu">
-            <div class="glass-sm" style="display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 18px;margin-bottom:36px">
-              <div style="width:8px;height:8px;background:#10B981;border-radius:50%;animation:pulse2 2s ease-in-out infinite"></div>
-              <span style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#5e5d59">Внедрение Битрикс24 · под ключ</span>
+            <div class="glass-sm hero-badge">
+              <div class="hero-dot"></div>
+              <span class="hero-badge-text">Внедрение Битрикс24 · под ключ</span>
             </div>
           </div>
 
-          <h1 class="anim-fu d1" style="font-size:clamp(40px,7vw,64px);font-weight:600;line-height:.95;letter-spacing:-.035em;margin-bottom:24px;max-width:620px">
+          <h1 class="anim-fu d1 hero-h1">
             Отдел продаж,<br>который <span style="color:var(--accent)">не теряет лиды</span>
           </h1>
 
-          <p class="anim-fu d2" style="font-size:17px;color:#5e5d59;font-weight:500;line-height:1.7;max-width:500px;margin-bottom:36px">
+          <p class="anim-fu d2 hero-sub">
             Настраиваю Битрикс24 так, что РОП видит реальную воронку, лиды не застревают в менеджерах, а собственнику не нужно просить «сделай отчёт».
           </p>
 
           <!-- Social proof (verified from site content) -->
-          <div class="anim-fu d2" style="display:flex;gap:36px;margin-bottom:36px">
+          <div class="anim-fu d2 hero-stats">
             <div>
-              <div style="font-size:13px;font-weight:600;color:#141413">1–3 месяца</div>
-              <div style="font-size:12px;color:#87867f;font-weight:500">запуск CRM</div>
+              <div class="hero-stat-val">1–3 месяца</div>
+              <div class="hero-stat-lbl">запуск CRM</div>
             </div>
-            <div style="width:1px;background:#e8e6dc"></div>
+            <div class="hero-stat-div"></div>
             <div>
-              <div style="font-size:13px;font-weight:600;color:#141413">панель управления</div>
-              <div style="font-size:12px;color:#87867f;font-weight:500">для собственника</div>
+              <div class="hero-stat-val">панель управления</div>
+              <div class="hero-stat-lbl">для собственника</div>
             </div>
           </div>
 
-          <div class="anim-fu d3" style="display:flex;flex-wrap:wrap;gap:12px">
-            <a href="#contact" class="btn-accent" style="border-radius:20px;padding:16px 32px;font-size:15px">
+          <div class="anim-fu d3 hero-ctas">
+            <a href="#contact" class="btn-accent hero-cta">
               Обсудить задачу
-              <iconify-icon icon="solar:arrow-right-linear" style="font-size:14px"></iconify-icon>
+              <iconify-icon icon="solar:arrow-right-linear" class="hero-ico"></iconify-icon>
             </a>
-            <a href="#directions" class="btn-ghost glass-sm" style="border-radius:20px;padding:16px 28px;border:1px solid #f0eee6">Смотреть направления</a>
+            <a href="#directions" class="btn-ghost glass-sm hero-cta-g">Смотреть направления</a>
           </div>
         </div>
 
-        <div class="anim-si d3" style="position:relative">
-          <div style="border-radius:24px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.1)">
-            <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли" style="width:100%;height:500px;object-fit:cover" class="img-z">
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.35),transparent 60%)"></div>
+        <div class="anim-si d3 hero-pcol">
+          <div class="hero-pwrap">
+            <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли" class="hero-img img-z">
+            <div class="hero-overlay"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEM STRIP -->
-  <section style="background:#141413;padding:32px 0;overflow:hidden">
+  <!-- PROBLEM STRIP --><!-- PROBLEM STRIP -->
+  <section class="ps-sec">
     <div class="mask-x">
-      <div style="display:flex;animation:marquee 30s linear infinite;white-space:nowrap">
+      <div class="ps-track">
         <span class="ps-item">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
         <span class="ps-sep">✦</span>
         <span class="ps-item">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
@@ -323,7 +406,7 @@
   </section>
 
   <!-- DIRECTIONS -->
-  <section id="directions" style="padding:96px 0 128px">
+  <section id="directions" class="sec-pad-lg">
     <div class="container">
       <div class="sr" style="max-width:680px;margin-bottom:64px">
         <div class="accent-bar" style="margin-bottom:20px"></div>
@@ -431,7 +514,7 @@
   </section>
 
   <!-- DASHBOARDS -->
-  <section id="dashboards" style="padding:96px 0 128px;position:relative">
+  <section id="dashboards" class="sec-pad-lg" style="position:relative">
     <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
     <div class="container" style="position:relative">
 
@@ -459,18 +542,18 @@
   </section>
 
   <!-- SERVICES -->
-  <section id="services" style="padding:96px 0 128px;position:relative">
-    <div style="position:absolute;inset:0;opacity:0.5" class="dots"></div>
-    <div class="container" style="position:relative">
-      <div class="sr" style="text-align:center;margin-bottom:64px">
-        <div class="accent-bar" style="margin:0 auto 20px"></div>
+  <section id="services" class="sec-pad-lg sec-rel">
+    <div class="dots dots-50"></div>
+    <div class="container sec-rel">
+      <div class="sr sr-center">
+        <div class="accent-bar accent-bar-center"></div>
         <h2 class="sec-title">Мои <span class="title-ital">услуги</span></h2>
       </div>
 
       <div class="g3">
         <div class="sr card-up glass srv-card">
           <div class="srv-icon">
-            <iconify-icon icon="solar:widget-2-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:widget-2-bold-duotone"></iconify-icon>
           </div>
           <h3 class="srv-title">Настройка отдела продаж</h3>
           <p class="srv-desc">Битрикс24 под процессы команды: структура воронки, права, роли, этапы сделки.</p>
@@ -478,7 +561,7 @@
 
         <div class="sr card-up glass srv-card">
           <div class="srv-icon">
-            <iconify-icon icon="solar:alarm-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:alarm-bold-duotone"></iconify-icon>
           </div>
           <h3 class="srv-title">Контроль просрочек</h3>
           <p class="srv-desc">Механизм напоминаний и автоматических задач, чтобы ни один лид не висел без движения.</p>
@@ -486,7 +569,7 @@
 
         <div class="sr card-up glass srv-card">
           <div class="srv-icon">
-            <iconify-icon icon="solar:chart-2-bold-duotone" style="font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:chart-2-bold-duotone" class="dash-icon"></iconify-icon>
           </div>
           <h3 class="srv-title">Дашборды для собственника</h3>
           <p class="srv-desc">Панели управления для собственника: реальная конверсия, причины отказов, загрузка менеджеров.</p>
@@ -494,7 +577,7 @@
 
         <div class="sr card-up glass srv-card">
           <div class="srv-icon">
-            <iconify-icon icon="solar:plug-circle-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:plug-circle-bold-duotone"></iconify-icon>
           </div>
           <h3 class="srv-title">Интеграции</h3>
           <p class="srv-desc">Телефония, 1С, сайт, мессенджеры — все каналы и данные в одной системе.</p>
@@ -502,7 +585,7 @@
 
         <div class="sr card-up glass srv-card">
           <div class="srv-icon">
-            <iconify-icon icon="solar:brush-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:brush-bold-duotone"></iconify-icon>
           </div>
           <h3 class="srv-title">Чистка и гигиена CRM</h3>
           <p class="srv-desc">Убираю мусорные поля, которые менеджеры не заполняют, — CRM перестаёт тормозить работу.</p>
@@ -510,7 +593,7 @@
 
         <div class="sr card-up glass srv-card">
           <div class="srv-icon">
-            <iconify-icon icon="solar:graduation-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
+            <iconify-icon icon="solar:graduation-bold-duotone"></iconify-icon>
           </div>
           <h3 class="srv-title">Обучение команды</h3>
           <p class="srv-desc">Провожу воркшопы и онбординг: настройка прав, работа с воронкой, отчётами. Команда начинает работать в CRM, а не в обход.</p>
@@ -519,8 +602,9 @@
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section id="process" style="padding:96px 0 128px;overflow:hidden">
+  
+<!-- PROCESS -->
+  <section id="process" class="sec-pad-lg">
     <div class="container">
       <div class="sr" style="text-align:center;margin-bottom:64px">
         <div class="accent-bar" style="margin:0 auto 20px"></div>
@@ -633,7 +717,7 @@
           <p class="footer-desc">Настраиваю отделы продаж на Битрикс24: контроль просрочек, прозрачная воронка, реальная картина для руководителя.</p>
         </div>
         <div>
-          <h4 class="footer-h4">Навигация</h4>
+          <h3 class="footer-h3">Навигация</h3>
           <div class="footer-col">
             <a href="#directions" class="footer-link link-ul">Направления</a>
             <a href="#dashboards" class="footer-link link-ul">Дашборды</a>
@@ -643,7 +727,7 @@
           </div>
         </div>
         <div>
-          <h4 class="footer-h4">Услуги</h4>
+          <h3 class="footer-h3">Услуги</h3>
           <div class="footer-col">
             <span class="footer-text">Настройка отдела продаж</span>
             <span class="footer-text">Контроль просрочек</span>
@@ -652,7 +736,7 @@
           </div>
         </div>
         <div>
-          <h4 class="footer-h4">Контакты</h4>
+          <h3 class="footer-h3">Контакты</h3>
           <div class="footer-col">
             <a href="mailto:igorli.work@gmail.com" class="footer-link">igorli.work@gmail.com</a>
             <span class="footer-text" style="color:#87867f">Новосибирск, Россия</span>
