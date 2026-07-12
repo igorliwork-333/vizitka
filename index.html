@@ -101,6 +101,11 @@
     .hm { display: none; }
     .nav-link { transition: all .3s; color: #5e5d59; }
     .nav-link:hover { color: #141413 !important; background: rgba(255,255,255,.5); }
+    .mob-link { font-size: 22px; font-weight: 500; letter-spacing: -.025em; padding: 12px 0; border-bottom: 1px solid #f0eee6; }
+    .mob-close { border-radius: 12px; transition: background .3s; }
+    .mob-close:hover { background: #e8e6dc; }
+    .ps-item { margin: 0 28px; font-size: 15px; font-weight: 500; color: #5e5d59; }
+    .ps-sep { margin: 0 12px; color: var(--accent); }
     @media(max-width:767px) { .hm { display: flex; } .hd { display: none !important; } }
 
     /* DIRECTION CARDS */
@@ -163,7 +168,7 @@
     <div id="menuPanel" style="position:absolute;right:0;top:0;bottom:0;width:320px;background:rgba(250,249,245,0.98);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:translateX(100%);transition:transform .5s cubic-bezier(.23,1,.32,1);padding:32px;display:flex;flex-direction:column">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
         <span style="font-weight:600;letter-spacing:-.025em">Меню</span>
-        <button id="menuClose" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px" onmouseover="this.style.background='#e8e6dc'" onmouseout="this.style.background='transparent'">
+        <button id="menuClose" class="mob-close" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center">
           <iconify-icon icon="solar:close-circle-linear" style="font-size:20px"></iconify-icon>
         </button>
       </div>
@@ -245,30 +250,30 @@
   <section style="background:#141413;padding:32px 0;overflow:hidden">
     <div class="mask-x">
       <div style="display:flex;animation:marquee 30s linear infinite;white-space:nowrap">
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
-        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
-        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span class="ps-item">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
+        <span class="ps-sep">✦</span>
       </div>
     </div>
   </section>
