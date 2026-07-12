@@ -6,255 +6,147 @@
   <title>Игорь Ли — автоматизация отделов продаж на Битрикс24</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <style>
+    <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #F4F4F5;
-      color: #18181B;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f4ed;
+      color: #141413;
       overflow-x: hidden;
-      line-height: 1.5;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     button { border: none; background: none; cursor: pointer; font: inherit; }
     input, textarea { font: inherit; }
 
-    .container { max-width: 1152px; margin: 0 auto; padding: 0 24px; }
-    .serif { font-family: 'Playfair Display', Georgia, serif; }
-    .grotesk { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+    :root {
+      --accent: #c96442;
+      --accent-light: rgba(201,100,66,0.08);
+      --accent-mid: rgba(201,100,66,0.15);
+      --dark: #141413;
+      --muted: #5e5d59;
+      --light: #87867f;
+      --border: #f0eee6;
+      --border-warm: #e8e6dc;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --warm-silver: #b0aea5;
+    }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.93); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-18px); }
-    }
-    @keyframes floatD {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-12px); }
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0.5; }
-    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
+    .hidden-el { display: none !important; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.93); } to { opacity: 1; transform: scale(1); } }
+    @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+    @keyframes floatY2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes pulse2 { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
     .anim-fu { animation: fadeUp 0.8s cubic-bezier(0.23,1,0.32,1) both; }
     .anim-si { animation: scaleIn 0.7s cubic-bezier(0.23,1,0.32,1) both; }
-    .d1 { animation-delay: .1s } .d2 { animation-delay: .2s }
-    .d3 { animation-delay: .35s } .d4 { animation-delay: .5s } .d5 { animation-delay: .65s }
-    .fl  { animation: float 6s ease-in-out infinite; }
-    .fld { animation: floatD 6s ease-in-out 2s infinite; }
+    .d1 { animation-delay: .1s } .d2 { animation-delay: .2s } .d3 { animation-delay: .35s } .d4 { animation-delay: .5s } .d5 { animation-delay: .65s }
+    .fl1 { animation: floatY 6s ease-in-out infinite; }
+    .fl2 { animation: floatY2 6s ease-in-out 2s infinite; }
 
-    .glass {
-      background: rgba(255,255,255,0.6);
-      -webkit-backdrop-filter: blur(20px);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.4);
-    }
-    .glass-dk {
-      background: rgba(15,23,42,0.8);
-      -webkit-backdrop-filter: blur(20px);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .glass-sm {
-      background: rgba(255,255,255,0.35);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.25);
-    }
+    .glass { background: rgba(255,255,255,0.55); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border: 1px solid #f0eee6; }
+    .glass-dk { background: rgba(20,20,19,0.92); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border: 1px solid #30302e; }
+    .glass-sm { background: rgba(250,249,245,0.5); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(240,238,230,0.6); }
 
-    .dots {
-      background-image: radial-gradient(circle at 2px 2px, rgba(15,23,42,0.06) 1px, transparent 0);
-      background-size: 24px 24px;
-    }
-    .dots-l {
-      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.12) 1px, transparent 0);
-      background-size: 24px 24px;
-    }
+    .dots { background-image: radial-gradient(circle at 2px 2px, rgba(20,20,19,0.04) 1px, transparent 0); background-size: 24px 24px; }
+    .dots-l { background-image: radial-gradient(circle at 2px 2px, rgba(176,174,165,0.15) 1px, transparent 0); background-size: 24px 24px; }
+    .mask-x { -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent); }
 
-    .mask-x {
-      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-    }
-
-    .card-up {
-      transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), box-shadow 0.5s cubic-bezier(0.23,1,0.32,1);
-    }
-    .card-up:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
-    }
+    .card-up { transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), box-shadow 0.5s cubic-bezier(0.23,1,0.32,1); }
+    .card-up:hover { transform: translateY(-8px); box-shadow: 0 0 0 1px #d1cfc5; }
     .img-z { transition: transform 0.7s cubic-bezier(0.23,1,0.32,1); }
     .img-z:hover { transform: scale(1.05); }
 
     .link-ul { position: relative; }
-    .link-ul::after {
-      content: '';
-      position: absolute;
-      bottom: -3px; left: 0;
-      width: 0; height: 2px;
-      background: #18181B;
-      transition: width 0.4s cubic-bezier(0.23,1,0.32,1);
-    }
+    .link-ul::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: #141413; transition: width 0.4s cubic-bezier(0.23,1,0.32,1); }
     .link-ul:hover::after { width: 100%; }
 
-    .sr {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1);
-    }
+    .sr { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1); }
     .sr.vis { opacity: 1; transform: translateY(0); }
 
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #F4F4F5; }
-    ::-webkit-scrollbar-thumb { background: #D4D4D8; border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #f5f4ed; }
+    ::-webkit-scrollbar-thumb { background: #e8e6dc; border-radius: 3px; }
 
-    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 24px; }
-    @media(min-width:640px)  { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
-    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    @media(min-width:640px)  { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
-    @media(min-width:1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
-    .grid-4 { display: grid; grid-template-columns: 1fr; gap: 24px; }
-    @media(min-width:640px)  { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
-    @media(min-width:1024px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
-    .grid-hero { display: grid; grid-template-columns: 1fr; gap: 64px; align-items: center; }
-    @media(min-width:1024px) { .grid-hero { grid-template-columns: 1fr 1fr; gap: 80px; } }
+    .g2 { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .g3 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .g4 { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .g-hero { display: grid; grid-template-columns: 1fr; gap: 64px; align-items: center; }
+    .g-footer { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media(min-width:640px)  { .g2 { grid-template-columns: repeat(2,1fr); } .g3 { grid-template-columns: repeat(2,1fr); } .g4 { grid-template-columns: repeat(2,1fr); } .g-footer { grid-template-columns: repeat(2,1fr); } }
+    @media(min-width:1024px) { .g3 { grid-template-columns: repeat(3,1fr); } .g4 { grid-template-columns: repeat(4,1fr); } .g-hero { grid-template-columns: 1fr 1fr; gap: 80px; } .g-footer { grid-template-columns: 2fr 1fr 1fr 1fr; } }
 
-    .grid-footer { display: grid; grid-template-columns: 1fr; gap: 40px; }
-    @media(min-width:640px)  { .grid-footer { grid-template-columns: repeat(2, 1fr); } }
-    @media(min-width:1024px) { .grid-footer { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+    .btn-p { display: inline-flex; align-items: center; gap: 10px; background: #e8e6dc; color: #4d4c48; font-size: 14px; font-weight: 500; padding: 16px 28px; border-radius: 12px; transition: all 0.3s; }
+    .btn-p:hover { background: #d1cfc5; }
+    .btn-accent { display: inline-flex; align-items: center; gap: 10px; background: #c96442; color: #faf9f5; font-size: 14px; font-weight: 500; padding: 16px 28px; border-radius: 12px; transition: all 0.3s; }
+    .btn-accent:hover { background: #b85a3a; box-shadow: 0 0 0 1px #c96442; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; padding: 16px 28px; border-radius: 12px; transition: all 0.3s; color: #5e5d59; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.5); color: #141413; }
 
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: #18181B; color: #fff;
-      font-size: 14px; font-weight: 500;
-      padding: 16px 28px; border-radius: 16px;
-      transition: all 0.3s;
-    }
-    .btn-primary:hover {
-      background: #27272A;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-    }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-size: 14px; font-weight: 500;
-      padding: 16px 28px; border-radius: 16px;
-      transition: all 0.3s;
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.6); }
+    .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(176,174,165,0.6); background: rgba(20,20,19,0.08); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); padding: 6px 12px; border-radius: 999px; }
+    .tag-l { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: #5e5d59; background: rgba(250,249,245,0.6); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid #f0eee6; padding: 7px 14px; border-radius: 999px; }
 
-    .tag {
-      display: inline-block;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      background: rgba(255,255,255,0.1);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      padding: 6px 12px; border-radius: 999px;
-    }
-    .tag-l {
-      display: inline-block;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.04em;
-      color: #52525B;
-      background: rgba(255,255,255,0.6);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(228,228,231,0.6);
-      padding: 7px 14px; border-radius: 999px;
-    }
+    .accent-bar { width: 48px; height: 4px; background: var(--accent); border-radius: 2px; }
 
-    .hidden { display: none !important; }
+    .hm { display: none; }
+    @media(max-width:767px) { .hm { display: flex; } .hd { display: none !important; } }
 
-    /* === DIRECTION CARDS === */
+    /* DIRECTION CARDS */
     .dir-card { border-radius: 24px; padding: clamp(24px, 4vw, 40px); }
-    .dir-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: #A855F7; margin-bottom: 16px; display: block;
-    }
-    .dir-opener {
-      font-size: 14px; color: #71717A; font-weight: 500; line-height: 1.6;
-      background: rgba(168,85,247,0.06);
-      border-left: 2px solid rgba(168,85,247,0.4);
-      padding: 16px 20px; border-radius: 12px; margin-bottom: 28px;
-    }
+    .dir-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
+    .dir-opener { font-size: 14px; color: #5e5d59; font-weight: 500; line-height: 1.6; background: var(--accent-light); border-left: 2px solid rgba(201,100,66,0.4); padding: 16px 20px; border-radius: 12px; margin-bottom: 28px; }
     .dir-cols { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media(min-width:768px) { .dir-cols { grid-template-columns: 1fr 1fr; gap: 40px; } }
-    .dir-block-title {
-      font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase; color: #18181B; margin-bottom: 14px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .dot-pain { width: 8px; height: 8px; border-radius: 50%; background: #F59E0B; flex-shrink: 0; }
-    .dot-grow { width: 8px; height: 8px; border-radius: 50%; background: #10B981; flex-shrink: 0; }
+    .dir-block-title { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #141413; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .dot-pain { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+    .dot-grow { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
     .dir-list { display: grid; gap: 12px; }
-    .dir-item {
-      font-size: 14px; color: #3F3F46; font-weight: 500; line-height: 1.55;
-      padding-left: 24px; position: relative;
-    }
+    .dir-item { font-size: 14px; color: #4d4c48; font-weight: 500; line-height: 1.55; padding-left: 24px; position: relative; }
     .dir-item::before { position: absolute; left: 0; top: 0; font-weight: 700; }
-    .dir-item.pain::before { content: '!'; color: #F59E0B; }
-    .dir-item.grow::before { content: '→'; color: #10B981; }
+    .dir-item.pain::before { content: '!'; color: var(--amber); }
+    .dir-item.grow::before { content: '→'; color: var(--green); }
 
-    /* === BENEFIT LIST === */
-    .ben-item {
-      display: flex; align-items: flex-start; gap: 12px;
-      font-size: 14px; color: #3F3F46; font-weight: 500; line-height: 1.55;
-      padding: 16px 20px; border-radius: 14px;
-      background: rgba(16,185,129,0.05);
-      border: 1px solid rgba(16,185,129,0.15);
-    }
-    .ben-item::before { content: '→'; color: #10B981; font-weight: 700; flex-shrink: 0; }
+    .ben-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #4d4c48; font-weight: 500; line-height: 1.55; padding: 16px 20px; border-radius: 14px; background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15); }
+    .ben-item::before { content: '→'; color: var(--green); font-weight: 700; flex-shrink: 0; }
 
-    /* === DASHBOARD MOCK === */
-    .mock { border-radius:16px;padding:24px;background:rgba(255,255,255,0.6);border:1px solid rgba(228,228,231,0.6); }
-    .mock-head { display:flex;align-items:center;justify-content:space-between;margin-bottom:8px; }
-    .mock-row { display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(228,228,231,0.5); }
-    .mock-row:last-child { border-bottom:none; }
-    .mock-bar { height:6px;border-radius:999px;background:linear-gradient(90deg,#A855F7,#06B6D4);flex:1;max-width:130px; }
+    .mock { border-radius: 16px; padding: 24px; background: #faf9f5; border: 1px solid #f0eee6; }
+    .mock-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .mock-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f0eee6; }
+    .mock-row:last-child { border-bottom: none; }
+    .mock-bar { height: 6px; border-radius: 999px; background: linear-gradient(90deg, var(--accent), #d97757); flex: 1; max-width: 130px; }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav id="nav" style="position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 0;transition:padding 0.4s">
+  <nav id="nav" style="position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 0;transition:padding .4s">
     <div class="container">
       <div class="glass" style="border-radius:16px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
         <a href="#" style="display:flex;align-items:center;gap:10px">
-          <div style="width:32px;height:32px;background:#18181B;border-radius:10px;display:flex;align-items:center;justify-content:center">
-            <iconify-icon icon="solar:widget-2-bold" style="color:#fff;font-size:14px"></iconify-icon>
+          <div style="width:32px;height:32px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center">
+            <iconify-icon icon="solar:bolt-bold" style="color:#fff;font-size:16px"></iconify-icon>
           </div>
-          <span style="font-weight:600;letter-spacing:-0.025em;font-size:14px">Игорь Ли</span>
+          <span style="font-weight:600;letter-spacing:-.025em;font-size:14px">Игорь Ли</span>
         </a>
-        <div style="display:flex;align-items:center;gap:4px" class="hide-mobile">
-          <a href="#directions" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Направления</a>
-          <a href="#dashboards" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Дашборды</a>
-          <a href="#services" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Услуги</a>
-          <a href="#process" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Как работаю</a>
-          <a href="#contact" style="padding:8px 16px;font-size:14px;font-weight:500;color:#71717A;border-radius:12px;transition:all 0.3s" onmouseover="this.style.color='#18181B';this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.color='#71717A';this.style.background='transparent'">Контакт</a>
+        <div class="hd" style="display:flex;align-items:center;gap:4px">
+          <a href="#directions" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Направления</a>
+          <a href="#dashboards" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Дашборды</a>
+          <a href="#services" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Услуги</a>
+          <a href="#process" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Как работаю</a>
+          <a href="#contact" style="padding:8px 16px;font-size:14px;font-weight:500;color:#5e5d59;border-radius:12px;transition:all .3s" onmouseover="this.style.color='#141413';this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.color='#5e5d59';this.style.background='transparent'">Контакт</a>
         </div>
         <div style="display:flex;align-items:center;gap:12px">
-          <a href="#contact" class="btn-primary hide-mobile" style="padding:10px 20px;border-radius:12px;font-size:13px">
-            Обсудить задачу
-            <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:12px"></iconify-icon>
-          </a>
-          <button id="menuBtn" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px;transition:background 0.3s" onmouseover="this.style.background='rgba(255,255,255,0.5)'" onmouseout="this.style.background='transparent'">
+          <a href="#contact" class="btn-accent hd" style="padding:10px 20px;border-radius:12px;font-size:13px">Обсудить задачу</a>
+          <button id="menuBtn" class="hm" style="width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;transition:background .3s" onmouseover="this.style.background='rgba(255,255,255,.5)'" onmouseout="this.style.background='transparent'">
             <iconify-icon icon="solar:hamburger-menu-linear" style="font-size:20px"></iconify-icon>
           </button>
         </div>
@@ -262,58 +154,55 @@
     </div>
   </nav>
 
-  <style>.hide-mobile{display:flex}@media(max-width:767px){.hide-mobile{display:none!important}}</style>
-
   <!-- MOBILE MENU -->
-  <div id="mobileMenu" style="position:fixed;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity 0.3s">
-    <div id="menuOverlay" style="position:absolute;inset:0;background:rgba(0,0,0,0.4);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)"></div>
-    <div id="menuPanel" style="position:absolute;right:0;top:0;bottom:0;width:320px;background:rgba(255,255,255,0.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.23,1,0.32,1);padding:32px;display:flex;flex-direction:column">
+  <div id="mobileMenu" style="position:fixed;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity .3s">
+    <div id="menuOverlay" style="position:absolute;inset:0;background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)"></div>
+    <div id="menuPanel" style="position:absolute;right:0;top:0;bottom:0;width:320px;background:rgba(250,249,245,0.98);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transform:translateX(100%);transition:transform .5s cubic-bezier(.23,1,.32,1);padding:32px;display:flex;flex-direction:column">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
-        <span style="font-weight:600;letter-spacing:-0.025em">Меню</span>
-        <button id="menuClose" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px;transition:background 0.3s" onmouseover="this.style.background='#F4F4F5'" onmouseout="this.style.background='transparent'">
+        <span style="font-weight:600;letter-spacing:-.025em">Меню</span>
+        <button id="menuClose" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:12px" onmouseover="this.style.background='#e8e6dc'" onmouseout="this.style.background='transparent'">
           <iconify-icon icon="solar:close-circle-linear" style="font-size:20px"></iconify-icon>
         </button>
       </div>
       <div style="display:flex;flex-direction:column;gap:4px">
-        <a href="#directions" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Направления</a>
-        <a href="#dashboards" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Дашборды</a>
-        <a href="#services" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Услуги</a>
-        <a href="#process" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Как работаю</a>
-        <a href="#contact" class="mob-link" style="font-size:24px;font-weight:500;letter-spacing:-0.025em;padding:12px 0;border-bottom:1px solid #F4F4F5;transition:color 0.3s" onmouseover="this.style.color='#71717A'" onmouseout="this.style.color='#18181B'">Контакт</a>
+        <a href="#directions" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Направления</a>
+        <a href="#dashboards" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Дашборды</a>
+        <a href="#services" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Услуги</a>
+        <a href="#process" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Как работаю</a>
+        <a href="#contact" class="mob-link" style="font-size:22px;font-weight:500;letter-spacing:-.025em;padding:12px 0;border-bottom:1px solid #f0eee6">Контакт</a>
       </div>
       <div style="margin-top:auto">
-        <a href="#contact" class="mob-link btn-primary" style="justify-content:center;width:100%;padding:14px 24px">Обсудить задачу <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:14px"></iconify-icon></a>
+        <a href="#contact" class="mob-link btn-accent" style="justify-content:center;width:100%;padding:14px 24px">Обсудить задачу</a>
       </div>
     </div>
   </div>
 
   <!-- HERO -->
-  <section style="position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 64px;overflow:hidden">
-    <div style="position:absolute;top:128px;right:-128px;width:384px;height:384px;background:rgba(168,85,247,0.1);border-radius:50%;filter:blur(100px)" class="fl"></div>
-    <div style="position:absolute;bottom:128px;left:-128px;width:320px;height:320px;background:rgba(6,182,212,0.1);border-radius:50%;filter:blur(100px)" class="fld"></div>
+  <section style="position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden">
+    <div style="position:absolute;top:128px;right:-128px;width:400px;height:400px;background:rgba(201,100,66,0.06);border-radius:50%;filter:blur(100px)" class="fl1"></div>
+    <div style="position:absolute;bottom:80px;left:-128px;width:320px;height:320px;background:rgba(201,100,66,0.04);border-radius:50%;filter:blur(100px)" class="fl2"></div>
     <div style="position:absolute;inset:0" class="dots"></div>
 
     <div class="container" style="position:relative">
-      <div class="grid-hero">
+      <div class="g-hero">
         <div>
           <div class="anim-fu">
             <div class="glass-sm" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 16px;margin-bottom:32px">
-              <div style="width:8px;height:8px;background:#A855F7;border-radius:50%;animation:pulse 2s ease-in-out infinite"></div>
-              <span style="font-size:11px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#71717A">Автоматизация отделов продаж</span>
+              <div style="width:8px;height:8px;background:#10B981;border-radius:50%;animation:pulse2 2s ease-in-out infinite"></div>
+              <span style="font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#5e5d59">Принимаю задачи по Битрикс24</span>
             </div>
           </div>
 
-          <h1 class="anim-fu d1" style="font-size:clamp(40px,7vw,64px);font-weight:500;line-height:0.98;letter-spacing:-0.03em;margin-bottom:28px">
-            Настраиваю отделы<br>
-            продаж на <span class="serif" style="font-style:italic;color:#A1A1AA">Битрикс24</span>
+          <h1 class="anim-fu d1" style="font-size:clamp(40px,7vw,64px);font-weight:600;line-height:.95;letter-spacing:-.035em;margin-bottom:28px">
+            Настраиваю отделы<br>продаж на <span style="color:var(--accent)">Битрикс24</span>
           </h1>
 
-          <p class="anim-fu d2" style="font-size:clamp(16px,2vw,18px);color:#71717A;font-weight:500;line-height:1.6;max-width:440px;margin-bottom:40px">
+          <p class="anim-fu d2" style="font-size:17px;color:#5e5d59;font-weight:500;line-height:1.7;max-width:480px;margin-bottom:40px">
             Воронки без потерянных лидов, контроль просрочек и дашборды через REST API — прозрачность для собственника, а не отчёты менеджеров.
           </p>
 
           <div class="anim-fu d3" style="display:flex;flex-wrap:wrap;gap:16px">
-            <a href="#directions" class="btn-primary" style="border-radius:20px">
+            <a href="#directions" class="btn-accent" style="border-radius:20px">
               Смотреть направления
               <iconify-icon icon="solar:arrow-down-linear" style="font-size:14px"></iconify-icon>
             </a>
@@ -321,54 +210,66 @@
           </div>
         </div>
 
-        <div class="anim-si d3 hide-mobile" style="position:relative">
-          <div class="glass" style="border-radius:24px;padding:20px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.1)">
-            <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли" style="width:100%;height:440px;object-fit:cover;border-radius:16px" class="img-z">
+        <div class="anim-si d3 hd" style="position:relative">
+          <div style="border-radius:24px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.1)">
+            <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли" style="width:100%;height:500px;object-fit:cover" class="img-z">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.35),transparent 60%)"></div>
           </div>
-          <div class="glass fl" style="position:absolute;left:-32px;top:48px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:flex;align-items:center;gap:10px">
-            <iconify-icon icon="solar:widget-2-bold-duotone" style="color:#A855F7;font-size:18px"></iconify-icon>
-            <span style="font-size:13px;font-weight:600">Битрикс24</span>
+          <div class="glass fl1" style="position:absolute;left:-40px;top:60px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:36px;height:36px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center">
+                <iconify-icon icon="solar:bolt-bold-duotone" style="color:var(--accent);font-size:16px"></iconify-icon>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#87867f;font-weight:500">Платформа</div>
+                <div style="font-size:16px;font-weight:600">Битрикс24</div>
+              </div>
+            </div>
           </div>
-          <div class="glass fld" style="position:absolute;right:-24px;bottom:80px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:flex;align-items:center;gap:10px">
-            <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#06B6D4;font-size:18px"></iconify-icon>
-            <span style="font-size:13px;font-weight:600">Дашборды</span>
+          <div class="glass fl2" style="position:absolute;right:-28px;bottom:120px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1)">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:36px;height:36px;background:rgba(16,185,129,.1);border-radius:10px;display:flex;align-items:center;justify-content:center">
+                <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#10B981;font-size:16px"></iconify-icon>
+              </div>
+              <div>
+                <div style="font-size:11px;color:#87867f;font-weight:500">Панель для</div>
+                <div style="font-size:16px;font-weight:600">РОПа и собственника</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="anim-fu d5" style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px">
-      <span style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#A1A1AA">Скролл</span>
-      <div style="width:20px;height:32px;border:2px solid #D4D4D8;border-radius:999px;display:flex;justify-content:center;padding-top:6px">
-        <div style="width:4px;height:8px;background:#A1A1AA;border-radius:2px;animation:float 2s ease-in-out infinite"></div>
-      </div>
-    </div>
   </section>
 
-  <!-- MARQUEE -->
-  <section style="padding:40px 0;border-top:1px solid rgba(228,228,231,0.6);border-bottom:1px solid rgba(228,228,231,0.6);overflow:hidden">
+  <!-- PROBLEM STRIP -->
+  <section style="background:#141413;padding:32px 0;overflow:hidden">
     <div class="mask-x">
-      <div style="display:flex;animation:marquee 28s linear infinite;white-space:nowrap">
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отдел продаж</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Контроль просрочек</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Дашборды REST API</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Прозрачность для РОПа</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Отдел продаж</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Воронки</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Контроль просрочек</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Дашборды REST API</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
-        <span style="margin:0 32px;font-size:clamp(24px,3vw,30px);font-weight:500;letter-spacing:-0.025em;color:#D4D4D8">Прозрачность для РОПа</span>
-        <span style="margin:0 16px;font-size:clamp(24px,3vw,30px);color:#C084FC">✦</span>
+      <div style="display:flex;animation:marquee 30s linear infinite;white-space:nowrap">
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
+        <span style="margin:0 28px;font-size:15px;font-weight:500;color:#5e5d59">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
+        <span style="margin:0 12px;color:var(--accent)">✦</span>
       </div>
     </div>
   </section>
@@ -377,9 +278,9 @@
   <section id="directions" style="padding:96px 0 128px">
     <div class="container">
       <div class="sr" style="max-width:680px;margin-bottom:64px">
-        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Направления</span>
-        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;margin-bottom:24px">Для кого <span class="serif" style="font-style:italic;color:#A1A1AA">работаю</span></h2>
-        <p style="font-size:clamp(15px,2vw,17px);color:#71717A;font-weight:500;line-height:1.6">
+        <div class="accent-bar" style="margin-bottom:20px"></div>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:600;line-height:.95;letter-spacing:-.03em;margin-bottom:24px">Для кого <span class="serif" style="font-style:italic;color:#87867f;font-weight:400">работаю</span></h2>
+        <p style="font-size:clamp(15px,2vw,17px);color:#5e5d59;font-weight:500;line-height:1.6">
           Фокус — на три модели, где моя помощь понятна сразу и не нужно доказывать ценность. В каждом направлении сначала честно: возможно, мои услуги вам пока не очевидны. А ниже — где именно закрываю боль.
         </p>
       </div>
@@ -475,7 +376,7 @@
 
       </div>
 
-      <div class="sr" style="margin-top:32px;font-size:13px;color:#A1A1AA;font-weight:500;text-align:center">
+      <div class="sr" style="margin-top:32px;font-size:13px;color:#87867f;font-weight:500;text-align:center">
         Работаю и с другими моделями (B2G, B2B2C, C2C, B2E) — но глубокая экспертиза и фокус в трёх направлениях выше.
       </div>
     </div>
@@ -485,63 +386,63 @@
   <section id="dashboards" style="padding:96px 0 128px;position:relative">
     <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
     <div class="container" style="position:relative">
-      <div class="grid-2" style="align-items:center;gap:64px">
+      <div class="g2" style="align-items:center;gap:64px">
         <div class="sr">
-          <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Дашборды через REST API</span>
-          <h2 style="font-size:clamp(32px,4vw,44px);font-weight:500;line-height:0.98;letter-spacing:-0.03em;margin-bottom:24px">Не для отчёта<br><span class="serif" style="font-style:italic;color:#A1A1AA">сотрудника</span> —<br>для контроля <span class="serif" style="font-style:italic;color:#A1A1AA">собственника</span></h2>
-          <p style="font-size:15px;color:#71717A;font-weight:500;line-height:1.65;margin-bottom:24px">
+          <div class="accent-bar" style="margin-bottom:20px"></div>
+          <h2 style="font-size:clamp(32px,4vw,44px);font-weight:600;line-height:.98;letter-spacing:-.03em;margin-bottom:24px">Не для отчёта<br><span class="serif" style="font-style:italic;color:#87867f;font-weight:400">сотрудника</span> —<br>для контроля <span class="serif" style="font-style:italic;color:#87867f;font-weight:400">собственника</span></h2>
+          <p style="font-size:15px;color:#5e5d59;font-weight:500;line-height:1.65;margin-bottom:24px">
             Дашборд, который нужен линейному менеджеру, — это расход: красивые графики его активности, которые оправдывают зарплату. Дашборд для собственника — это инвестиция: где бизнес теряет деньги, а не кто красивее отчитался.
           </p>
-          <p style="font-size:15px;color:#71717A;font-weight:500;line-height:1.65;margin-bottom:28px">
+          <p style="font-size:15px;color:#5e5d59;font-weight:500;line-height:1.65;margin-bottom:28px">
             Я собираю данные из Битрикс24, 1С и сайта через REST API и строю панели управления, где видно реальную конверсию по этапам, причины отказов и загрузку менеджеров. Бизнесу плевать, на чём это написано — важно, чтобы работало и не ломалось.
           </p>
-          <a href="#contact" class="btn-primary" style="border-radius:16px">
+          <a href="#contact" class="btn-accent" style="border-radius:16px">
             Обсудить панель под вашу задачу
             <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:14px"></iconify-icon>
           </a>
         </div>
 
         <div class="sr">
-          <div class="glass mock" style="box-shadow:0 25px 50px -12px rgba(0,0,0,0.12)">
+          <div class="glass mock" style="box-shadow:0 25px 50px -12px rgba(0,0,0,.12)">
             <div class="mock-head">
               <div style="display:flex;align-items:center;gap:10px">
-                <div style="width:36px;height:36px;background:rgba(168,85,247,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center">
-                  <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#A855F7;font-size:16px"></iconify-icon>
+                <div style="width:36px;height:36px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center">
+                  <iconify-icon icon="solar:chart-2-bold-duotone" style="color:var(--accent);font-size:16px"></iconify-icon>
                 </div>
-                <div style="font-size:14px;font-weight:600;letter-spacing:-0.025em">Панель собственника</div>
+                <div style="font-size:14px;font-weight:600;letter-spacing:-.025em">Панель собственника</div>
               </div>
-              <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A855F7">REST API</span>
+              <span style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)">REST API</span>
             </div>
-            <div style="height:1px;background:rgba(228,228,231,0.6);margin:16px 0"></div>
+            <div style="height:1px;background:#f0eee6;margin:16px 0"></div>
             <div class="mock-row">
               <div style="display:flex;align-items:center;gap:10px">
-                <iconify-icon icon="solar:clock-circle-bold-duotone" style="color:#F59E0B;font-size:18px"></iconify-icon>
-                <span style="font-size:13px;font-weight:500;color:#3F3F46">Просроченные лиды</span>
+                <iconify-icon icon="solar:clock-circle-bold-duotone" style="color:var(--amber);font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#4d4c48">Просроченные лиды</span>
               </div>
-              <span style="font-size:12px;font-weight:600;color:#10B981">под контролем</span>
+              <span style="font-size:12px;font-weight:600;color:var(--green)">под контролем</span>
             </div>
             <div class="mock-row">
               <div style="display:flex;align-items:center;gap:10px">
-                <iconify-icon icon="solar:filter-bold-duotone" style="color:#A855F7;font-size:18px"></iconify-icon>
-                <span style="font-size:13px;font-weight:500;color:#3F3F46">Конверсия по этапам</span>
+                <iconify-icon icon="solar:filter-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#4d4c48">Конверсия по этапам</span>
               </div>
               <div class="mock-bar"></div>
             </div>
             <div class="mock-row">
               <div style="display:flex;align-items:center;gap:10px">
-                <iconify-icon icon="solar:users-group-rounded-bold-duotone" style="color:#06B6D4;font-size:18px"></iconify-icon>
-                <span style="font-size:13px;font-weight:500;color:#3F3F46">Кто сливает лиды</span>
+                <iconify-icon icon="solar:users-group-rounded-bold-duotone" style="color:#87867f;font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#4d4c48">Кто сливает лиды</span>
               </div>
-              <span style="font-size:12px;font-weight:600;color:#18181B">видно</span>
+              <span style="font-size:12px;font-weight:600;color:#141413">видно</span>
             </div>
             <div class="mock-row">
               <div style="display:flex;align-items:center;gap:10px">
-                <iconify-icon icon="solar:coin-bold-duotone" style="color:#22C55E;font-size:18px"></iconify-icon>
-                <span style="font-size:13px;font-weight:500;color:#3F3F46">Маржа по сделке</span>
+                <iconify-icon icon="solar:coin-bold-duotone" style="color:var(--green);font-size:18px"></iconify-icon>
+                <span style="font-size:13px;font-weight:500;color:#4d4c48">Маржа по сделке</span>
               </div>
               <div class="mock-bar"></div>
             </div>
-            <div style="margin-top:16px;font-size:11px;color:#A1A1AA;font-weight:500">макет панели управления</div>
+            <div style="margin-top:16px;font-size:11px;color:#87867f;font-weight:500">макет панели управления</div>
           </div>
         </div>
       </div>
@@ -553,57 +454,57 @@
     <div style="position:absolute;inset:0;opacity:0.5" class="dots"></div>
     <div class="container" style="position:relative">
       <div class="sr" style="text-align:center;margin-bottom:64px">
-        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Что я делаю</span>
-        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em">Мои <span class="serif" style="font-style:italic;color:#A1A1AA">услуги</span></h2>
+        <div class="accent-bar" style="margin:0 auto 20px"></div>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:600;line-height:.95;letter-spacing:-.03em">Мои <span class="serif" style="font-style:italic;color:#87867f;font-weight:400">услуги</span></h2>
       </div>
 
-      <div class="grid-3">
+      <div class="g3">
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(168,85,247,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(168,85,247,0.2)'" onmouseout="this.style.background='rgba(168,85,247,0.1)'">
-            <iconify-icon icon="solar:widget-2-bold-duotone" style="color:#A855F7;font-size:24px"></iconify-icon>
+          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+            <iconify-icon icon="solar:widget-2-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Настройка отдела продаж</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Битрик24 под процессы команды: структура воронки, права, роли, этапы сделки.</p>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Настройка отдела продаж</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Битрик24 под процессы команды: структура воронки, права, роли, этапы сделки.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(249,115,22,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(249,115,22,0.2)'" onmouseout="this.style.background='rgba(249,115,22,0.1)'">
-            <iconify-icon icon="solar:alarm-bold-duotone" style="color:#F97316;font-size:24px"></iconify-icon>
+          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+            <iconify-icon icon="solar:alarm-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Контроль просрочек</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Механизм напоминаний и автоматических задач, чтобы ни один лид не висел без движения.</p>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Контроль просрочек</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Механизм напоминаний и автоматических задач, чтобы ни один лид не висел без движения.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(6,182,212,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(6,182,212,0.2)'" onmouseout="this.style.background='rgba(6,182,212,0.1)'">
+          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
             <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#06B6D4;font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Дашборды через REST API</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Панели управления для собственника: реальная конверсия, причины отказов, загрузка менеджеров.</p>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Дашборды через REST API</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Панели управления для собственника: реальная конверсия, причины отказов, загрузка менеджеров.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(99,102,241,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(99,102,241,0.2)'" onmouseout="this.style.background='rgba(99,102,241,0.1)'">
-            <iconify-icon icon="solar:plug-circle-bold-duotone" style="color:#6366F1;font-size:24px"></iconify-icon>
+          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+            <iconify-icon icon="solar:plug-circle-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Интеграции</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Телефония, 1С, сайт, мессенджеры — все каналы и данные в одной системе.</p>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Интеграции</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Телефония, 1С, сайт, мессенджеры — все каналы и данные в одной системе.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(236,72,153,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(236,72,153,0.2)'" onmouseout="this.style.background='rgba(236,72,153,0.1)'">
-            <iconify-icon icon="solar:brush-bold-duotone" style="color:#EC4899;font-size:24px"></iconify-icon>
+          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+            <iconify-icon icon="solar:brush-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Чистка и гигиена CRM</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Убираю мусорные поля, которые менеджеры не заполняют, — CRM перестаёт тормозить работу.</p>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Чистка и гигиена CRM</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Убираю мусорные поля, которые менеджеры не заполняют, — CRM перестаёт тормозить работу.</p>
         </div>
 
         <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:rgba(34,197,94,0.1);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background 0.3s" onmouseover="this.style.background='rgba(34,197,94,0.2)'" onmouseout="this.style.background='rgba(34,197,94,0.1)'">
-            <iconify-icon icon="solar:graduation-bold-duotone" style="color:#22C55E;font-size:24px"></iconify-icon>
+          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+            <iconify-icon icon="solar:graduation-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:10px">Обучение команды</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе, а не в обход неё. Саботажа не возникает.</p>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Обучение команды</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе, а не в обход неё. Саботажа не возникает.</p>
         </div>
       </div>
     </div>
@@ -613,54 +514,54 @@
   <section id="process" style="padding:96px 0 128px;overflow:hidden">
     <div class="container">
       <div class="sr" style="text-align:center;margin-bottom:64px">
-        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Процесс</span>
-        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em">Как я <span class="serif" style="font-style:italic;color:#A1A1AA">работаю</span></h2>
+        <div class="accent-bar" style="margin:0 auto 20px"></div>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:600;line-height:.95;letter-spacing:-.03em">Как я <span class="serif" style="font-style:italic;color:#87867f;font-weight:400">работаю</span></h2>
       </div>
 
-      <div class="grid-4">
+      <div class="g4">
         <div class="sr" style="position:relative">
-          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">01</div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Аудит отдела продаж</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Нахожу операции, которые команда делает руками: просроченные лиды, мусор в полях, непрозрачное движение сделок.</p>
-          <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
+          <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">01</div>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Аудит отдела продаж</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Нахожу операции, которые команда делает руками: просроченные лиды, мусор в полях, непрозрачное движение сделок.</p>
+          <div class="hd" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #e8e6dc"></div>
         </div>
         <div class="sr" style="position:relative">
-          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">02</div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Внедрение за 30 дней</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Рабочая система с контролем просрочек и прозрачностью к концу месяца.</p>
-          <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
+          <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">02</div>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Внедрение за 30 дней</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Рабочая система с контролем просрочек и прозрачностью к концу месяца.</p>
+          <div class="hd" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #e8e6dc"></div>
         </div>
         <div class="sr" style="position:relative">
-          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">03</div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Обучение команды</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе. Люди заполняют только то, что влияет на продажу.</p>
-          <div class="hide-mobile" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #E4E4E7"></div>
+          <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">03</div>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Обучение команды</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе. Люди заполняют только то, что влияет на продажу.</p>
+          <div class="hd" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #e8e6dc"></div>
         </div>
         <div class="sr">
-          <div class="grotesk" style="font-size:72px;font-weight:700;color:#E4E4E7;margin-bottom:16px;line-height:1">04</div>
-          <h3 style="font-size:18px;font-weight:500;letter-spacing:-0.025em;margin-bottom:8px">Автономная работа</h3>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6">Воронка крутится сама, РОП видит картину в реальном времени, а не постфактум.</p>
+          <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">04</div>
+          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Автономная работа</h3>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Воронка крутится сама, РОП видит картину в реальном времени, а не постфактум.</p>
         </div>
       </div>
 
       <div class="sr" style="margin-top:80px">
-        <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;text-align:center;margin-bottom:28px">Формат работы</h3>
-        <div class="grid-4">
+        <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#87867f;text-align:center;margin-bottom:28px">Формат работы</h3>
+        <div class="g4">
           <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
-            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Консалтинг</div>
-            <div style="font-size:12px;color:#71717A;font-weight:500">Проект 1–3 месяца с результатом</div>
+            <div style="font-size:15px;font-weight:600;letter-spacing:-.025em;margin-bottom:4px">Консалтинг</div>
+            <div style="font-size:12px;color:#5e5d59;font-weight:500">Проект 1–3 месяца с результатом</div>
           </div>
           <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
-            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Штатная позиция</div>
-            <div style="font-size:12px;color:#71717A;font-weight:500">Интегратор / админ Битрикс24</div>
+            <div style="font-size:15px;font-weight:600;letter-spacing:-.025em;margin-bottom:4px">Штатная позиция</div>
+            <div style="font-size:12px;color:#5e5d59;font-weight:500">Интегратор / админ Битрикс24</div>
           </div>
           <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
-            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Корпоративное обучение</div>
-            <div style="font-size:12px;color:#71717A;font-weight:500">Воркшопи для отдела продаж</div>
+            <div style="font-size:15px;font-weight:600;letter-spacing:-.025em;margin-bottom:4px">Корпоративное обучение</div>
+            <div style="font-size:12px;color:#5e5d59;font-weight:500">Воркшопы для отдела продаж</div>
           </div>
           <div class="glass" style="border-radius:16px;padding:20px;text-align:center">
-            <div style="font-size:15px;font-weight:600;letter-spacing:-0.025em;margin-bottom:4px">Разовые консультации</div>
-            <div style="font-size:12px;color:#71717A;font-weight:500">Для руководителей и ИТ-отделов</div>
+            <div style="font-size:15px;font-weight:600;letter-spacing:-.025em;margin-bottom:4px">Разовые консультации</div>
+            <div style="font-size:12px;color:#5e5d59;font-weight:500">Для руководителей и ИТ-отделов</div>
           </div>
         </div>
       </div>
@@ -668,55 +569,65 @@
   </section>
 
   <!-- BARRIER (dark) -->
-  <section style="padding:96px 0 128px;background:#18181B;position:relative;overflow:hidden">
+  <section style="padding:96px 0 128px;background:#141413;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0" class="dots-l"></div>
-    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:rgba(168,85,247,0.05);border-radius:50%;filter:blur(120px)"></div>
+    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:rgba(201,100,66,0.05);border-radius:50%;filter:blur(120px)"></div>
 
     <div class="container" style="position:relative">
       <div class="sr" style="text-align:center;margin-bottom:64px">
-        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#C084FC;display:block;margin-bottom:16px">Главный барьер</span>
-        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;color:#fff">Автоматизация — <span class="serif" style="font-style:italic;color:#71717A">это не софт</span></h2>
+        <div class="accent-bar" style="margin:0 auto 20px"></div>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:600;line-height:.95;letter-spacing:-.03em;color:#fff">Автоматизация — <span class="serif" style="font-style:italic;color:#5e5d59;font-weight:400">это не софт</span></h2>
       </div>
 
-      <div class="grid-2">
+      <div class="g2">
         <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:rgba(168,85,247,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:shield-warning-bold-duotone" style="color:#C084FC;font-size:18px"></iconify-icon>
+            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:shield-warning-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Не покупка программы</h3>
+            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Не покупка программы</h3>
           </div>
-          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Автоматизация процессов — это не покупка программы.</p>
+          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">Автоматизация процессов — это не покупка программы.</p>
         </div>
 
         <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:rgba(6,182,212,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:refresh-bold-duotone" style="color:#06B6D4;font-size:18px"></iconify-icon>
+            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:refresh-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Перестройка команды</h3>
+            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Перестройка команды</h3>
           </div>
-          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Бизнес думает, что берёт софт, а нужна перестройка того, как работает команда.</p>
+          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">Бизнес думает, что берёт софт, а нужна перестройка того, как работает команда.</p>
         </div>
 
         <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:rgba(249,115,22,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:map-bold-duotone" style="color:#F97316;font-size:18px"></iconify-icon>
+            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:map-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Чем дальше от продаж</h3>
+            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Чем дальше от продаж</h3>
           </div>
-          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">Чем дальше компания от прямых продаж, тем сложнее это объяснить.</p>
+          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">Чем дальше компания от прямых продаж, тем сложнее это объяснить.</p>
         </div>
 
         <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:rgba(34,197,94,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:target-bold-duotone" style="color:#22C55E;font-size:18px"></iconify-icon>
+            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <iconify-icon icon="solar:target-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:500;color:#fff;letter-spacing:-0.025em">Продаю результат</h3>
+            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Продаю результат</h3>
           </div>
-          <p style="font-size:14px;color:#D4D4D8;font-weight:500;line-height:1.7">В нишах с низкой осознанностью я продаю не интеграции, а результат: меньше штата, защита от штрафов, быстрее выпуск продукта.</p>
+          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">В нишах с низкой осознанностью я продаю не интеграции, а результат: меньше штата, защита от штрафов, быстрее выпуск продукта.</p>
+        </div>
+      </div>
+
+      <div class="sr glass-dk" style="border-radius:24px;padding:32px 40px;margin-top:40px;display:flex;flex-wrap:wrap;gap:32px;align-items:center;border-left:3px solid var(--accent)">
+        <div style="flex:1;min-width:280px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Главный барьер</div>
+          <p style="font-size:15px;color:#b0aea5;font-weight:500;line-height:1.7">Чем дальше компания от прямых продаж конечному клиенту, тем сложнее объяснить ценность автоматизации. Нельзя продавать интеграции — нужно продавать <strong style="color:#fff">сокращение штата, защиту от штрафов, ускорение выпуска продукта</strong>.</p>
+        </div>
+        <div style="flex-shrink:0">
+          <a href="#contact" class="btn-accent" style="border-radius:14px;white-space:nowrap">Разберём ваш случай</a>
         </div>
       </div>
     </div>
@@ -727,11 +638,11 @@
     <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
     <div class="container" style="position:relative">
       <div class="sr" style="text-align:center;margin-bottom:56px">
-        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Результат</span>
-        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:500;line-height:0.95;letter-spacing:-0.03em">Что получает <span class="serif" style="font-style:italic;color:#A1A1AA">компания</span></h2>
+        <div class="accent-bar" style="margin:0 auto 20px"></div>
+        <h2 style="font-size:clamp(36px,5vw,48px);font-weight:600;line-height:.95;letter-spacing:-.03em">Что получает <span class="serif" style="font-style:italic;color:#87867f;font-weight:400">компания</span></h2>
       </div>
 
-      <div class="grid-2" style="margin-bottom:72px">
+      <div class="g2" style="margin-bottom:72px">
         <div class="sr ben-item">Лиды не теряются — просроченные сами всплывают в задачах, а не висят «в работе»</div>
         <div class="sr ben-item">РОП видит реальную воронку, а не отчёты менеджеров</div>
         <div class="sr ben-item">Отчёты и выгрузки собираются сами, без Excel по четвергам</div>
@@ -739,7 +650,7 @@
       </div>
 
       <div class="sr" style="text-align:center">
-        <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:24px">С кем работаю</h3>
+        <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#87867f;margin-bottom:24px">С кем работаю</h3>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
           <span class="tag-l">B2B — отделы продаж</span>
           <span class="tag-l">Сложный B2C (недвижимость, авто, медицина)</span>
@@ -754,28 +665,28 @@
 
   <!-- CONTACT -->
   <section id="contact" style="padding:96px 0 128px;position:relative;overflow:hidden">
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:rgba(168,85,247,0.05);border-radius:50%;filter:blur(120px)"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:rgba(201,100,66,0.05);border-radius:50%;filter:blur(120px)"></div>
     <div style="position:absolute;inset:0;opacity:0.3" class="dots"></div>
 
     <div class="container" style="position:relative;max-width:768px;text-align:center">
       <div class="sr">
-        <span style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#A855F7;display:block;margin-bottom:16px">Контакт</span>
-        <h2 style="font-size:clamp(36px,6vw,60px);font-weight:500;line-height:0.95;letter-spacing:-0.03em;margin-bottom:24px">Есть задача по<br><span class="serif" style="font-style:italic;color:#A1A1AA">Битрикс24?</span></h2>
-        <p style="font-size:clamp(16px,2vw,18px);color:#71717A;font-weight:500;line-height:1.6;max-width:512px;margin:0 auto 40px">Расскажите о процессах отдела продаж — покажу, где теряются лиды и что можно автоматизировать уже сейчас.</p>
+        <div class="accent-bar" style="margin:0 auto 20px"></div>
+        <h2 style="font-size:clamp(36px,6vw,60px);font-weight:600;line-height:.95;letter-spacing:-.03em;margin-bottom:24px">Есть задача по<br><span class="serif" style="font-style:italic;color:#87867f;font-weight:400">Битрикс24?</span></h2>
+        <p style="font-size:clamp(16px,2vw,18px);color:#5e5d59;font-weight:500;line-height:1.6;max-width:512px;margin:0 auto 40px">Расскажите о процессах отдела продаж — покажу, где теряются лиды и что можно автоматизировать уже сейчас.</p>
       </div>
 
       <div class="sr glass" style="border-radius:24px;padding:clamp(24px,4vw,40px);max-width:512px;margin:0 auto">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <a href="tel:+795****1276" class="btn-primary" style="justify-content:center;padding:18px;border-radius:14px;transition:all 0.3s">
+          <a href="tel:+795****1276" class="btn-p" style="justify-content:center;padding:18px;border-radius:14px">
             <iconify-icon icon="solar:phone-bold" style="font-size:16px"></iconify-icon>
             Позвонить
           </a>
-          <a href="mailto:igorli.work@gmail.com" class="btn-ghost glass-sm" style="justify-content:center;padding:18px;border-radius:14px;border:1px solid rgba(228,228,231,0.6)">
+          <a href="mailto:igorli.work@gmail.com" class="btn-ghost glass-sm" style="justify-content:center;padding:18px;border-radius:14px;border:1px solid #f0eee6">
             <iconify-icon icon="solar:letter-bold" style="font-size:16px"></iconify-icon>
             Email
           </a>
         </div>
-        <div style="margin-top:24px;font-size:12px;color:#A1A1AA;font-weight:500;line-height:1.6">
+        <div style="margin-top:24px;font-size:12px;color:#87867f;font-weight:500;line-height:1.6">
           igorli.work@gmail.com · Новосибирск
         </div>
       </div>
@@ -783,49 +694,49 @@
   </section>
 
   <!-- FOOTER -->
-  <footer style="border-top:1px solid rgba(228,228,231,0.6);padding:64px 0">
+  <footer style="border-top:1px solid #f0eee6;padding:64px 0">
     <div class="container">
-      <div class="grid-footer" style="margin-bottom:64px">
+      <div class="g-footer" style="margin-bottom:64px">
         <div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-            <div style="width:32px;height:32px;background:#18181B;border-radius:10px;display:flex;align-items:center;justify-content:center">
-              <iconify-icon icon="solar:widget-2-bold" style="color:#fff;font-size:14px"></iconify-icon>
+            <div style="width:32px;height:32px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center">
+              <iconify-icon icon="solar:bolt-bold" style="color:#fff;font-size:16px"></iconify-icon>
             </div>
-            <span style="font-weight:600;letter-spacing:-0.025em;font-size:14px">Игорь Ли</span>
+            <span style="font-weight:600;letter-spacing:-.025em;font-size:14px">Игорь Ли</span>
           </div>
-          <p style="font-size:14px;color:#71717A;font-weight:500;line-height:1.6;max-width:280px">Настраиваю отделы продаж на Битрикс24: контроль просроченных лидов, прозрачность воронки и дашборды через REST API для собственника.</p>
+          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6;max-width:280px">Настраиваю отделы продаж на Битрикс24: контроль просроченных лидов, прозрачность воронки и дашборды через REST API для собственника.</p>
         </div>
         <div>
-          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Навигация</h4>
+          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#87867f;margin-bottom:16px">Навигация</h4>
           <div style="display:flex;flex-direction:column;gap:12px">
-            <a href="#directions" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Направления</a>
-            <a href="#dashboards" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Дашборды</a>
-            <a href="#services" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Услуги</a>
-            <a href="#process" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Как работаю</a>
-            <a href="#contact" class="link-ul" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s;width:fit-content" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">Контакт</a>
-          </div>
-        </div>
-        <div>
-          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Услуги</h4>
-          <div style="display:flex;flex-direction:column;gap:12px">
-            <span style="font-size:14px;font-weight:500;color:#71717A">Настройка отдела продаж</span>
-            <span style="font-size:14px;font-weight:500;color:#71717A">Контроль просрочек</span>
-            <span style="font-size:14px;font-weight:500;color:#71717A">Дашборды REST API</span>
-            <span style="font-size:14px;font-weight:500;color:#71717A">Интеграции и обучение</span>
+            <a href="#directions" class="link-ul" style="font-size:14px;font-weight:500;color:#5e5d59;transition:color .3s;width:fit-content" onmouseover="this.style.color='#141413'" onmouseout="this.style.color='#5e5d59'">Направления</a>
+            <a href="#dashboards" class="link-ul" style="font-size:14px;font-weight:500;color:#5e5d59;transition:color .3s;width:fit-content" onmouseover="this.style.color='#141413'" onmouseout="this.style.color='#5e5d59'">Дашборды</a>
+            <a href="#services" class="link-ul" style="font-size:14px;font-weight:500;color:#5e5d59;transition:color .3s;width:fit-content" onmouseover="this.style.color='#141413'" onmouseout="this.style.color='#5e5d59'">Услуги</a>
+            <a href="#process" class="link-ul" style="font-size:14px;font-weight:500;color:#5e5d59;transition:color .3s;width:fit-content" onmouseover="this.style.color='#141413'" onmouseout="this.style.color='#5e5d59'">Как работаю</a>
+            <a href="#contact" class="link-ul" style="font-size:14px;font-weight:500;color:#5e5d59;transition:color .3s;width:fit-content" onmouseover="this.style.color='#141413'" onmouseout="this.style.color='#5e5d59'">Контакт</a>
           </div>
         </div>
         <div>
-          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#A1A1AA;margin-bottom:16px">Контакты</h4>
+          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#87867f;margin-bottom:16px">Услуги</h4>
           <div style="display:flex;flex-direction:column;gap:12px">
-            <a href="mailto:igorli.work@gmail.com" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">igorli.work@gmail.com</a>
-            <a href="tel:+795****1276" style="font-size:14px;font-weight:500;color:#71717A;transition:color 0.3s" onmouseover="this.style.color='#18181B'" onmouseout="this.style.color='#71717A'">+7 995 *** 12-76</a>
-            <p style="font-size:14px;color:#A1A1AA;font-weight:500">Новосибирск, Россия</p>
+            <span style="font-size:14px;font-weight:500;color:#5e5d59">Настройка отдела продаж</span>
+            <span style="font-size:14px;font-weight:500;color:#5e5d59">Контроль просрочек</span>
+            <span style="font-size:14px;font-weight:500;color:#5e5d59">Дашборды REST API</span>
+            <span style="font-size:14px;font-weight:500;color:#5e5d59">Интеграции и обучение</span>
+          </div>
+        </div>
+        <div>
+          <h4 style="font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#87867f;margin-bottom:16px">Контакты</h4>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <a href="mailto:igorli.work@gmail.com" style="font-size:14px;font-weight:500;color:#5e5d59;transition:color .3s" onmouseover="this.style.color='#141413'" onmouseout="this.style.color='#5e5d59'">igorli.work@gmail.com</a>
+            <a href="tel:+795****1276" style="font-size:14px;font-weight:500;color:#5e5d59;transition:color .3s" onmouseover="this.style.color='#141413'" onmouseout="this.style.color='#5e5d59'">+7 995 *** 12-76</a>
+            <p style="font-size:14px;color:#87867f;font-weight:500">Новосибирск, Россия</p>
           </div>
         </div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:32px;border-top:1px solid rgba(228,228,231,0.6)">
-        <p style="font-size:12px;color:#A1A1AA;font-weight:500">&copy; 2026 Игорь Ли · Новосибирск</p>
-        <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#A1A1AA;font-weight:500">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:32px;border-top:1px solid #f0eee6">
+        <p style="font-size:12px;color:#87867f;font-weight:500">&copy; 2026 Игорь Ли · Новосибирск</p>
+        <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#87867f;font-weight:500">
           Битрикс24 · CRM-автоматизация · Дашборды через REST API
         </div>
       </div>
