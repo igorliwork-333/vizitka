@@ -109,6 +109,8 @@
     .sec-title { font-size: clamp(36px,5vw,48px); font-weight: 600; line-height: .95; letter-spacing: -.03em; }
     .title-ital { font-style: italic; color: #87867f; font-weight: 400; }
     .sec-desc { font-size: clamp(15px,2vw,17px); color: #5e5d59; font-weight: 500; line-height: 1.6; }
+    .sec-title-sm { font-size: clamp(32px,4vw,44px); font-weight: 600; line-height: .98; letter-spacing: -.03em; }
+    .sec-text { font-size: 15px; color: #5e5d59; font-weight: 500; line-height: 1.65; }
     @media(max-width:767px) { .hm { display: flex; } .hd { display: none !important; } }
 
     /* DIRECTION CARDS */
@@ -396,11 +398,11 @@
       <div class="g2" style="align-items:center;gap:64px">
         <div class="sr">
           <div class="accent-bar" style="margin-bottom:20px"></div>
-          <h2 style="font-size:clamp(32px,4vw,44px);font-weight:600;line-height:.98;letter-spacing:-.03em;margin-bottom:24px">Не для отчёта<br><span class="title-ital">сотрудника</span> —<br>для контроля <span class="title-ital">собственника</span></h2>
-          <p style="font-size:15px;color:#5e5d59;font-weight:500;line-height:1.65;margin-bottom:24px">
+          <h2 class="sec-title-sm">Не для отчёта<br><span class="title-ital">сотрудника</span> —<br>для контроля <span class="title-ital">собственника</span></h2>
+          <p class="sec-text">
             Дашборд, который нужен линейному менеджеру, — это расход: красивые графики его активности, которые оправдывают зарплату. Дашборд для собственника — это инвестиция: где бизнес теряет деньги, а не кто красивее отчитался.
           </p>
-          <p style="font-size:15px;color:#5e5d59;font-weight:500;line-height:1.65;margin-bottom:28px">
+          <p class="sec-text" style="margin-bottom:28px">
             Я собираю данные из Битрикс24, 1С и сайта через REST API и строю панели управления, где видно реальную конверсию по этапам, причины отказов и загрузку менеджеров. Бизнесу плевать, на чём это написано — важно, чтобы работало и не ломалось.
           </p>
           <a href="#contact" class="btn-accent" style="border-radius:16px">
