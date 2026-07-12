@@ -111,6 +111,12 @@
     .sec-desc { font-size: clamp(15px,2vw,17px); color: #5e5d59; font-weight: 500; line-height: 1.6; }
     .sec-title-sm { font-size: clamp(32px,4vw,44px); font-weight: 600; line-height: .98; letter-spacing: -.03em; margin-bottom: 24px; }
     .sec-text { font-size: 15px; color: #5e5d59; font-weight: 500; line-height: 1.65; margin-bottom: 24px; }
+    .srv-card { border-radius: 24px; padding: 32px; cursor: pointer; }
+    .srv-icon { width: 56px; height: 56px; background: var(--accent-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: background .3s; }
+    .srv-icon:hover { background: var(--accent-mid); }
+    .srv-icon svg, .srv-icon iconify-icon { color: var(--accent); font-size: 24px; }
+    .srv-title { font-size: 18px; font-weight: 600; letter-spacing: -.025em; margin-bottom: 10px; }
+    .srv-desc { font-size: 14px; color: #5e5d59; font-weight: 500; line-height: 1.6; }
     @media(max-width:767px) { .hm { display: flex; } .hd { display: none !important; } }
 
     /* DIRECTION CARDS */
@@ -472,52 +478,52 @@
       </div>
 
       <div class="g3">
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+        <div class="sr card-up glass srv-card">
+          <div class="srv-icon">
             <iconify-icon icon="solar:widget-2-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Настройка отдела продаж</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Битрик24 под процессы команды: структура воронки, права, роли, этапы сделки.</p>
+          <h3 class="srv-title">Настройка отдела продаж</h3>
+          <p class="srv-desc">Битрик24 под процессы команды: структура воронки, права, роли, этапы сделки.</p>
         </div>
 
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+        <div class="sr card-up glass srv-card">
+          <div class="srv-icon">
             <iconify-icon icon="solar:alarm-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Контроль просрочек</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Механизм напоминаний и автоматических задач, чтобы ни один лид не висел без движения.</p>
+          <h3 class="srv-title">Контроль просрочек</h3>
+          <p class="srv-desc">Механизм напоминаний и автоматических задач, чтобы ни один лид не висел без движения.</p>
         </div>
 
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
-            <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#06B6D4;font-size:24px"></iconify-icon>
+        <div class="sr card-up glass srv-card">
+          <div class="srv-icon">
+            <iconify-icon icon="solar:chart-2-bold-duotone" style="font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Дашборды через REST API</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Панели управления для собственника: реальная конверсия, причины отказов, загрузка менеджеров.</p>
+          <h3 class="srv-title">Дашборды для собственника</h3>
+          <p class="srv-desc">Панели управления для собственника: реальная конверсия, причины отказов, загрузка менеджеров.</p>
         </div>
 
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+        <div class="sr card-up glass srv-card">
+          <div class="srv-icon">
             <iconify-icon icon="solar:plug-circle-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Интеграции</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Телефония, 1С, сайт, мессенджеры — все каналы и данные в одной системе.</p>
+          <h3 class="srv-title">Интеграции</h3>
+          <p class="srv-desc">Телефония, 1С, сайт, мессенджеры — все каналы и данные в одной системе.</p>
         </div>
 
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+        <div class="sr card-up glass srv-card">
+          <div class="srv-icon">
             <iconify-icon icon="solar:brush-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Чистка и гигиена CRM</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Убираю мусорные поля, которые менеджеры не заполняют, — CRM перестаёт тормозить работу.</p>
+          <h3 class="srv-title">Чистка и гигиена CRM</h3>
+          <p class="srv-desc">Убираю мусорные поля, которые менеджеры не заполняют, — CRM перестаёт тормозить работу.</p>
         </div>
 
-        <div class="sr card-up glass" style="border-radius:24px;padding:32px;cursor:pointer">
-          <div style="width:56px;height:56px;background:var(--accent-light);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;transition:background .3s" onmouseover="this.style.background='var(--accent-mid)'" onmouseout="this.style.background='var(--accent-light)'">
+        <div class="sr card-up glass srv-card">
+          <div class="srv-icon">
             <iconify-icon icon="solar:graduation-bold-duotone" style="color:var(--accent);font-size:24px"></iconify-icon>
           </div>
-          <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:10px">Обучение команды</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе, а не в обход неё. Саботажа не возникает.</p>
+          <h3 class="srv-title">Обучение команды</h3>
+          <p class="srv-desc">РОП и менеджеры работают в системе, а не в обход неё. Саботажа не возникает.</p>
         </div>
       </div>
     </div>
@@ -535,25 +541,25 @@
         <div class="sr" style="position:relative">
           <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">01</div>
           <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Аудит отдела продаж</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Нахожу операции, которые команда делает руками: просроченные лиды, мусор в полях, непрозрачное движение сделок.</p>
+          <p class="srv-desc">Нахожу операции, которые команда делает руками: просроченные лиды, мусор в полях, непрозрачное движение сделок.</p>
           <div class="hd" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #e8e6dc"></div>
         </div>
         <div class="sr" style="position:relative">
           <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">02</div>
           <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Внедрение за 30 дней</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Рабочая система с контролем просрочек и прозрачностью к концу месяца.</p>
+          <p class="srv-desc">Рабочая система с контролем просрочек и прозрачностью к концу месяца.</p>
           <div class="hd" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #e8e6dc"></div>
         </div>
         <div class="sr" style="position:relative">
           <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">03</div>
           <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Обучение команды</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">РОП и менеджеры работают в системе. Люди заполняют только то, что влияет на продажу.</p>
+          <p class="srv-desc">РОП и менеджеры работают в системе. Люди заполняют только то, что влияет на продажу.</p>
           <div class="hd" style="position:absolute;top:40px;right:-12px;width:24px;border-top:2px dashed #e8e6dc"></div>
         </div>
         <div class="sr">
           <div class="serif" style="font-size:72px;font-weight:700;color:#e8e6dc;margin-bottom:16px;line-height:1">04</div>
           <h3 style="font-size:18px;font-weight:600;letter-spacing:-.025em;margin-bottom:8px">Автономная работа</h3>
-          <p style="font-size:14px;color:#5e5d59;font-weight:500;line-height:1.6">Воронка крутится сама, РОП видит картину в реальном времени, а не постфактум.</p>
+          <p class="srv-desc">Воронка крутится сама, РОП видит картину в реальном времени, а не постфактум.</p>
         </div>
       </div>
 
@@ -750,7 +756,7 @@
       <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:32px;border-top:1px solid #f0eee6">
         <p style="font-size:12px;color:#87867f;font-weight:500">&copy; 2026 Игорь Ли · Новосибирск</p>
         <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#87867f;font-weight:500">
-          Битрикс24 · CRM-автоматизация · Дашборды через REST API
+          Битрикс24 · CRM-автоматизация · Дашборды для собственника
         </div>
       </div>
     </div>
