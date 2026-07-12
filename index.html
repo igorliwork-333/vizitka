@@ -101,6 +101,8 @@
     .hm { display: none; }
     .nav-link { transition: all .3s; color: #5e5d59; }
     .nav-link:hover { color: #141413 !important; background: rgba(255,255,255,.5); }
+    #nav { position:fixed; top:0; left:0; right:0; z-index:50; padding:16px 0; transition:padding .4s; }
+    #nav.nav-compact { padding:8px 0; }
     .mob-link { font-size: 22px; font-weight: 500; letter-spacing: -.025em; padding: 12px 0; border-bottom: 1px solid #f0eee6; }
     .mob-close { border-radius: 12px; transition: background .3s; }
     .mob-close:hover { background: #e8e6dc; }
@@ -186,7 +188,7 @@
 <body>
 
   <!-- NAV -->
-  <nav id="nav" style="position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 0;transition:padding .4s">
+  <nav id="nav">
     <div class="container">
       <div class="glass" style="border-radius:16px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
         <a href="#" style="display:flex;align-items:center;gap:10px">
@@ -692,4 +694,61 @@
     </div>
   </footer>
 
-  <!-- SCRIPT
+  <!-- SCRIPT -->
+  <script>
+    var mobileMenu = document.getElementById('mobileMenu');
+    var menuPanel = document.getElementById('menuPanel');
+
+    document.getElementById('menuBtn').addEventListener('click', function() {
+      mobileMenu.style.opacity = '1';
+      mobileMenu.style.pointerEvents = 'auto';
+      menuPanel.style.transform = 'translateX(0)';
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMenu() {
+      mobileMenu.style.opacity = '0';
+      mobileMenu.style.pointerEvents = 'none';
+      menuPanel.style.transform = 'translateX(100%)';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('menuClose').addEventListener('click', closeMenu);
+    document.getElementById('menuOverlay').addEventListener('click', closeMenu);
+    var mobLinks = document.querySelectorAll('.mob-link');
+    for (var i = 0; i < mobLinks.length; i++) {
+      mobLinks[i].addEventListener('click', closeMenu);
+    }
+
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 80) nav.classList.add('nav-compact');
+      else nav.classList.remove('nav-compact');
+    });
+
+    var srEls = document.querySelectorAll('.sr');
+    var observer = new IntersectionObserver(function(entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('vis');
+          observer.unobserve(entries[i].target);
+        }
+      }
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    for (var i = 0; i < srEls.length; i++) {
+      observer.observe(srEls[i]);
+    }
+
+    var anchors = document.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < anchors.length; i++) {
+      anchors[i].addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        var t = document.querySelector(href);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  </script>
+</body>
+</html>
