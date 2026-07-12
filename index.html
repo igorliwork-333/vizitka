@@ -141,8 +141,14 @@
     .dir-item.pain::before { content: '!'; color: var(--amber); }
     .dir-item.grow::before { content: '→'; color: var(--green); }
 
-    .ben-item { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #4d4c48; font-weight: 500; line-height: 1.55; padding: 16px 20px; border-radius: 14px; background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15); }
-    .ben-item::before { content: '→'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .ben-card { display:flex; align-items:flex-start; gap:14px; padding:20px 24px; border-radius:16px; background:rgba(16,185,129,0.04); border:1px solid rgba(16,185,129,0.12); font-size:15px; color:#141413; font-weight:500; line-height:1.55; }
+    .ben-card iconify-icon { flex-shrink:0; color:var(--green); font-size:22px; margin-top:1px; }
+    .benefits-pad { padding:96px 0 128px; position:relative; }
+    .benefits-dots { position:absolute; inset:0; opacity:0.4; }
+    .benefits-head-wrap { text-align:center; margin-bottom:56px; }
+    .benefits-grid { margin-bottom:72px; }
+    .tags-label { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#87867f; margin-bottom:24px; }
+    .tags-list { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
 
     .mock { border-radius: 16px; padding: 24px; background: #faf9f5; border: 1px solid #f0eee6; }
     .mock-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
@@ -551,24 +557,24 @@
   </section>
 
   <!-- BENEFITS + CLIENTS -->
-  <section style="padding:96px 0 128px;position:relative">
-    <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
+  <section class="benefits-pad">
+    <div class="benefits-dots dots"></div>
     <div class="container" style="position:relative">
-      <div class="sr" style="text-align:center;margin-bottom:56px">
+      <div class="sr benefits-head-wrap">
         <div class="accent-bar" style="margin:0 auto 20px"></div>
         <h2 class="sec-title">Что получает <span class="title-ital">компания</span></h2>
       </div>
 
-      <div class="g2" style="margin-bottom:72px">
-        <div class="sr ben-item">Лиды не теряются — просроченные сами всплывают в задачах, а не висят «в работе»</div>
-        <div class="sr ben-item">РОП видит реальную воронку, а не отчёты менеджеров</div>
-        <div class="sr ben-item">Отчёты и выгрузки собираются сами, без Excel по четвергам</div>
-        <div class="sr ben-item">Руководитель видит картину в реальном времени, а не постфактум</div>
+      <div class="g2 benefits-grid">
+        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>Лиды не теряются — просроченные сами всплывают в задачах, а не висят «в работе»</div>
+        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>РОП видит реальную воронку, а не отчёты менеджеров</div>
+        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>Отчёты и выгрузки собираются сами, без Excel по четвергам</div>
+        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>Руководитель видит картину в реальном времени, а не постфактум</div>
       </div>
 
       <div class="sr" style="text-align:center">
-        <h3 style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#87867f;margin-bottom:24px">С кем работаю</h3>
-        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+        <h3 class="tags-label">С кем работаю</h3>
+        <div class="tags-list">
           <span class="tag-l">B2B — отделы продаж</span>
           <span class="tag-l">Сложный B2C (недвижимость, авто, медицина)</span>
           <span class="tag-l">D2C и e-commerce</span>
@@ -580,7 +586,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT<!-- CONTACT -->
   <section id="contact" style="padding:96px 0 128px;position:relative;overflow:hidden">
     <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:rgba(201,100,66,0.05);border-radius:50%;filter:blur(120px)"></div>
     <div style="position:absolute;inset:0;opacity:0.3" class="dots"></div>
