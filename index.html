@@ -143,6 +143,17 @@
 
     .ben-card { display:flex; align-items:flex-start; gap:14px; padding:20px 24px; border-radius:16px; background:rgba(16,185,129,0.04); border:1px solid rgba(16,185,129,0.12); font-size:15px; color:#141413; font-weight:500; line-height:1.55; }
     .ben-card iconify-icon { flex-shrink:0; color:var(--green); font-size:22px; margin-top:1px; }
+    .contact-pad { padding:96px 0 128px; position:relative; overflow:hidden; }
+    .contact-glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:500px; background:rgba(201,100,66,0.05); border-radius:50%; filter:blur(120px); }
+    .contact-dots { position:absolute; inset:0; opacity:0.3; }
+    .contact-inner { position:relative; max-width:768px; text-align:center; }
+    .contact-title { font-size:clamp(36px,6vw,60px); font-weight:600; line-height:.95; letter-spacing:-.03em; margin-bottom:24px; }
+    .contact-desc { font-size:clamp(16px,2vw,18px); color:#5e5d59; font-weight:500; line-height:1.6; max-width:512px; margin:0 auto 40px; }
+    .contact-card { border-radius:24px; padding:clamp(24px,4vw,40px); max-width:512px; margin:0 auto; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .contact-btn { justify-content:center; padding:18px; border-radius:14px; }
+    .contact-meta { margin-top:24px; font-size:12px; color:#87867f; font-weight:500; line-height:1.6; }
+    .btn-icon { font-size:16px; }
     .benefits-pad { padding:96px 0 128px; position:relative; }
     .benefits-dots { position:absolute; inset:0; opacity:0.4; }
     .benefits-head-wrap { text-align:center; margin-bottom:56px; }
@@ -586,37 +597,37 @@
     </div>
   </section>
 
-  <!-- CONTACT<!-- CONTACT -->
-  <section id="contact" style="padding:96px 0 128px;position:relative;overflow:hidden">
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:rgba(201,100,66,0.05);border-radius:50%;filter:blur(120px)"></div>
-    <div style="position:absolute;inset:0;opacity:0.3" class="dots"></div>
+  <!-- CONTACT -->
+  <section id="contact" class="contact-pad">
+    <div class="contact-glow"></div>
+    <div class="contact-dots dots"></div>
 
-    <div class="container" style="position:relative;max-width:768px;text-align:center">
+    <div class="container contact-inner">
       <div class="sr">
         <div class="accent-bar" style="margin:0 auto 20px"></div>
-        <h2 style="font-size:clamp(36px,6vw,60px);font-weight:600;line-height:.95;letter-spacing:-.03em;margin-bottom:24px">Есть задача по<br><span class="title-ital">Битрикс24?</span></h2>
-        <p style="font-size:clamp(16px,2vw,18px);color:#5e5d59;font-weight:500;line-height:1.6;max-width:512px;margin:0 auto 40px">Расскажите о процессах отдела продаж — покажу, где теряются лиды и что можно автоматизировать уже сейчас.</p>
+        <h2 class="contact-title">Есть задача по<br><span class="title-ital">Битрикс24?</span></h2>
+        <p class="contact-desc">Расскажите о процессах отдела продаж — покажу, где теряются лиды и что можно автоматизировать уже сейчас.</p>
       </div>
 
-      <div class="sr glass" style="border-radius:24px;padding:clamp(24px,4vw,40px);max-width:512px;margin:0 auto">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <a href="tel:+795****1276" class="btn-p" style="justify-content:center;padding:18px;border-radius:14px">
-            <iconify-icon icon="solar:phone-bold" style="font-size:16px"></iconify-icon>
+      <div class="sr glass contact-card">
+        <div class="contact-grid">
+          <a href="tel:+795****1276" class="btn-p contact-btn">
+            <iconify-icon icon="solar:phone-bold" class="btn-icon"></iconify-icon>
             Позвонить
           </a>
-          <a href="mailto:igorli.work@gmail.com" class="btn-ghost glass-sm" style="justify-content:center;padding:18px;border-radius:14px;border:1px solid #f0eee6">
-            <iconify-icon icon="solar:letter-bold" style="font-size:16px"></iconify-icon>
+          <a href="mailto:igorli.work@gmail.com" class="btn-ghost glass-sm contact-btn" style="border:1px solid #f0eee6">
+            <iconify-icon icon="solar:letter-bold" class="btn-icon"></iconify-icon>
             Email
           </a>
         </div>
-        <div style="margin-top:24px;font-size:12px;color:#87867f;font-weight:500;line-height:1.6">
+        <div class="contact-meta">
           igorli.work@gmail.com · Новосибирск
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER<!-- FOOTER -->
   <footer style="border-top:1px solid #f0eee6;padding:64px 0">
     <div class="container">
       <div class="g-footer" style="margin-bottom:64px">
