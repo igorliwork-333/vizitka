@@ -124,6 +124,18 @@
     .fmt-card { border-radius:16px; padding:20px; text-align:center; }
     .fmt-card-title { font-size:15px; font-weight:600; letter-spacing:-.025em; margin-bottom:4px; }
     .fmt-card-desc { font-size:12px; color:#5e5d59; font-weight:500; }
+    .barrier-glow { position:absolute; top:0; left:50%; transform:translateX(-50%); width:600px; height:600px; background:rgba(201,100,66,0.05); border-radius:50%; filter:blur(120px); }
+    .barrier-card { border-radius:24px; padding:32px; }
+    .barrier-icon { width:40px; height:40px; background:var(--accent-mid); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .barrier-icon iconify-icon { color:var(--accent); font-size:18px; }
+    .barrier-head { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+    .barrier-title { font-size:17px; font-weight:600; color:#fff; letter-spacing:-.025em; }
+    .barrier-desc { font-size:14px; color:#b0aea5; font-weight:500; line-height:1.7; }
+    .barrier-cta { border-radius:24px; padding:32px 40px; margin-top:40px; display:flex; flex-wrap:wrap; gap:32px; align-items:center; border-left:3px solid var(--accent); }
+    .barrier-cta-label { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+    .barrier-cta-text { font-size:15px; color:#b0aea5; font-weight:500; line-height:1.7; }
+    .sec-title-light { color:#fff; }
+    .title-ital-dark { font-style:italic; color:#5e5d59; font-weight:400; }
     @media(max-width:767px) { .hm { display: flex; } .hd { display: none !important; } .step-conn { display: none; } }
 
     /* DIRECTION CARDS */
@@ -553,60 +565,60 @@
   <!-- BARRIER (dark) -->
   <section style="padding:96px 0 128px;background:#141413;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0" class="dots-l"></div>
-    <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:rgba(201,100,66,0.05);border-radius:50%;filter:blur(120px)"></div>
+    <div class="barrier-glow"></div>
 
     <div class="container" style="position:relative">
       <div class="sr" style="text-align:center;margin-bottom:64px">
         <div class="accent-bar" style="margin:0 auto 20px"></div>
-        <h2 class="sec-title" style="color:#fff">Автоматизация — <span class="serif" style="font-style:italic;color:#5e5d59;font-weight:400">это не софт</span></h2>
+        <h2 class="sec-title sec-title-light">Автоматизация — <span class="serif title-ital-dark">это не софт</span></h2>
       </div>
 
       <div class="g2">
-        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:shield-warning-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
+        <div class="sr card-up glass-dk barrier-card">
+          <div class="barrier-head">
+            <div class="barrier-icon">
+              <iconify-icon icon="solar:shield-warning-bold-duotone"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Не покупка программы</h3>
+            <h3 class="barrier-title">Не покупка программы</h3>
           </div>
-          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">Автоматизация процессов — это не покупка программы.</p>
+          <p class="barrier-desc">Автоматизация процессов — это не покупка программы.</p>
         </div>
 
-        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:refresh-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
+        <div class="sr card-up glass-dk barrier-card">
+          <div class="barrier-head">
+            <div class="barrier-icon">
+              <iconify-icon icon="solar:refresh-bold-duotone"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Перестройка команды</h3>
+            <h3 class="barrier-title">Перестройка команды</h3>
           </div>
-          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">Бизнес думает, что берёт софт, а нужна перестройка того, как работает команда.</p>
+          <p class="barrier-desc">Бизнес думает, что берёт софт, а нужна перестройка того, как работает команда.</p>
         </div>
 
-        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:map-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
+        <div class="sr card-up glass-dk barrier-card">
+          <div class="barrier-head">
+            <div class="barrier-icon">
+              <iconify-icon icon="solar:map-bold-duotone"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Чем дальше от продаж</h3>
+            <h3 class="barrier-title">Чем дальше от продаж</h3>
           </div>
-          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">Чем дальше компания от прямых продаж, тем сложнее это объяснить.</p>
+          <p class="barrier-desc">Чем дальше компания от прямых продаж, тем сложнее это объяснить.</p>
         </div>
 
-        <div class="sr card-up glass-dk" style="border-radius:24px;padding:32px">
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <div style="width:40px;height:40px;background:var(--accent-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <iconify-icon icon="solar:target-bold-duotone" style="color:var(--accent);font-size:18px"></iconify-icon>
+        <div class="sr card-up glass-dk barrier-card">
+          <div class="barrier-head">
+            <div class="barrier-icon">
+              <iconify-icon icon="solar:target-bold-duotone"></iconify-icon>
             </div>
-            <h3 style="font-size:17px;font-weight:600;color:#fff;letter-spacing:-.025em">Продаю результат</h3>
+            <h3 class="barrier-title">Продаю результат</h3>
           </div>
-          <p style="font-size:14px;color:#b0aea5;font-weight:500;line-height:1.7">В нишах с низкой осознанностью я продаю не интеграции, а результат: меньше штата, защита от штрафов, быстрее выпуск продукта.</p>
+          <p class="barrier-desc">В нишах с низкой осознанностью я продаю не интеграции, а результат: меньше штата, защита от штрафов, быстрее выпуск продукта.</p>
         </div>
       </div>
 
-      <div class="sr glass-dk" style="border-radius:24px;padding:32px 40px;margin-top:40px;display:flex;flex-wrap:wrap;gap:32px;align-items:center;border-left:3px solid var(--accent)">
+      <div class="sr glass-dk barrier-cta">
         <div style="flex:1;min-width:280px">
-          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Главный барьер</div>
-          <p style="font-size:15px;color:#b0aea5;font-weight:500;line-height:1.7">Чем дальше компания от прямых продаж конечному клиенту, тем сложнее объяснить ценность автоматизации. Нельзя продавать интеграции — нужно продавать <strong style="color:#fff">сокращение штата, защиту от штрафов, ускорение выпуска продукта</strong>.</p>
+          <div class="barrier-cta-label">Главный барьер</div>
+          <p class="barrier-cta-text">Чем дальше компания от прямых продаж конечному клиенту, тем сложнее объяснить ценность автоматизации. Нельзя продавать интеграции — нужно продавать <strong style="color:#fff">сокращение штата, защиту от штрафов, ускорение выпуска продукта</strong>.</p>
         </div>
         <div style="flex-shrink:0">
           <a href="#contact" class="btn-accent" style="border-radius:14px;white-space:nowrap">Разберём ваш случай</a>
