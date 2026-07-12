@@ -85,6 +85,7 @@
     @media(min-width:640px)  { .g2 { grid-template-columns: repeat(2,1fr); } .g3 { grid-template-columns: repeat(2,1fr); } .g4 { grid-template-columns: repeat(2,1fr); } .g-footer { grid-template-columns: repeat(2,1fr); } }
     @media(min-width:1024px) { .g3 { grid-template-columns: repeat(3,1fr); } .g4 { grid-template-columns: repeat(4,1fr); } .g-hero { grid-template-columns: 1fr 1fr; gap: 80px; } .g-footer { grid-template-columns: 2fr 1fr 1fr 1fr; } }
 
+
     .btn-p { display: inline-flex; align-items: center; gap: 10px; background: #e8e6dc; color: #4d4c48; font-size: 14px; font-weight: 500; padding: 16px 28px; border-radius: 12px; transition: all 0.3s; }
     .btn-p:hover { background: #d1cfc5; }
     .btn-accent { display: inline-flex; align-items: center; gap: 10px; background: #c96442; color: #faf9f5; font-size: 14px; font-weight: 500; padding: 16px 28px; border-radius: 12px; transition: all 0.3s; }
@@ -187,55 +188,51 @@
       <div class="g-hero">
         <div>
           <div class="anim-fu">
-            <div class="glass-sm" style="display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 16px;margin-bottom:32px">
+            <div class="glass-sm" style="display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:8px 18px;margin-bottom:36px">
               <div style="width:8px;height:8px;background:#10B981;border-radius:50%;animation:pulse2 2s ease-in-out infinite"></div>
-              <span style="font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#5e5d59">Принимаю задачи по Битрикс24</span>
+              <span style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#5e5d59">Внедрение Битрикс24 · от 30 дней</span>
             </div>
           </div>
 
-          <h1 class="anim-fu d1" style="font-size:clamp(40px,7vw,64px);font-weight:600;line-height:.95;letter-spacing:-.035em;margin-bottom:28px">
-            Настраиваю отделы<br>продаж на <span style="color:var(--accent)">Битрикс24</span>
+          <h1 class="anim-fu d1" style="font-size:clamp(40px,7vw,64px);font-weight:600;line-height:.95;letter-spacing:-.035em;margin-bottom:24px;max-width:620px">
+            Отдел продаж,<br>который <span style="color:var(--accent)">не теряет лиды</span>
           </h1>
 
-          <p class="anim-fu d2" style="font-size:17px;color:#5e5d59;font-weight:500;line-height:1.7;max-width:480px;margin-bottom:40px">
-            Воронки без потерянных лидов, контроль просрочек и дашборды через REST API — прозрачность для собственника, а не отчёты менеджеров.
+          <p class="anim-fu d2" style="font-size:17px;color:#5e5d59;font-weight:500;line-height:1.7;max-width:500px;margin-bottom:36px">
+            Настраиваю Битрикс24 так, что РОП видит реальную воронку, лиды не застревают в менеджерах, а собственнику не нужно просить «сделай отчёт».
           </p>
 
-          <div class="anim-fu d3" style="display:flex;flex-wrap:wrap;gap:16px">
-            <a href="#directions" class="btn-accent" style="border-radius:20px">
-              Смотреть направления
-              <iconify-icon icon="solar:arrow-down-linear" style="font-size:14px"></iconify-icon>
+          <!-- Social proof (verified from site content) -->
+          <div class="anim-fu d2" style="display:flex;gap:36px;margin-bottom:36px">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#141413">до 10 менеджеров</div>
+              <div style="font-size:12px;color:#87867f;font-weight:500">типовой отдел</div>
+            </div>
+            <div style="width:1px;background:#e8e6dc"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#141413">от 30 дней</div>
+              <div style="font-size:12px;color:#87867f;font-weight:500">запуск CRM</div>
+            </div>
+            <div style="width:1px;background:#e8e6dc"></div>
+            <div>
+              <div style="font-size:13px;font-weight:600;color:#141413">панель управления</div>
+              <div style="font-size:12px;color:#87867f;font-weight:500">для собственника</div>
+            </div>
+          </div>
+
+          <div class="anim-fu d3" style="display:flex;flex-wrap:wrap;gap:12px">
+            <a href="#contact" class="btn-accent" style="border-radius:20px;padding:16px 32px;font-size:15px">
+              Обсудить задачу
+              <iconify-icon icon="solar:arrow-right-linear" style="font-size:14px"></iconify-icon>
             </a>
-            <a href="#contact" class="btn-ghost glass-sm" style="border-radius:20px">Обсудить задачу</a>
+            <a href="#directions" class="btn-ghost glass-sm" style="border-radius:20px;padding:16px 28px;border:1px solid #f0eee6">Смотреть направления</a>
           </div>
         </div>
 
-        <div class="anim-si d3 hd" style="position:relative">
+        <div class="anim-si d3" style="position:relative">
           <div style="border-radius:24px;overflow:hidden;box-shadow:0 25px 50px -12px rgba(0,0,0,.1)">
             <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли" style="width:100%;height:500px;object-fit:cover" class="img-z">
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.35),transparent 60%)"></div>
-          </div>
-          <div class="glass fl1" style="position:absolute;left:-40px;top:60px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1)">
-            <div style="display:flex;align-items:center;gap:10px">
-              <div style="width:36px;height:36px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center">
-                <iconify-icon icon="solar:bolt-bold-duotone" style="color:var(--accent);font-size:16px"></iconify-icon>
-              </div>
-              <div>
-                <div style="font-size:11px;color:#87867f;font-weight:500">Платформа</div>
-                <div style="font-size:16px;font-weight:600">Битрикс24</div>
-              </div>
-            </div>
-          </div>
-          <div class="glass fl2" style="position:absolute;right:-28px;bottom:120px;border-radius:16px;padding:14px 18px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1)">
-            <div style="display:flex;align-items:center;gap:10px">
-              <div style="width:36px;height:36px;background:rgba(16,185,129,.1);border-radius:10px;display:flex;align-items:center;justify-content:center">
-                <iconify-icon icon="solar:chart-2-bold-duotone" style="color:#10B981;font-size:16px"></iconify-icon>
-              </div>
-              <div>
-                <div style="font-size:11px;color:#87867f;font-weight:500">Панель для</div>
-                <div style="font-size:16px;font-weight:600">РОПа и собственника</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
