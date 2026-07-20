@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Игорь Ли — автоматизация отделов продаж на Битрикс24</title>
-  <meta name="description" content="Настраиваю Битрикс24 под отдел продаж: воронка, контроль просрочек, дашборды для собственника. Запуск за 30 дней.">
-  <meta property="og:title" content="Игорь Ли — автоматизация отделов продаж на Битрикс24">
-  <meta property="og:description" content="Настраиваю Битрикс24 под отдел продаж: воронка, контроль просрочек, дашборды для собственника. Запуск за 30 дней.">
+  <title>Игорь Ли — системное мышление и ручная калибровка. «Странный» подход к AI</title>
+  <meta name="description" content="Меня называют странным: при моём опыте в AI я учу людей системности и непопулярному искусству думать руками. Автоматизация — да, но не вместо головы. Калибровка прицела бизнеса.">
+  <meta property="og:title" content="Игорь Ли — системное мышление и ручная калибровка">
+  <meta property="og:description" content="Меня называют странным: при моём опыте в AI я учу людей системности и непопулярному искусству думать руками.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <link rel="canonical" href="https://igorli.ru">
@@ -104,6 +104,29 @@
 
     .accent-bar { width: 48px; height: 4px; background: var(--accent); border-radius: 2px; }
 
+    .uz-card { display:flex; gap:20px; align-items:flex-start; padding:24px 0; border-bottom:1px solid #e8e6dc; }
+    .uz-card:last-child { border-bottom:none; }
+    .uz-num { flex-shrink:0; width:44px; height:44px; border-radius:14px; background:var(--accent-light); color:var(--accent); font-family:Georgia,serif; font-style:italic; font-size:20px; display:flex; align-items:center; justify-content:center; }
+    .uz-title { font-size:20px; font-weight:600; letter-spacing:-.025em; margin-bottom:6px; }
+    .uz-desc { font-size:14px; color:#5e5d59; font-weight:500; line-height:1.6; }
+
+    /* WORK / PROJECTS */
+    .tabs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:40px; }
+    .tab-btn { font-size:13px; font-weight:600; letter-spacing:.02em; color:#5e5d59; background:rgba(250,249,245,0.6); border:1px solid #f0eee6; padding:12px 22px; border-radius:999px; cursor:pointer; transition:all .3s; }
+    .tab-btn:hover { color:#141413; background:rgba(255,255,255,0.6); }
+    .tab-btn.active { background:var(--accent); color:#faf9f5; border-color:var(--accent); }
+    .work-grid { display:grid; grid-template-columns:1fr; gap:24px; }
+    @media(min-width:640px){ .work-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(min-width:1024px){ .work-grid { grid-template-columns:repeat(3,1fr); } }
+    .work-card { border-radius:24px; padding:28px; display:flex; flex-direction:column; }
+    .work-cat { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    .work-title { font-size:19px; font-weight:600; letter-spacing:-.025em; margin-bottom:10px; }
+    .work-desc { font-size:14px; color:#5e5d59; font-weight:500; line-height:1.6; margin-bottom:20px; }
+    .work-more { margin-top:auto; display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--accent); }
+    .work-more iconify-icon { font-size:15px; transition:transform .3s; }
+    .work-more:hover iconify-icon { transform:translateX(4px); }
+    .work-card.hidden-el { display:none !important; }
+
     .hm { display: none; }
     .nav-link { transition: all .3s; color: #5e5d59; }
     .nav-link:hover { color: #141413 !important; background: rgba(255,255,255,.5); }
@@ -126,17 +149,6 @@
     .mob-links { display:flex; flex-direction:column; gap:4px; }
     .mob-cta { justify-content:center; width:100%; padding:14px 24px; }
     .mob-hd { margin-top:auto; }
-
-    
-    .srv-grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); }
-    .srv-num { font-size:36px; font-family:Georgia,serif; font-style:italic; font-weight:400; color:#b0aea5; line-height:1; margin-bottom:12px; }
-    .srv-body { position:relative; }
-    .srv-ico-wrap { width:44px; height:44px; border-radius:14px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
-    .srv-ico { color:var(--accent); font-size:24px; }
-    .srv-note { margin-top:20px; }
-    .srv-note-inner { display:flex; gap:20px; flex-wrap:wrap; align-items:center; justify-content:center; }
-    .srv-note-wrap { width:32px; height:32px; border-radius:10px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; }
-    .srv-note-txt { font-size:12px; font-weight:500; color:#87867f; letter-spacing:.04em; }
 
     .dots-50 { position:absolute; inset:0; opacity:0.5; }
     .sec-rel { position:relative; }
@@ -179,83 +191,17 @@
     .sec-desc { font-size: clamp(15px,2vw,17px); color: #5e5d59; font-weight: 500; line-height: 1.6; }
     .sec-title-sm { font-size: clamp(32px,4vw,44px); font-weight: 600; line-height: .98; letter-spacing: -.03em; margin-bottom: 24px; }
     .sec-text { font-size: 15px; color: #5e5d59; font-weight: 500; line-height: 1.65; margin-bottom: 24px; }
-    .srv-card { border-radius: 24px; padding: 32px; cursor: pointer; }
-    .srv-icon { width: 56px; height: 56px; background: var(--accent-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: background .3s; }
-    .srv-icon:hover { background: var(--accent-mid); }
-    .srv-icon svg, .srv-icon iconify-icon { color: var(--accent); font-size: 24px; }
-    .srv-title { font-size: 18px; font-weight: 600; letter-spacing: -.025em; margin-bottom: 10px; }
-    .srv-desc { font-size: 14px; color: #5e5d59; font-weight: 500; line-height: 1.6; }
-    .step-num { font-size:72px; font-weight:700; color:#e8e6dc; margin-bottom:16px; line-height:1; }
-    .step-title { font-size:18px; font-weight:600; letter-spacing:-.025em; margin-bottom:8px; }
-    .step-conn { position:absolute; top:40px; right:-12px; width:24px; border-top:2px dashed #e8e6dc; }
-    .fmt-label { font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#87867f; text-align:center; margin-bottom:28px; }
-    .fmt-card { border-radius:16px; padding:20px; text-align:center; }
-    .fmt-card-title { font-size:15px; font-weight:600; letter-spacing:-.025em; margin-bottom:4px; }
-    .fmt-card-desc { font-size:12px; color:#5e5d59; font-weight:500; }
-    @media(max-width:767px) { .hm { display: flex; } .hd { display: none !important; } .step-conn { display: none; } }
-
-    /* DIRECTION CARDS */
-    .dir-card { border-radius: 24px; padding: clamp(24px, 4vw, 40px); }
-    .dir-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: block; }
-    .dir-opener { font-size: 14px; color: #5e5d59; font-weight: 500; line-height: 1.6; background: var(--accent-light); border-left: 2px solid rgba(201,100,66,0.4); padding: 16px 20px; border-radius: 12px; margin-bottom: 28px; }
-    .dir-cols { display: grid; grid-template-columns: 1fr; gap: 24px; }
-    @media(min-width:768px) { .dir-cols { grid-template-columns: 1fr 1fr; gap: 40px; } }
-    .dir-block-title { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #141413; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-    .dot-pain { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
-    .dot-grow { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-    .dir-list { display: grid; gap: 12px; }
-    .dir-item { font-size: 14px; color: #4d4c48; font-weight: 500; line-height: 1.55; padding-left: 24px; position: relative; }
-    .dir-item::before { position: absolute; left: 0; top: 0; font-weight: 700; }
-    .dir-item.pain::before { content: '!'; color: var(--amber); }
-    .dir-item.grow::before { content: '→'; color: var(--green); }
-
-    .ben-card { display:flex; align-items:flex-start; gap:14px; padding:20px 24px; border-radius:16px; background:rgba(16,185,129,0.04); border:1px solid rgba(16,185,129,0.12); font-size:15px; color:#141413; font-weight:500; line-height:1.55; }
-    .ben-card iconify-icon { flex-shrink:0; color:var(--green); font-size:22px; margin-top:1px; }
-    .contact-pad { padding:96px 0 128px; position:relative; overflow:hidden; }
-    .contact-glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:500px; background:rgba(201,100,66,0.05); border-radius:50%; filter:blur(120px); }
-    .contact-dots { position:absolute; inset:0; opacity:0.3; }
-    .contact-inner { position:relative; max-width:768px; text-align:center; }
-    .contact-title { font-size:clamp(36px,6vw,60px); font-weight:600; line-height:.95; letter-spacing:-.03em; margin-bottom:24px; }
-    .contact-desc { font-size:clamp(16px,2vw,18px); color:#5e5d59; font-weight:500; line-height:1.6; max-width:512px; margin:0 auto 40px; }
-    .contact-card { border-radius:24px; padding:clamp(24px,4vw,40px); max-width:512px; margin:0 auto; }
-    .contact-btn { justify-content:center; padding:18px; border-radius:14px; }
     .sec-pad { padding:96px 0; }
     .sec-pad-lg { padding:96px 0 128px; }
-    .contact-meta { margin-top:24px; font-size:12px; color:#87867f; font-weight:500; line-height:1.6; }
     .btn-icon { font-size:16px; }
-    .footer-main { border-top:1px solid #f0eee6; padding:64px 0; }
-    .footer-gap { margin-bottom:64px; }
-    .footer-logo-row { display:flex; align-items:center; gap:10px; margin-bottom:16px; }
-    .footer-logo-icon { width:32px; height:32px; background:var(--accent); border-radius:10px; display:flex; align-items:center; justify-content:center; }
-    .footer-logo-icon iconify-icon { color:#fff; font-size:16px; }
-    .footer-brand { font-weight:600; letter-spacing:-.025em; font-size:14px; }
-    .footer-desc { font-size:14px; color:#5e5d59; font-weight:500; line-height:1.6; max-width:280px; }
-    .footer-h3 { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#87867f; margin-bottom:16px; }
-    .footer-col { display:flex; flex-direction:column; gap:12px; }
-    .footer-link { font-size:14px; font-weight:500; color:#5e5d59; transition:color .3s; width:fit-content; }
-    .footer-link:hover { color:#141413; }
-    .footer-text { font-size:14px; font-weight:500; color:#5e5d59; }
-    .footer-bot { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; padding-top:32px; border-top:1px solid #f0eee6; }
-    .footer-copy { font-size:12px; color:#87867f; font-weight:500; }
-    .footer-tags { display:flex; align-items:center; gap:4px; font-size:12px; color:#87867f; font-weight:500; }
-    .benefits-pad { padding:96px 0 128px; position:relative; }
-    .benefits-dots { position:absolute; inset:0; opacity:0.4; }
-    .benefits-head-wrap { text-align:center; margin-bottom:56px; }
-    .benefits-grid { margin-bottom:72px; }
-
-    .mock { border-radius: 16px; padding: 24px; background: #faf9f5; border: 1px solid #f0eee6; }
-    .mock-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-    .mock-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f0eee6; }
-    .mock-row:last-child { border-bottom: none; }
-    .mock-bar { height: 6px; border-radius: 999px; background: linear-gradient(90deg, var(--accent), #d97757); flex: 1; max-width: 130px; }
   </style>
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Игорь Ли — автоматизация отделов продаж на Битрикс24",
-    "description": "Настраиваю Битрикс24 под отдел продаж: воронка, контроль просрочек, дашборды для собственника.",
+    "name": "Игорь Ли — системное мышление и калибровка прицела",
+    "description": "Учу системности и искусству думать руками. AI и автоматизация — да, но не вместо головы.",
     "url": "https://igorli.ru",
     "areaServed": "Россия",
     "priceRange": "$$"
@@ -269,101 +215,97 @@
       <div class="glass" style="border-radius:16px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
         <a href="#" class="logo-link">
           <div class="logo-icon">
-            <iconify-icon icon="solar:bolt-bold"></iconify-icon>
+            <iconify-icon icon="solar:target-bold"></iconify-icon>
           </div>
           <span class="logo-brand">Игорь Ли</span>
         </a>
-        <div class="hd nav-desktop">
-          <a href="#directions" class="nav-link">Направления</a>
-          <a href="#dashboards" class="nav-link">Дашборды</a>
-          <a href="#services" class="nav-link">Услуги</a>
-          <a href="#process" class="nav-link">Как работаю</a>
-          <a href="#contact" class="nav-link">Контакт</a>
-        </div>
         <div class="nav-actions">
-          <a href="#contact" class="btn-accent hd nav-cta">Обсудить задачу</a>
-          <button id="menuBtn" class="hm burger" aria-label="Открыть меню" aria-expanded="false">
-            <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
-          </button>
+          <a href="#contact" class="btn-accent hd nav-cta">Связаться</a>
         </div>
       </div>
     </div>
   </nav>
 
-  
-
-<!-- MOBILE MENU -->
-  <div id="mobileMenu" class="mob-fix">
-    <div id="menuOverlay" class="mob-bg"></div>
-    <div id="menuPanel" class="mob-panel">
-      <div class="mob-head">
-        <span class="logo-brand">Меню</span>
-        <button id="menuClose" class="mob-close" aria-label="Закрыть меню">
-          <iconify-icon icon="solar:close-circle-linear"></iconify-icon>
-        </button>
-      </div>
-      <div class="mob-links">
-        <a href="#directions" class="mob-link">Направления</a>
-        <a href="#dashboards" class="mob-link">Дашборды</a>
-        <a href="#services" class="mob-link">Услуги</a>
-        <a href="#process" class="mob-link">Как работаю</a>
-        <a href="#contact" class="mob-link">Контакт</a>
-      </div>
-      <div class="mob-hd">
-        <a href="#contact" class="mob-link btn-accent mob-cta">Обсудить задачу</a>
-      </div>
-    </div>
-  </div>
-
-  
-
-<!-- HERO -->
-  <section class="hero-sec">
+  <!-- USEFUL FOR YOU (HERO) -->
+  <section class="hero-sec" style="min-height:100vh">
     <div class="hero-glow-1 fl1"></div>
     <div class="hero-glow-2 fl2"></div>
     <div style="position:absolute;inset:0" class="dots"></div>
 
     <div class="container sec-rel">
-      <div class="g-hero">
-        <div>
-          <div class="anim-fu">
-            <div class="glass-sm hero-badge">
-              <div class="hero-dot"></div>
-              <span class="hero-badge-text">Внедрение Битрикс24 · под ключ</span>
+      <div class="sr">
+        <h1 class="hero-h1" style="margin-bottom:20px">
+          Чем полезен <span style="color:var(--accent)">буду вам</span>
+        </h1>
+        <p class="hero-sub" style="margin-bottom:48px;max-width:620px">
+          Три направления, в которых я работаю. По автоматизации — своё видение, поэтому сначала знакомлю с подходом.
+        </p>
+        <div style="max-width:780px">
+          <div class="uz-card">
+            <div class="uz-num">01</div>
+            <div>
+              <div class="uz-title">Создание сайтов</div>
+              <div class="uz-desc">Лендинги и визитки с нуля или доработка существующих — чисто, быстро, под задачу.</div>
             </div>
           </div>
-
-          <h1 class="anim-fu d1 hero-h1">
-            Отдел продаж,<br>который <span style="color:var(--accent)">не теряет лиды</span>
-          </h1>
-
-          <p class="anim-fu d2 hero-sub">
-            Настраиваю Битрикс24 так, что РОП видит реальную воронку, лиды не застревают в менеджерах, а собственнику не нужно просить «сделай отчёт».
-          </p>
-
-          <!-- Social proof (verified from site content) -->
-          <div class="anim-fu d2 hero-stats">
+          <div class="uz-card">
+            <div class="uz-num">02</div>
             <div>
-              <div class="hero-stat-val">1–3 месяца</div>
-              <div class="hero-stat-lbl">запуск CRM</div>
-            </div>
-            <div class="hero-stat-div"></div>
-            <div>
-              <div class="hero-stat-val">панель управления</div>
-              <div class="hero-stat-lbl">для собственника</div>
+              <div class="uz-title">Автоматизация бизнес-процессов</div>
+              <div class="uz-desc">У меня на это своё видение — требуется ознакомление с подходом, прежде чем начнём.</div>
             </div>
           </div>
-
-          <div class="anim-fu d3 hero-ctas">
-            <a href="#contact" class="btn-accent hero-cta">
-              Обсудить задачу
-              <iconify-icon icon="solar:arrow-right-linear" class="hero-ico"></iconify-icon>
-            </a>
-            <a href="#directions" class="btn-ghost glass-sm hero-cta-g">Смотреть направления</a>
+          <div class="uz-card">
+            <div class="uz-num">03</div>
+            <div>
+              <div class="uz-title">Создание и настройка ботов в мессенджерах</div>
+              <div class="uz-desc">Боты в Telegram и других мессенджерах: от приёма заявок до сценариев общения.</div>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="anim-si d3 hero-pcol">
+  <!-- PROBLEM STRIP -->
+  <section class="ps-sec">
+    <div class="mask-x">
+      <div class="ps-track">
+        <span class="ps-item">СОЗДАМ С НУЛЯ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ДОРАБОТАЮ ТО ЧТО ЕСТЬ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ОБУЧУ КАК С ЭТИМ РАБОТАТЬ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">СОЗДАМ С НУЛЯ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ДОРАБОТАЮ ТО ЧТО ЕСТЬ</span>
+        <span class="ps-sep">✦</span>
+        <span class="ps-item">ОБУЧУ КАК С ЭТИМ РАБОТАТЬ</span>
+        <span class="ps-sep">✦</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="contact" class="sec-pad-lg" style="position:relative">
+    <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
+    <div class="container sec-rel">
+      <div class="g-hero">
+        <div class="sr">
+          <div class="tag-l" style="margin-bottom:24px">Кто такой Игорь Ли</div>
+          <h2 class="sec-title-sm" style="margin-bottom:24px">
+            Меня зовут <span class="title-ital">Игорь</span>
+          </h2>
+          <p class="sec-text">
+            В сфере помощи бизнесу я уже 3 года. Поработал в разных сферах — от театра до ивент-агентства, от малого бизнеса, где в команде 4 человека, до компании с собственным производством и штатом до 180 человек.
+          </p>
+          <p class="sec-text" style="margin-bottom:24px">
+            Этот сайт — трансляция моего внутреннего опыта и наработанной пользы, которую я собрал за эти годы, и того, как я подхожу к помощи, когда ко мне обращается клиент.
+          </p>
+        </div>
+
+        <div class="anim-si d3">
           <div class="hero-pwrap">
             <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли" class="hero-img img-z">
             <div class="hero-overlay"></div>
@@ -373,411 +315,71 @@
     </div>
   </section>
 
-  <!-- PROBLEM STRIP --><!-- PROBLEM STRIP -->
-  <section class="ps-sec">
-    <div class="mask-x">
-      <div class="ps-track">
-        <span class="ps-item">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">ЛИДЫ ТЕРЯЮТСЯ В CRM</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">РУТИНА СЪЕДАЕТ ВРЕМЯ</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">ИНТЕГРАЦИИ НЕ РАБОТАЮТ</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">ДАННЫЕ РАЗБРОСАНЫ ПО СИСТЕМАМ</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">СОТРУДНИКИ НЕ ВХОДЯТ В CRM</span>
-        <span class="ps-sep">✦</span>
-        <span class="ps-item">ОТЧЁТЫ СОБИРАЮТСЯ ВРУЧНУЮ</span>
-        <span class="ps-sep">✦</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIRECTIONS -->
-  <section id="directions" class="sec-pad-lg">
-    <div class="container">
-      <div class="sr" style="max-width:680px;margin-bottom:64px">
-        <div class="accent-bar" style="margin-bottom:20px"></div>
-        <h2 class="sec-title" style="margin-bottom:24px">Для кого <span class="title-ital">работаю</span></h2>
-        <p class="sec-desc">
-          Фокус — на три модели, где моя помощь понятна сразу. В каждом направлении — конкретные боли, которые решаю, и почему это важно именно для вас.
-        </p>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:24px">
-
-        <!-- Direction 1: B2B -->
-        <div class="sr card-up glass dir-card">
-          <span class="dir-label">B2B — отделы продаж</span>
-          <div class="dir-opener">
-            У вас есть CRM и отдел продаж, но лиды висят без движения, CRM перегружена мусором, а РОП не видит, где застряли сделки. Разберём, что конкретно можно поправить.
-          </div>
-          <div class="dir-cols">
-            <div>
-              <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
-              <div class="dir-list">
-                <div class="dir-item pain">Менеджер забыл перезвонить — лид остыл и ушёл к конкуренту, а в CRM он «в работе»</div>
-                <div class="dir-item pain">Карточка забита лишними полями — менеджеры не заполняют, данные теряются</div>
-                <div class="dir-item pain">РОП не видит движение сделок — непонятно, кто сливает лиды, а кто реально работает</div>
-                <div class="dir-item pain">Счета и договоры собираются вручную по 40 минут на каждую сделку</div>
-                <div class="dir-item pain">Продажи и бухгалтерия в разных системах — менеджер не видит оплату и остатки на складе</div>
-              </div>
-            </div>
-            <div>
-              <div class="dir-block-title"><span class="dot-grow"></span>Что я делаю</div>
-              <div class="dir-list">
-                <div class="dir-item grow">Механизм напоминаний: просроченный лид не теряется, сам всплывает в задачах</div>
-                <div class="dir-item grow">Чистка воронки: убираю поля, которые никто не заполняет, — остаётся только то, что влияет на продажу</div>
-                <div class="dir-item grow">Прозрачность движения сделок: РОП видит, где застряло и кто сливает</div>
-                <div class="dir-item grow">Сквозная аналитика: конверсия по этапам, а не отчёты менеджеров</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Direction 2: Complex B2C -->
-        <div class="sr card-up glass dir-card">
-          <span class="dir-label">Сложный B2C — недвижимость, авто, медицина, обучение, юруслуги</span>
-          <div class="dir-opener">
-            Возможно, вы думаете, что автоматизация — для скучных B2B с длинными сделками, а у вас массовый поток и важен «живой» менеджер. Но без автоматизации вы теряете деньги на каждом втором лиде — и «живой» менеджер этого не видит.
-          </div>
-          <div class="dir-cols">
-            <div>
-              <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
-              <div class="dir-list">
-                <div class="dir-item pain">Клиент пишет в WhatsApp, Telegram, VK, Instagram — ответы теряются между каналами</div>
-                <div class="dir-item pain">Лид пришёл ночью, а к утру остыл и уже смотрит конкурентов</div>
-                <div class="dir-item pain">Клиент ушёл с сайта и забыл про вас — заявка сгорела</div>
-                <div class="dir-item pain">Менеджеры не видят всю историю общения — переспрашивают, раздражают</div>
-                <div class="dir-item pain">Неясно, какой канал рекламы окупается, а какой сливает бюджет</div>
-              </div>
-            </div>
-            <div>
-              <div class="dir-block-title"><span class="dot-grow"></span>Что я делаю</div>
-              <div class="dir-list">
-                <div class="dir-item grow">Все каналы в одном окне CRM — единая карточка клиента со всей перепиской</div>
-                <div class="dir-item grow">Авто-распределение заявок: ночные — дежурному, скорость реакции — секунды</div>
-                <div class="dir-item grow">Триггеры на брошенные заявки: напоминание через час, предложение через сутки</div>
-                <div class="dir-item grow">Дашборд ROMI/CAC по каждому каналу — видно, где прибыль, а где слив</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Direction 3: D2C -->
-        <div class="sr card-up glass dir-card">
-          <span class="dir-label">D2C — собственные бренды и крупный e-commerce</span>
-          <div class="dir-opener">
-            Возможно, вы думаете, что автоматизация — для посредников, а вы производитель и важнее качество продукта. Но без автоматизации вы теряете клиентов на логистике и возвратах, а повторные продажи отдаёте конкурентам.
-          </div>
-          <div class="dir-cols">
-            <div>
-              <div class="dir-block-title"><span class="dot-pain"></span>Где болит прямо сейчас</div>
-              <div class="dir-list">
-                <div class="dir-item pain">Клиент не знает, где его заказ, и звонит в поддержку уточнять статус</div>
-                <div class="dir-item pain">Возвраты и брак обрабатываются неделями — клиент уходит с негативом</div>
-                <div class="dir-item pain">Нет повторных продаж — купили один раз и забыли</div>
-                <div class="dir-item pain">Данные размазаны по сайту, CRM, 1С и складу — нет единой картины</div>
-                <div class="dir-item pain">Не видно, какие товары замораживают деньги на складе</div>
-              </div>
-            </div>
-            <div>
-              <div class="dir-block-title"><span class="dot-grow"></span>Что я делаю</div>
-              <div class="dir-list">
-                <div class="dir-item grow">Интеграция CRM со службами доставки — клиент сам получает трек и статус</div>
-                <div class="dir-item grow">Процесс возврата от заявки до денег — автоматически, без недель ожидания</div>
-                <div class="dir-item grow">Триггеры повтора: предложение сопутствующих товаров, напоминание о новом заказе</div>
-                <div class="dir-item grow">Единый дашборд операционки: оборачиваемость, выкуп, логистика в разрезе SKU</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="sr" style="margin-top:32px;font-size:13px;color:#87867f;font-weight:500;text-align:center">
-        Работаю и с другими моделями (B2G, B2B2C, C2C, B2E) — но глубокая экспертиза и фокус в трёх направлениях выше.
-      </div>
-    </div>
-  </section>
-
-  <!-- DASHBOARDS -->
-  <section id="dashboards" class="sec-pad-lg" style="position:relative">
+  <!-- WORK -->
+  <section class="sec-pad-lg" style="position:relative">
     <div style="position:absolute;inset:0;opacity:0.4" class="dots"></div>
-    <div class="container" style="position:relative">
-
-      <div class="sr">
-        <div class="accent-bar" style="margin-bottom:20px"></div>
-
-        <h2 class="sec-title-sm">Инструмент <span class="title-ital">собственника</span> — а не отчёт для <span class="title-ital">отдела</span></h2>
-
-        <p class="sec-text">
-          Большинство дашбордов в CRM — это история активности: кто сколько позвонил, написал, закрыл. Собственнику нужна другая картина: где бизнес теряет деньги на переходах между этапами, какие менеджеры системно сливают сделки, на чём реальная маржа.
-        </p>
-
-        <p class="sec-text" style="margin-bottom:28px">
-          Собираю данные из всех систем — CRM, учётная система, сайт — и склеиваю в единую панель управления. Конверсия по этапам, причины отказов, загрузка команды: то, что влияет на прибыль, а не на KPI отдела.
-        </p>
-
-        <p style="font-size:14px;color:#87867f;font-weight:500;margin-bottom:16px">Базовый дашборд — часть внедрения. Сложные метрики и сквозная аналитика обсуждаются отдельно.</p>
-        <a href="#contact" class="btn-accent" style="border-radius:16px">
-          Обсудить вашу панель
-          <iconify-icon icon="solar:arrow-right-up-linear" style="font-size:14px"></iconify-icon>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services" class="sec-pad-lg sec-rel">
-    <div class="dots dots-50"></div>
     <div class="container sec-rel">
-      <div class="sr sr-center">
-        <div class="accent-bar accent-bar-center"></div>
-        <h2 class="sec-title">Мои <span class="title-ital">услуги</span></h2>
+      <div class="sr" style="max-width:680px;margin-bottom:48px">
+        <div class="accent-bar" style="margin-bottom:20px"></div>
+        <h2 class="sec-title">Мои <span class="title-ital">наработки</span></h2>
+        <p class="sec-desc" style="margin-top:16px">Реализованные проекты — от сайтов до ботов и автоматизации. Выбери направление.</p>
       </div>
 
-      <div class="g3">
-        <div class="sr card-up glass srv-card">
-          <div class="srv-icon">
-            <iconify-icon icon="solar:widget-2-bold-duotone"></iconify-icon>
-          </div>
-          <h3 class="srv-title">Настройка отдела продаж</h3>
-          <p class="srv-desc">Битрикс24 под процессы команды: структура воронки, права, роли, этапы сделки.</p>
-        </div>
-
-        <div class="sr card-up glass srv-card">
-          <div class="srv-icon">
-            <iconify-icon icon="solar:alarm-bold-duotone"></iconify-icon>
-          </div>
-          <h3 class="srv-title">Контроль просрочек</h3>
-          <p class="srv-desc">Механизм напоминаний и автоматических задач, чтобы ни один лид не висел без движения.</p>
-        </div>
-
-        <div class="sr card-up glass srv-card">
-          <div class="srv-icon">
-            <iconify-icon icon="solar:chart-2-bold-duotone" class="dash-icon"></iconify-icon>
-          </div>
-          <h3 class="srv-title">Дашборды для собственника</h3>
-          <p class="srv-desc">Панели управления для собственника: реальная конверсия, причины отказов, загрузка менеджеров.</p>
-        </div>
-
-        <div class="sr card-up glass srv-card">
-          <div class="srv-icon">
-            <iconify-icon icon="solar:plug-circle-bold-duotone"></iconify-icon>
-          </div>
-          <h3 class="srv-title">Интеграции</h3>
-          <p class="srv-desc">Телефония, 1С, сайт, мессенджеры — все каналы и данные в одной системе.</p>
-        </div>
-
-        <div class="sr card-up glass srv-card">
-          <div class="srv-icon">
-            <iconify-icon icon="solar:brush-bold-duotone"></iconify-icon>
-          </div>
-          <h3 class="srv-title">Чистка и гигиена CRM</h3>
-          <p class="srv-desc">Убираю мусорные поля, которые менеджеры не заполняют, — CRM перестаёт тормозить работу.</p>
-        </div>
-
-        <div class="sr card-up glass srv-card">
-          <div class="srv-icon">
-            <iconify-icon icon="solar:graduation-bold-duotone"></iconify-icon>
-          </div>
-          <h3 class="srv-title">Обучение команды</h3>
-          <p class="srv-desc">Провожу воркшопы и онбординг: настройка прав, работа с воронкой, отчётами. Команда начинает работать в CRM, а не в обход.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-<!-- PROCESS -->
-  <section id="process" class="sec-pad-lg">
-    <div class="container">
-      <div class="sr" style="text-align:center;margin-bottom:64px">
-        <div class="accent-bar" style="margin:0 auto 20px"></div>
-        <h2 class="sec-title">Как я <span class="title-ital">работаю</span></h2>
+      <div class="tabs" id="workTabs">
+        <button class="tab-btn active" data-filter="all">Все</button>
+        <button class="tab-btn" data-filter="site">Сайты</button>
+        <button class="tab-btn" data-filter="bot">Боты</button>
+        <button class="tab-btn" data-filter="auto">Автоматизация</button>
       </div>
 
-      <div class="g4">
-        <div class="sr" style="position:relative">
-          <div class="serif step-num">01</div>
-          <h3 class="step-title">Аудит отдела продаж</h3>
-          <p class="srv-desc">Нахожу операции, которые команда делает руками: просроченные лиды, мусор в полях, непрозрачное движение сделок.</p>
-          <div class="step-conn"></div>
+      <div class="work-grid" id="workGrid">
+        <div class="sr card-up glass work-card" data-cat="site">
+          <div class="work-cat">Сайт</div>
+          <div class="work-title">Визитка для мастера</div>
+          <div class="work-desc">Лендинг для частного мастера: заявки напрямую в Telegram, без лишнего софта.</div>
+          <a href="#" class="work-more link-ul">Ознакомиться подробнее <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></a>
         </div>
-        <div class="sr" style="position:relative">
-          <div class="serif step-num">02</div>
-          <h3 class="step-title">Запуск за 30 дней</h3>
-          <p class="srv-desc">Настройка воронки, права и роли, интеграции, контроль просрочек, базовый дашборд — работающая CRM к концу месяца.</p>
-          <div class="step-conn"></div>
-        </div>
-        <div class="sr" style="position:relative">
-          <div class="serif step-num">03</div>
-          <h3 class="step-title">Обучение команды</h3>
-          <p class="srv-desc">РОП и менеджеры работают в системе. Люди заполняют только то, что влияет на продажу.</p>
-          <div class="step-conn"></div>
-        </div>
-        <div class="sr" style="position:relative">
-          <div class="serif step-num">04</div>
-          <h3 class="step-title">Автономная работа</h3>
-          <p class="srv-desc">Воронка крутится сама: РОП видит картину в реальном времени, просрочки контролируются автоматически. Выделенный админ не нужен — система работает без ежедневного присмотра.</p>
-        </div>
-      </div>
 
-      <div class="sr" style="margin-top:80px">
-        <h3 class="fmt-label">Формат работы</h3>
-        <div class="g4">
-          <div class="glass fmt-card">
-            <div class="fmt-card-title">Консалтинг</div>
-            <div class="fmt-card-desc">Проект 1–3 месяца с результатом</div>
-          </div>
-          <div class="glass fmt-card">
-            <div class="fmt-card-title">Штатная позиция</div>
-            <div class="fmt-card-desc">Интегратор / админ Битрикс24</div>
-          </div>
-          <div class="glass fmt-card">
-            <div class="fmt-card-title">Корпоративное обучение</div>
-            <div class="fmt-card-desc">Воркшопы для отдела продаж</div>
-          </div>
-          <div class="glass fmt-card">
-            <div class="fmt-card-title">Разовые консультации</div>
-            <div class="fmt-card-desc">Для руководителей и ИТ-отделов</div>
-          </div>
+        <div class="sr card-up glass work-card" data-cat="bot">
+          <div class="work-cat">Бот</div>
+          <div class="work-title">Бот приёма заявок</div>
+          <div class="work-desc">Telegram-бот, который принимает заявки, распределяет по менеджерам и шлёт уведомления.</div>
+          <a href="#" class="work-more link-ul">Ознакомиться подробнее <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></a>
+        </div>
+
+        <div class="sr card-up glass work-card" data-cat="auto">
+          <div class="work-cat">Автоматизация</div>
+          <div class="work-title">Учёт для малого бизнеса</div>
+          <div class="work-desc">Простая система учёта для команды из 4 человек — без перегруза, с ручной сверкой.</div>
+          <a href="#" class="work-more link-ul">Ознакомиться подробнее <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></a>
+        </div>
+
+        <div class="sr card-up glass work-card" data-cat="site">
+          <div class="work-cat">Сайт</div>
+          <div class="work-title">Каталог для производства</div>
+          <div class="work-desc">Сайт-каталог для завода со штатом 180 человек: структура, товары, форма обратной связи.</div>
+          <a href="#" class="work-more link-ul">Ознакомиться подробнее <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></a>
+        </div>
+
+        <div class="sr card-up glass work-card" data-cat="bot">
+          <div class="work-cat">Бот</div>
+          <div class="work-title">Бот для ивент-агентства</div>
+          <div class="work-desc">Сценарий записи гостей и рассылки напоминаний перед мероприятием.</div>
+          <a href="#" class="work-more link-ul">Ознакомиться подробнее <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></a>
+        </div>
+
+        <div class="sr card-up glass work-card" data-cat="auto">
+          <div class="work-cat">Автоматизация</div>
+          <div class="work-title">Сквозной учёт театра</div>
+          <div class="work-desc">Связка заявок, расписания и афиши — чтобы руководитель видел картину без отчётов.</div>
+          <a href="#" class="work-more link-ul">Ознакомиться подробнее <iconify-icon icon="solar:arrow-right-linear"></iconify-icon></a>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- BENEFITS + CLIENTS -->
-  <section class="benefits-pad">
-    <div class="benefits-dots dots"></div>
-    <div class="container" style="position:relative">
-      <div class="sr benefits-head-wrap">
-        <div class="accent-bar" style="margin:0 auto 20px"></div>
-        <h2 class="sec-title">Что получает <span class="title-ital">компания</span></h2>
-      </div>
-
-      <div class="g2 benefits-grid">
-        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>Просроченные лиды всплывают в задачах автоматически — не нужно помнить, кому перезвонить, система сама напомнит</div>
-        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>Менеджеры не забивают CRM мусором — пустые поля и дубли убираются, остаётся только то, что влияет на продажу</div>
-        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>Отчёты и выгрузки собираются сами, без Excel по четвергам</div>
-        <div class="sr card-up ben-card"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>Телефония, 1С, сайт, мессенджеры — все каналы синхронизированы, данные не приходится переносить вручную</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="contact-pad">
-    <div class="contact-glow"></div>
-    <div class="contact-dots dots"></div>
-
-    <div class="container contact-inner">
-      <div class="sr">
-        <div class="accent-bar" style="margin:0 auto 20px"></div>
-        <h2 class="contact-title">Есть задача по<br><span class="title-ital">Битрикс24?</span></h2>
-        <p class="contact-desc">Расскажите о ваших процессах — наметим план и сроки внедрения.</p>
-      </div>
-
-      <div class="sr glass contact-card">
-        <a href="mailto:igorli.work@gmail.com" class="btn-p contact-btn" style="max-width:320px;margin:0 auto">
-            <iconify-icon icon="solar:letter-bold" class="btn-icon"></iconify-icon>
-            igorli.work@gmail.com
-          </a>
-        <div class="contact-meta">
-          igorli.work@gmail.com · Новосибирск
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer-main">
-    <div class="container">
-      <div class="g-footer footer-gap">
-        <div>
-          <div class="footer-logo-row">
-            <div class="footer-logo-icon">
-              <iconify-icon icon="solar:bolt-bold"></iconify-icon>
-            </div>
-            <span class="footer-brand">Игорь Ли</span>
-          </div>
-          <p class="footer-desc">Настраиваю отделы продаж на Битрикс24: контроль просрочек, прозрачная воронка, реальная картина для руководителя.</p>
-        </div>
-        <div>
-          <h3 class="footer-h3">Навигация</h3>
-          <div class="footer-col">
-            <a href="#directions" class="footer-link link-ul">Направления</a>
-            <a href="#dashboards" class="footer-link link-ul">Дашборды</a>
-            <a href="#services" class="footer-link link-ul">Услуги</a>
-            <a href="#process" class="footer-link link-ul">Как работаю</a>
-            <a href="#contact" class="footer-link link-ul">Контакт</a>
-          </div>
-        </div>
-        <div>
-          <h3 class="footer-h3">Услуги</h3>
-          <div class="footer-col">
-            <span class="footer-text">Настройка отдела продаж</span>
-            <span class="footer-text">Контроль просрочек</span>
-            <span class="footer-text">Дашборды для собственника</span>
-            <span class="footer-text">Интеграции и обучение</span>
-          </div>
-        </div>
-        <div>
-          <h3 class="footer-h3">Контакты</h3>
-          <div class="footer-col">
-            <a href="mailto:igorli.work@gmail.com" class="footer-link">igorli.work@gmail.com</a>
-            <span class="footer-text" style="color:#87867f">Новосибирск, Россия</span>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bot">
-        <p class="footer-copy">&copy; 2026 Игорь Ли · Новосибирск</p>
-        <div class="footer-tags">
-          Битрикс24 · CRM-автоматизация · Прозрачность продаж
-        </div>
-      </div>
-    </div>
-  </footer>
 
   <!-- SCRIPT -->
   <script>
-    var mobileMenu = document.getElementById('mobileMenu');
-    var menuPanel = document.getElementById('menuPanel');
-
-    document.getElementById('menuBtn').addEventListener('click', function() {
-      mobileMenu.style.opacity = '1';
-      mobileMenu.style.pointerEvents = 'auto';
-      menuPanel.style.transform = 'translateX(0)';
-      document.body.style.overflow = 'hidden';
-    });
-
-    function closeMenu() {
-      mobileMenu.style.opacity = '0';
-      mobileMenu.style.pointerEvents = 'none';
-      menuPanel.style.transform = 'translateX(100%)';
-      document.body.style.overflow = '';
-    }
-
-    document.getElementById('menuClose').addEventListener('click', closeMenu);
-    document.getElementById('menuOverlay').addEventListener('click', closeMenu);
-    var mobLinks = document.querySelectorAll('.mob-link');
-    for (var i = 0; i < mobLinks.length; i++) {
-      mobLinks[i].addEventListener('click', closeMenu);
-    }
-
     var nav = document.getElementById('nav');
     window.addEventListener('scroll', function() {
       if (window.scrollY > 80) nav.classList.add('nav-compact');
@@ -805,6 +407,21 @@
         e.preventDefault();
         var t = document.querySelector(href);
         if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+
+    var tabs = document.querySelectorAll('#workTabs .tab-btn');
+    var cards = document.querySelectorAll('#workGrid .work-card');
+    for (var t = 0; t < tabs.length; t++) {
+      tabs[t].addEventListener('click', function() {
+        var filter = this.getAttribute('data-filter');
+        for (var b = 0; b < tabs.length; b++) tabs[b].classList.remove('active');
+        this.classList.add('active');
+        for (var c = 0; c < cards.length; c++) {
+          var cat = cards[c].getAttribute('data-cat');
+          if (filter === 'all' || cat === filter) cards[c].classList.remove('hidden-el');
+          else cards[c].classList.add('hidden-el');
+        }
       });
     }
   </script>
