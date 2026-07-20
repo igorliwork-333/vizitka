@@ -177,8 +177,9 @@
     .hero-img { width:100%; height:500px; object-fit:cover; }
     .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.35),transparent 60%); }
     .ps-sec { background:#141413; padding:28px 0; overflow:hidden; }
-    .ps-track { display:flex; width:max-content; animation:marquee 30s linear infinite; white-space:nowrap; }
+    .ps-track { display:flex; flex-wrap:nowrap; width:max-content; animation:marquee 28s linear infinite; }
     .ps-track:hover { animation-play-state:paused; }
+    .ps-group { display:flex; flex-wrap:nowrap; align-items:center; flex-shrink:0; }
     .sec-rel { position:relative; }
     #nav { position:fixed; top:0; left:0; right:0; z-index:50; padding:16px 0; transition:padding .4s; }
     #nav.nav-compact { padding:8px 0; }
@@ -216,7 +217,7 @@
       <div class="glass" style="border-radius:16px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between">
         <a href="#" class="logo-link">
           <div class="logo-icon">
-            <iconify-icon icon="solar:target-bold"></iconify-icon>
+            <iconify-icon icon="solar:user-bold"></iconify-icon>
           </div>
           <span class="logo-brand">Игорь Ли</span>
         </a>
@@ -270,14 +271,16 @@
 
   <!-- PROBLEM STRIP -->
   <section class="ps-sec">
-    <div class="container">
-      <div class="ps-track">
+    <div class="ps-track">
+      <div class="ps-group">
         <span class="ps-item">СОЗДАМ С НУЛЯ</span>
         <span class="ps-sep">✦</span>
         <span class="ps-item">ДОРАБОТАЮ ТО ЧТО ЕСТЬ</span>
         <span class="ps-sep">✦</span>
         <span class="ps-item">ОБУЧУ КАК С ЭТИМ РАБОТАТЬ</span>
         <span class="ps-sep">✦</span>
+      </div>
+      <div class="ps-group">
         <span class="ps-item">СОЗДАМ С НУЛЯ</span>
         <span class="ps-sep">✦</span>
         <span class="ps-item">ДОРАБОТАЮ ТО ЧТО ЕСТЬ</span>
