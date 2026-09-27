@@ -105,7 +105,9 @@
     .case:hover { border-color: color-mix(in oklch, var(--ink) 35%, transparent); transform: translateY(-2px); }
 
     .case__title { margin: 0; font-size: 1.1875rem; font-weight: 700; letter-spacing: -.01em; line-height: 1.3; }
-    .case__text { margin: .6rem 0 0; font-size: 1rem; line-height: 1.65; color: var(--muted); }
+
+    .case__row { margin: .6rem 0 0; font-size: 1rem; line-height: 1.65; color: var(--muted); }
+    .case__row-label { display: block; font-size: .8125rem; font-weight: 700; color: var(--ink); margin-bottom: .15rem; }
 
     .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
     .chip {
@@ -118,8 +120,25 @@
     }
 
     .footer { padding: 4rem 1.5rem 2.5rem; text-align: center; }
-    .footer__link {
+    .footer__cta {
       display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: .65rem 1.75rem;
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      border: 1px solid color-mix(in oklch, var(--ink) 25%, transparent);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: border-color .18s, transform .18s, background-color .18s;
+    }
+    .footer__cta:hover { border-color: var(--ink); background: color-mix(in oklch, var(--ink) 6%, transparent); transform: translateY(-1px); }
+    .footer__link {
+      display: block;
       align-items: center;
       justify-content: center;
       min-height: 2rem;
@@ -145,22 +164,26 @@
     <div class="cases-grid">
       <article class="case">
         <h3 class="case__title">Визитка для частного мастера</h3>
-        <p class="case__text">Заявки напрямую в Telegram — без лишнего софта и сложных форм.</p>
+        <p class="case__row"><span class="case__row-label">Задача</span>Раньше заявки рассеивались по звонкам и мессенджерам — мастер не всегда понимал, кто и чего хочет.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Заявки приходят напрямую в Telegram — мастер видит их сразу, ничего не теряется.</p>
         <div class="chips"><span class="chip">Сайт</span></div>
       </article>
       <article class="case">
         <h3 class="case__title">Бот приёма заявок</h3>
-        <p class="case__text">Принимает заявки, распределяет по менеджерам и уведомляет без участия человека.</p>
+        <p class="case__row"><span class="case__row-label">Задача</span>Заявки принимал и распределял человек вручную — на это уходило время и случались потери.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Бот сам принимает, распределяет по менеджерам и уведомляет — без участия человека.</p>
         <div class="chips"><span class="chip">Бот</span></div>
       </article>
       <article class="case">
         <h3 class="case__title">Каталог для завода</h3>
-        <p class="case__text">Структура, товары и форма обратной связи для производства со штатом 180 человек.</p>
+        <p class="case__row"><span class="case__row-label">Задача</span>Производство на 180 человек — каталог без структуры, посетитель не находил нужное, обратная связь не доходила.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Структура, товары и форма связи — заказчики сами находят нужное, заявка доезжает до завода.</p>
         <div class="chips"><span class="chip">Сайт</span></div>
       </article>
       <article class="case">
         <h3 class="case__title">Бот для ивент-агентства</h3>
-        <p class="case__text">Запись гостей и напоминания перед мероприятием — без ручной рутины.</p>
+        <p class="case__row"><span class="case__row-label">Задача</span>Гости записывались вручную, напоминаний не было — случались неявки.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Запись гостей и напоминания перед мероприятием — без ручной рутины.</p>
         <div class="chips"><span class="chip">Бот</span></div>
       </article>
     </div>
@@ -171,18 +194,21 @@
     <div class="cases-grid">
       <article class="case">
         <h3 class="case__title">Учёт для команды из 4 человек</h3>
-        <p class="case__text">Ключевые показатели видны сразу, сверка быстрая и ручная — без перегруза.</p>
+        <p class="case__row"><span class="case__row-label">Задача</span>Показатели были разбросаны, сверка занимала силы всей команды.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Ключевые показатели видны сразу, сверка занимает минуты — без перегруза.</p>
         <div class="chips"><span class="chip">Автоматизация</span><span class="chip">Учёт</span></div>
       </article>
       <article class="case">
-        <h3 class="case__title">Сквозной учёт театра</h3>
-        <p class="case__text">Заявки, расписание и афиша — руководитель видит картину целиком, без ручных отчётов.</p>
+        <h3 class="case__title">Единый учёт театра</h3>
+        <p class="case__row"><span class="case__row-label">Задача</span>Заявки, расписание и афиша — в разных местах, руководитель собирал данные вручную.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Руководитель видит картину целиком, без ручных отчётов.</p>
         <div class="chips"><span class="chip">Автоматизация</span><span class="chip">Учёт</span></div>
       </article>
     </div>
   </section>
 
   <footer class="footer">
+    <a href="https://t.me/igorli_bot" target="_blank" rel="noopener" class="footer__cta">Написать в Telegram</a>
     <a href="index.html" class="footer__link">На главную</a>
   </footer>
 
