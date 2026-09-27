@@ -180,12 +180,12 @@
 
   <section class="section" id="interfaces" data-section="interfaces">
     <h2 class="section__label" data-section-label>Интерфейсы</h2>
-    <p class="section__lead"><span class="section__lead-name">Запросы по теме</span>Каждый пример раскрывает: что где лежит, в каком порядке нажимать, что куда вводит.</p>
+    <p class="section__lead"><span class="section__lead-name">Запросы, которые раскрывает пример</span>Куда нажать, чтобы было понятно; что вводить, чтобы не ошибиться; что должно быть видно сразу.</p>
     <div class="cases-grid">
       <article class="case">
         <h3 class="case__title">«Компас целей» — личный трекер</h3>
-        <p class="case__row"><span class="case__row-label">Задача</span>Держать цели перед глазами каждый день: сколько осталось до итога и сколько наработано — разрозненно, без единого экрана.</p>
-        <p class="case__row"><span class="case__row-label">Результат</span>Главный экран: отсчёт дней до итога, суммы по целям и дневной чек-лист «работа — отдых». Всё хранится на устройстве.</p>
+        <p class="case__row"><span class="case__row-label">Задача</span>Не было понятно, куда нажать и что вводить: сколько осталось до итога и сколько наработано — разрозненно, без единого экрана.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Главный экран: отсчёт дней до итога, суммы по целям и дневной чек-лист «работа — отдых» — видно сразу, без переключений.</p>
         <div class="chips"><span class="chip">Приложение</span></div>
       </article>
     </div>
@@ -193,12 +193,12 @@
 
   <section class="section" id="processes" data-section="processes">
     <h2 class="section__label" data-section-label>Процессы</h2>
-    <p class="section__lead"><span class="section__lead-name">Запросы по теме</span>Каждый пример раскрывает: кто что делает, что и куда записывается, где всё встало.</p>
+    <p class="section__lead"><span class="section__lead-name">Запросы, которые раскрывает пример</span>Кто за что отвечает; что и куда фиксируется; где застревает и как это заметить.</p>
     <div class="cases-grid">
       <article class="case">
         <h3 class="case__title">«Компас целей» — рабочий ритм</h3>
-        <p class="case__row"><span class="case__row-label">Задача</span>Работа и отдых шли вперемешку, день заканчивался одинаково, застревания не было видно.</p>
-        <p class="case__row"><span class="case__row-label">Результат</span>Каждый день фиксируется: сигнал «работа окончена» и ритуал перехода к отдыху. Серия дней и рекорд показывают, где день сорвался, история не теряется.</p>
+        <p class="case__row"><span class="case__row-label">Задача</span>Не было видно, кто за что отвечает и где всё встало: работа и отдых шли вперемешку, день заканчивался одинаково.</p>
+        <p class="case__row"><span class="case__row-label">Результат</span>Что и куда фиксируется — сразу видно: сигнал «работа окончена», ритуал перехода к отдыху, серия дней и рекорд показывают, где день сорвался.</p>
         <div class="chips"><span class="chip">Автоматизация</span><span class="chip">Учёт</span></div>
       </article>
     </div>
@@ -225,10 +225,15 @@
     query = (query || "").toLowerCase().trim();
     Array.prototype.forEach.call(sections, function (sec) {
       var cases = sec.querySelectorAll(".case");
+      var shown = 0;
       Array.prototype.forEach.call(cases, function (c) {
         var hay = (c.textContent || "").toLowerCase();
-        c.style.display = !query || hay.indexOf(query) !== -1 ? "" : "none";
+        var match = !query || hay.indexOf(query) !== -1;
+        c.style.display = match ? "" : "none";
+        if (match) shown++;
       });
+      var lead = sec.querySelector(".section__lead");
+      if (lead) lead.style.display = shown ? "" : "none";
     });
   }
 
