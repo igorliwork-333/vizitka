@@ -74,6 +74,13 @@
 
     .case-search:focus-visible { outline: 2px solid color-mix(in oklch, var(--ink) 40%, transparent); outline-offset: 2px; }
 
+    .roles {
+      width: min(100% - 2rem, 52rem);
+      margin: 2rem auto 0;
+    }
+    .roles .case__row:first-child { margin-top: 0; }
+    .roles .case__row + .case__row { margin-top: 1.25rem; }
+
     .section__label {
       margin: 0 0 1.25rem;
       font-size: .8rem;
@@ -157,6 +164,11 @@
   <h1 class="work-title" id="work-title">Примеры работ</h1>
 
   <input type="search" id="case-search" class="case-search" placeholder="Поиск примеров" aria-label="Поиск примеров">
+
+  <div class="roles">
+    <p class="case__row"><span class="case__row-label">Интерфейсы</span>Момент действия: что человек видит на экране и куда нажимает. Структура, порядок шагов, подача данных.</p>
+    <p class="case__row"><span class="case__row-label">Процессы</span>Движение и фиксация: что происходит между экранами, что и куда записывается. Видно, где застревает.</p>
+  </div>
 
   <section class="section" id="interfaces" data-section="interfaces">
     <h2 class="section__label" data-section-label>Интерфейсы</h2>
