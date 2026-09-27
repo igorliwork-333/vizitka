@@ -34,7 +34,6 @@
       --bg: oklch(99% .004 255);
       --ink: oklch(24% .015 260);
       --muted: oklch(45% .02 260);
-      --color-primary: oklch(40% .105 185);
     }
 
     html { color-scheme: light; }
@@ -45,7 +44,6 @@
         --bg: oklch(16% .014 260);
         --ink: oklch(93% .006 260);
         --muted: oklch(72% .012 260);
-        --color-primary: oklch(71% .1 185);
       }
     }
 
@@ -143,19 +141,6 @@
       color: var(--muted);
     }
 
-    .post__price {
-      align-self: flex-start;
-      margin-top: 1rem;
-      padding: .3rem .8rem;
-      font-size: .8125rem;
-      font-weight: 600;
-      line-height: 1.4;
-      color: var(--color-primary);
-      background: color-mix(in oklch, var(--color-primary) 12%, transparent);
-      border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);
-      border-radius: 9999px;
-    }
-
     .post__hint {
       margin-top: 1.5rem;
       align-self: flex-start;
@@ -205,14 +190,12 @@
       <a href="work.html#interfaces" class="post">
         <h3 class="post__title">Разработка и переработка интерфейсов</h3>
         <p class="post__text">Проектирую структуру и логику интерфейса так, чтобы клиенты и сотрудники сами во всём разбирались и быстро получали результат — без инструкций и лишних вопросов.</p>
-        <p class="post__price">6 рабочих дней · 6 000 ₽</p>
         <span class="post__hint">Примеры <span class="post__hint-arrow" aria-hidden="true">→</span></span>
       </a>
 
       <a href="work.html#processes" class="post">
         <h3 class="post__title">Оцифровка процессов</h3>
         <p class="post__text">Проектирую учёт и процессы так, чтобы реальная картина бизнеса была видна сразу, — что происходит, где застревают задачи и куда уходят ресурсы. Без ручных отчётов и лишних вопросов.</p>
-        <p class="post__price">8 рабочих дней · 10 000 ₽</p>
         <span class="post__hint">Примеры <span class="post__hint-arrow" aria-hidden="true">→</span></span>
       </a>
     </div>
