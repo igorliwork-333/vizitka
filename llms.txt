@@ -1,0 +1,21 @@
+# Игорь Ли — визитка
+
+> Игорь Ли. Разрабатывает и переделывает интерфейсы под задачу, наводит порядок в физических рабочих процессах и связывает их с цифрой. Сайт igorli.ru — визитка с описанием услуг и наработок.
+
+## Основные разделы
+
+- [Главная и услуги](https://igorli.ru/): кто я, две услуги («Интерфейс под задачу» — 6 дней · 6 000 ₽ прямых расходов; «Физический процесс — в цифру» — 8 дней · 10 000 ₽), наработки, направления, контакты
+- [Сайт-каталог для завода](https://igorli.ru/cases/katalog-dlya-proizvodstva.html): кейс-разбор
+- [Бот для ивент-агентства](https://igorli.ru/cases/bot-dlya-ivent-agentstva.html): кейс-разбор
+- [Сквозной учёт театра](https://igorli.ru/cases/skvoznoy-uchet-teatra.html): кейс-разбор
+- [Учёт для малого бизнеса](https://igorli.ru/cases/uchet-dlya-malogo-biznesa.html): кейс-разбор
+- [Бот приёма заявок](https://igorli.ru/cases/bot-priema-zayavok.html): кейс-разбор
+- [Визитка для мастера](https://igorli.ru/cases/vizitka-dlya-mastera.html): кейс-разбор
+
+## Markdown-версия главной
+
+- [Главная в Markdown](https://igorli.ru/index.md)
+
+## Optional
+
+- [Контакты](https://igorli.ru/#contact): Telegram @igorli_bot (t.me/igorli_bot), почта igorli333@yandex.ru
