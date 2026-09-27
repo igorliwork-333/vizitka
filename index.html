@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="igorli">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Игорь Ли — интерфейсы и процессы, которые работают по-настоящему</title>
-  <meta name="description" content="Игорь Ли. Разработка и переработка интерфейсов под задачу, наведение порядка в физических процессах и связка их с цифрой.">
-  <meta property="og:title" content="Игорь Ли — интерфейсы и процессы, которые работают по-настоящему">
+  <title>Игорь Ли — интерфейсы и процессы без недопониманий</title>
+  <meta name="description" content="Игорь Ли. Интерфейсы и процессы без недопониманий: сайты и сервисы, в которых люди сами разбираются, и учёт, который виден сразу.">
+  <meta property="og:title" content="Игорь Ли">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <script type="application/ld+json">
@@ -26,581 +26,183 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-*, *::before, *::after { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; }
 
     :root {
-      --font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      --radius-selector: 9999px;     /* пилюли: кнопки, чипы, цены, аватар */
-      --radius-field: .75rem;        /* поля, пункты меню */
-      --radius-box: 1rem;            /* карточки, списки, поверхности */
-    }
-
-    :root, [data-theme="igorli"] {
+      font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       color-scheme: light;
-      --color-base-100: oklch(99% .004 255);
-      --color-base-200: oklch(96.5% .006 255);
-      --color-base-300: oklch(89.5% .008 255);
-      --color-base-content: oklch(24% .015 260);
-      --color-primary: oklch(40% .105 185);
-      --color-primary-content: oklch(98% .005 190);
+      --bg: oklch(99% .004 255);
+      --ink: oklch(24% .015 260);
+      --muted: oklch(45% .02 260);
     }
 
-    [data-theme="igorli-dark"] {
-      color-scheme: dark;
-      --color-base-100: oklch(16% .014 260);
-      --color-base-200: oklch(20% .016 260);
-      --color-base-300: oklch(29% .018 255);
-      --color-base-content: oklch(93% .006 260);
-      --color-primary: oklch(71% .1 185);
-      --color-primary-content: oklch(15% .018 190);
+    html { color-scheme: light; }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: oklch(16% .014 260);
+        --ink: oklch(93% .006 260);
+        --muted: oklch(72% .012 260);
+      }
     }
 
-    [data-theme="circuit"] {
-      color-scheme: dark;
-      --color-base-100: oklch(12.5% .016 268);
-      --color-base-200: oklch(17% .018 266);
-      --color-base-300: oklch(27% .02 265);
-      --color-base-content: oklch(94% .006 265);
-      --color-primary: oklch(66% .12 185);
-      --color-primary-content: oklch(13% .02 190);
-    }
-
-    html { scroll-behavior: smooth; font-family: var(--font-sans); }
     body {
-      margin: 0; background: var(--color-base-100); color: var(--color-base-content);
-      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; line-height: 1.5;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    button { font: inherit; color: inherit; }
-    .min-h-screen { min-height: 100vh; }
-
-    /* ---------- Аватар, меню, соцсети ---------- */
-    .avatar { display: inline-flex; position: relative; vertical-align: middle; }
-    .avatar-img { border-radius: var(--radius-selector); object-fit: cover; aspect-ratio: 1/1; width: 100%;
-      transition: transform .2s ease-in-out; }
-    .avatar:hover .avatar-img { transform: scale(1.02); }
-
-    .menu { display: flex; flex-direction: column; gap: .125rem; padding: .5rem 0;
-      font-size: .875rem; list-style: none; margin: 0; }
-    .menu-link { display: flex; align-items: center; gap: .5rem; min-width: 0; padding: .75rem;
-      border-radius: var(--radius-field); font-size: 1rem; line-height: 1.4;
-      color: var(--color-base-content); transition: background-color .15s ease-out; }
-    .menu-link:hover { background: color-mix(in oklab, var(--color-base-content) 8%, transparent); }
-    .menu-link.is-active { background: var(--color-base-300); font-weight: 600; }
-    .menu-link__label { text-overflow: ellipsis; white-space: nowrap; min-width: 0; overflow: hidden; }
-    .menu-link__icon { flex: none; width: 1.1rem; height: 1.1rem; }
-
-    .social-icons { display: flex; align-items: center; justify-content: center; gap: .5rem;
-      padding: .25rem .75rem 1rem; color: var(--color-base-content); }
-    .social-icon { display: inline-flex; align-items: center; justify-content: center;
-      width: 2rem; height: 2rem; border-radius: .5rem; color: var(--color-base-content); }
-    .social-icon:hover { color: var(--color-primary); }
-    .social-icon svg { width: 1.25rem; height: 1.25rem; fill: currentColor; }
-
-    /* ---------- Drawer ---------- */
-    .drawer-wrap { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-    .drawer-toggle { display: none; }
-    .drawer-side { position: fixed; top: 0; inset-inline-start: 0; height: 100dvh; width: 100%;
-      display: grid; place-items: start start; z-index: 60; pointer-events: none;
-      visibility: hidden; opacity: 0; overscroll-behavior: contain;
-      transition: opacity .2s ease-out .1s, visibility .3s ease-out .1s; }
-    .drawer-overlay { cursor: pointer; background: oklch(0% 0 0 / .45); place-self: stretch;
-      grid-row: 1 / 1; grid-column: 1 / 1; }
-    .drawer-side > * { grid-row: 1 / 1; grid-column: 1 / 1; }
-    .drawer-toggle:checked ~ .drawer-side { pointer-events: auto; visibility: visible; opacity: 1; }
-    .drawer-panel { position: relative; z-index: 1; width: min(19rem, 100vw - 3rem); height: 100svh;
-      max-height: 100dvh; overflow: hidden; padding: .5rem .5rem 0 1.25rem;
-      background: var(--color-base-200); color: var(--color-base-content);
-      display: flex; flex-direction: column; border-inline-end: 1px solid var(--color-base-300); }
-    .drawer-profile { width: fit-content; margin: 1.25rem auto 1.5rem; }
-    .drawer-avatar { width: 8.5rem; }
-    .drawer-menu { min-height: 0; flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
-    .drawer-foot { padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
-
-    @media (max-height: 760px) {
-      .drawer-profile { margin-top: .75rem; margin-bottom: .75rem; }
-      .drawer-avatar { width: 5.75rem; }
-    }
-    @media (max-height: 680px) { .drawer-avatar { width: 4.75rem; } }
-
-    /* ---------- Кнопки ---------- */
-    .btn { flex-shrink: 0; cursor: pointer; user-select: none; display: inline-flex; align-items: center;
-      justify-content: center; gap: .375rem; text-align: center; vertical-align: middle;
-      min-height: 2.5rem; padding-inline: 1rem; font-size: .875rem; font-weight: 600; line-height: 1;
-      border: 1px solid transparent; border-radius: var(--radius-selector);
-      background-color: color-mix(in oklab, var(--color-base-content) 8%, transparent);
-      color: var(--color-base-content); transition: background-color .18s, border-color .18s; }
-    .btn:hover { background-color: color-mix(in oklab, var(--color-base-content) 12%, transparent); }
-    .btn:focus-visible { outline: 2px solid color-mix(in oklch, var(--color-primary) 45%, transparent); outline-offset: 2px; }
-    .btn-sm { min-height: 2rem; padding-inline: .75rem; font-size: .75rem; }
-    .btn-square { width: 2.5rem; height: 2.5rem; min-height: 2.5rem; padding-inline: 0; }
-    .btn-ghost { background-color: transparent; border-color: transparent; }
-    .btn-ghost:hover { background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent); }
-
-    /* ---------- Шапка (mobile, все ширины) ---------- */
-    .mobile-header { position: sticky; top: 0; z-index: 30; display: flex; justify-content: center;
-      height: 4rem; width: 100%;
-      background: color-mix(in oklch, var(--color-base-100) 90%, transparent);
-      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-      color: var(--color-base-content);
-      border-bottom: 1px solid var(--color-base-300); }
-    .mobile-header__bar { display: grid; grid-template-columns: 2.75rem minmax(0,1fr) auto;
-      align-items: center; gap: .25rem; width: 100%; padding-inline: .5rem; }
-    .mobile-header__brand { justify-self: start; min-width: 0; max-width: 100%; padding-inline: .5rem;
-      white-space: nowrap; overflow: hidden; height: 2.5rem; display: inline-flex; align-items: center;
-      font-size: 1.1rem; font-weight: 800; letter-spacing: -.01em; color: var(--color-base-content); }
-    .mobile-header__actions { align-items: center; gap: .25rem; min-width: 0; display: flex; }
-    .mobile-header__action svg { width: 1.15rem; height: 1.15rem; }
-    .mobile-header__action-label { white-space: nowrap; }
-    @media (max-width: 430px) {
-      .mobile-header__brand { padding-inline: .25rem; font-size: 1rem; }
-      .mobile-header__action { width: 2.5rem; min-width: 2.5rem; padding-inline: 0; }
-      .mobile-header__action-label { position: absolute; width: 1px; height: 1px; overflow: hidden;
-        clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
-    }
-    @media (max-width: 360px) {
-      .mobile-header__bar { grid-template-columns: 2.5rem minmax(0,1fr) auto; padding-inline: .35rem; }
-      .mobile-header__action { width: 2.35rem; min-width: 2.35rem; height: 2.35rem; min-height: 2.35rem; }
+      margin: 0;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
-    /* селект темы */
-    .select { appearance: none; border: 1px solid var(--color-base-300); background-color: var(--color-base-100);
-      color: var(--color-base-content); vertical-align: middle; height: 2.5rem; width: 6.5rem;
-      border-radius: var(--radius-field); padding-inline: .75rem 1.75rem; font-size: .875rem; font-family: inherit;
-      cursor: pointer;
-      background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
-      background-position: calc(100% - 20px) calc(1px + 50%), calc(100% - 16.1px) calc(1px + 50%);
-      background-repeat: no-repeat; background-size: 4px 4px, 4px 4px; }
+    .intro { text-align: center; padding: .5rem 1.5rem 0; }
 
-    /* ---------- Каркас ---------- */
-    .content-shell { display: flex; flex-direction: column; flex: 1; min-width: 0;
-      background: var(--color-base-100); color: var(--color-base-content); }
-    .main-host { display: flex; justify-content: center; }
-    .main-col { width: 100%; padding: 1.25rem 1.25rem 1.25rem 1.5rem; }
-    @media (min-width: 768px) { .main-col { padding: 1.5rem 2rem; } }
-    @media (min-width: 1024px) { .main-col { max-width: 56rem; } }
-
-    .section { margin-top: 3.25rem; }
-    .section:first-child { margin-top: 0; }
-    .section-head { display: flex; flex-direction: column; gap: .6rem; }
-    .section-head-row { display: flex; flex-direction: column; gap: .6rem; }
-    @media (min-width: 768px) { .section-head-row { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
-    .section-title { font-size: clamp(1.5rem, 3.5vw, 1.875rem); font-weight: 700; line-height: 1.15; letter-spacing: -.015em; margin: 0; }
-    .section-text { max-width: 42rem; opacity: .8; line-height: 1.65; margin: 0; }
-
-    /* ---------- Hero ---------- */
-    .hero { padding: 2.75rem 0 1rem; }
-    .hero-name { margin: 0 0 .75rem; font-size: .8rem; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--color-primary); }
-    .hero-h1 { margin: 0; font-size: clamp(1.9rem, 5.5vw, 2.9rem); font-weight: 800;
-      letter-spacing: -.025em; line-height: 1.06; max-width: 15ch; }
-    .hero-desc { max-width: 40rem; margin: 1.1rem 0 0; font-size: 1.0625rem; line-height: 1.7; opacity: .8; }
-    .hero-cta-group { margin-top: 1.9rem; display: flex; flex-wrap: wrap; gap: .625rem; }
-    .hero-cta-item { display: inline-flex; align-items: center; justify-content: center; text-align: center;
-      min-height: 3.0625rem; padding: .7rem 1.35rem; font-size: .9375rem; font-weight: 700; line-height: 1.2;
-      border: 1px solid var(--color-base-300); border-radius: var(--radius-selector); color: var(--color-base-content);
-      transition: border-color .18s, color .18s, transform .18s, box-shadow .18s; }
-    .hero-cta-item:hover { border-color: color-mix(in oklch, var(--color-primary) 45%, transparent); transform: translateY(-1px); }
-    .hero-cta-item--primary { background: var(--color-primary); color: var(--color-primary-content); border-color: var(--color-primary);
-      box-shadow: 0 14px 28px -20px var(--color-primary); }
-    .hero-cta-item--primary:hover { border-color: var(--color-primary); box-shadow: 0 18px 32px -20px var(--color-primary); }
-    .hero-cta-item:focus-visible { outline: 2px solid color-mix(in oklch, var(--color-primary) 45%, transparent); outline-offset: 3px; }
-    .hero-cta-label { display: block; }
-    @media (max-width: 640px) { .hero-cta-group { display: grid; grid-template-columns: 1fr; } }
-
-    /* ---------- Карточки ---------- */
-    .cards-grid { gap: 1rem; margin-top: 1.5rem; display: grid; }
-    .cards-grid--2 { grid-template-columns: 1fr; }
-    @media (min-width: 640px) { .cards-grid--2 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    .card { display: flex; flex-direction: column; gap: .5rem;
-      border-radius: var(--radius-box); border: 1px solid var(--color-base-300);
-      background: var(--color-base-100); padding: 1.5rem;
-      transition: border-color .18s, transform .18s; }
-    .card:hover { border-color: color-mix(in oklch, var(--color-primary) 35%, transparent); }
-    .card-title { font-size: 1.1875rem; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; margin: 0; }
-    .card-desc { margin: 0; line-height: 1.6; opacity: .8; }
-    .card-price { margin-top: .75rem; align-self: flex-start; display: inline-flex; align-items: center; max-width: 100%;
-      font-size: .8125rem; font-weight: 800; letter-spacing: .01em; white-space: normal;
-      color: var(--color-primary);
-      background: color-mix(in oklch, var(--color-primary) 12%, transparent);
-      border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);
-      padding: .4rem .9rem; border-radius: var(--radius-selector); }
-
-    /* ---------- Наработки (список) ---------- */
-    .card-list { margin-top: 1.5rem; border: 1px solid var(--color-base-300); border-radius: var(--radius-box);
-      overflow: hidden; background: var(--color-base-100); }
-    .work-item { padding: 1.25rem 1.5rem; }
-    .work-item + .work-item { border-top: 1px solid var(--color-base-300); }
-    .work-title { margin: 0; font-size: 1.125rem; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; }
-    .work-desc { margin: .35rem 0 0; max-width: 40rem; line-height: 1.6; opacity: .8; }
-    .chip-group { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .65rem; }
-    .chip { display: inline-flex; align-items: center; justify-content: center; min-height: 1.9rem;
-      padding: .25rem .75rem; border: 1px solid var(--color-base-300); border-radius: var(--radius-selector);
-      color: var(--color-base-content); font-size: .8125rem; font-weight: 600; line-height: 1.3;
-      white-space: nowrap; transition: border-color .15s, transform .15s; }
-    .chip:hover { border-color: color-mix(in oklch, var(--color-primary) 45%, transparent); transform: translateY(-1px); }
-
-    /* ---------- Компактное действие секции ---------- */
-    .section-compact-action { align-self: flex-start; display: inline-flex; align-items: center; gap: .35rem;
-      margin-top: .5rem; padding: .125rem 0; font-size: .9375rem; font-weight: 700; line-height: 1.4;
-      color: var(--color-primary); }
-    .section-compact-action-arrow { transition: transform .18s; }
-    .section-compact-action:hover .section-compact-action-arrow { transform: translateX(3px); }
-
-    /* ---------- Финальный CTA ---------- */
-    .surface { margin-top: 2.5rem; border: 1px solid var(--color-base-300); border-radius: var(--radius-box);
-      background: var(--color-base-200); padding: 1.75rem; }
-    @media (min-width: 768px) { .surface { padding: 2rem; } }
-    .cta-block { display: grid; gap: 1.25rem; }
-    @media (min-width: 768px) { .cta-block { grid-template-columns: 1fr auto; align-items: center; } }
-    .bottom-cta-actions { display: flex; flex-direction: column; gap: .75rem; width: min(100%, 20rem); }
-    @media (min-width: 768px) { .bottom-cta-actions { width: auto; } }
-    .bottom-cta-item { display: inline-flex; align-items: center; justify-content: center; text-align: center;
-      min-height: 3.25rem; width: 100%; padding: .85rem 1.5rem; font-weight: 700; line-height: 1.2;
-      border: 1px solid transparent; border-radius: var(--radius-selector);
-      transition: border-color .18s, background-color .18s, transform .18s, box-shadow .18s; }
-    .bottom-cta-item--primary { background: var(--color-primary); color: var(--color-primary-content);
-      box-shadow: 0 14px 30px -22px var(--color-primary); }
-    .bottom-cta-item--primary:hover { transform: translateY(-1px); box-shadow: 0 20px 36px -22px var(--color-primary); }
-    .bottom-cta-item--secondary { border-color: var(--color-base-300); background: var(--color-base-100); color: var(--color-base-content); }
-    .bottom-cta-item--secondary:hover { border-color: color-mix(in oklch, var(--color-primary) 45%, transparent); transform: translateY(-1px); }
-    .bottom-cta-item:focus-visible { outline: 2px solid color-mix(in oklch, var(--color-primary) 45%, transparent); outline-offset: 3px; }
-
-    /* ---------- Футер ---------- */
-    .site-footer { padding: 3rem 1rem 1.5rem; margin-top: auto; }
-    .site-footer__inner { max-width: 56rem; color: color-mix(in oklch, var(--color-base-content) 72%, transparent);
-      display: flex; flex-direction: column; gap: .4rem; margin-inline: auto; text-align: center; }
-    .site-footer__legal { font-size: .9rem; line-height: 1.45; }
-    .site-footer__meta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-      gap: .6rem .9rem; font-size: .875rem; line-height: 1.45; }
-    .site-footer__privacy { text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
-    .site-footer__privacy:hover { color: var(--color-base-content); }
-    .site-footer__version { font-size: .8125rem; opacity: .55; white-space: nowrap; }
-    @media (min-width: 768px) {
-      .site-footer__inner { text-align: left; align-items: stretch; }
-      .site-footer__meta { justify-content: space-between; width: 100%; }
+    .intro__name {
+      margin: 0;
+      font-size: clamp(2.75rem, 9vw, 5.5rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .btn, .hero-cta-item, .bottom-cta-item, .chip, .card { transition: none; }
-      .hero-cta-item:hover, .bottom-cta-item--primary:hover, .bottom-cta-item--secondary:hover, .section-compact-action-arrow { transform: none; }
+    .intro__status {
+      margin: 1.1rem 0 0;
+      font-size: clamp(1.0625rem, 3vw, 1.375rem);
+      font-weight: 500;
+      color: var(--muted);
     }
-    </style>
+
+    .intro__label {
+      margin: .75rem 0 0;
+      font-size: .8125rem;
+      font-weight: 300;
+      letter-spacing: .04em;
+      color: var(--muted);
+      opacity: .75;
+    }
+
+    .blog {
+      width: min(100% - 2rem, 52rem);
+      margin: 0 auto;
+      padding: 3rem 1rem 2rem;
+    }
+
+    .blog__title {
+      margin: 0 0 1.5rem;
+      text-align: center;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 700px) {
+      .posts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    .post {
+      margin: 0;
+      padding: 1.75rem;
+      border: 1px solid color-mix(in oklch, var(--ink) 14%, transparent);
+      border-radius: 1rem;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      color: inherit;
+      text-decoration: none;
+      transition: border-color .18s, transform .18s;
+    }
+
+    .post:hover { border-color: color-mix(in oklch, var(--ink) 35%, transparent); transform: translateY(-2px); }
+
+    .post__title {
+      margin: 0;
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -.015em;
+      line-height: 1.25;
+    }
+
+    .post__text {
+      margin: .75rem 0 0;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .post__hint {
+      margin-top: 1.5rem;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .9375rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .post__hint-arrow { transition: transform .18s; }
+    .post:hover .post__hint-arrow { transform: translateX(3px); }
+
+    .contact { margin-top: 2.5rem; text-align: center; }
+
+    .contact__link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: .65rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      border: 1px solid color-mix(in oklch, var(--ink) 25%, transparent);
+      border-radius: 9999px;
+      transition: border-color .18s, transform .18s, background-color .18s;
+    }
+
+    .contact__link:hover { border-color: var(--ink); background: color-mix(in oklch, var(--ink) 6%, transparent); transform: translateY(-1px); }
+  </style>
 </head>
 <body>
-
-<div class="min-h-screen" style="display:flex; background:var(--color-base-100); color:var(--color-base-content);">
-
-  <!-- ==== Drawer shell (nav + content) ==== -->
-  <div class="drawer-wrap">
-    <input id="my-drawer" type="checkbox" class="drawer-toggle" autocomplete="off">
-
-    <div class="content-shell">
-      <!-- Mobile header -->
-      <div class="mobile-header">
-        <div class="mobile-header__bar">
-          <label for="my-drawer" class="btn btn-square btn-ghost" aria-label="Открыть меню">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          </label>
-          <a class="mobile-header__brand" href="#home" aria-label="igorli.ru" title="igorli.ru">igorli.ru</a>
-          <nav class="mobile-header__actions" aria-label="Быстрая навигация">
-            <a href="mailto:igorli333@yandex.ru" class="btn btn-ghost btn-sm mobile-header__action" aria-label="Почта" title="Почта">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
-              </svg>
-              <span class="mobile-header__action-label">Почта</span>
-            </a>
-            <a href="https://t.me/igorli_bot" target="_blank" class="btn btn-ghost btn-sm mobile-header__action" aria-label="Telegram — сотрудничество и идеи" title="@igorli_bot · Telegram">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m20.7 3.7-2.9 16.1c-.2 1.1-.8 1.4-1.7.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.8c.4-.3-.1-.5-.6-.2L5.8 13.8l-4.6-1.4c-1-.3-1-1 .2-1.5L19.3 4c.8-.3 1.5.2 1.4-.3Z" fill="currentColor"/>
-              </svg>
-              <span class="mobile-header__action-label">Telegram</span>
-            </a>
-            <select id="theme-select-mobile" class="select" aria-label="Выбрать тему сайта">
-              <option value="igorli">Светлая</option>
-              <option value="igorli-dark">Тёмная</option>
-              <option value="circuit">Киберпанк</option>
-            </select>
-          </nav>
-        </div>
-      </div>
-
-      <div class="main-host">
-        <main class="main-col">
-
-          <!-- ==== Hero ==== -->
-          <div class="hero" id="home">
-            <p class="hero-name">Игорь Ли</p>
-            <h1 class="hero-h1">Интерфейсы и процессы, которые работают по-настоящему</h1>
-            <p class="hero-desc">Интерфейсы под задачу и связка рабочих процессов с цифрой — чтобы цифра служила человеку, а не наоборот.</p>
-            <div class="hero-cta-group" role="group" aria-label="Основные действия">
-              <a href="#services" class="hero-cta-item hero-cta-item--primary"><span class="hero-cta-label">Услуги</span></a>
-              <a href="#work" class="hero-cta-item"><span class="hero-cta-label">Наработки</span></a>
-              <a href="#contact" class="hero-cta-item"><span class="hero-cta-label">Написать</span></a>
-            </div>
-          </div>
-
-          <!-- ==== Services ==== -->
-          <section class="section" id="services">
-            <div class="section-head section-head-row">
-              <div>
-                <h2 class="section-title">Как со мной можно работать сейчас</h2>
-                <p class="section-text">Сначала разбор задачи, потом формат работы. Цифры ниже — прямые расходы, сроки — рабочие дни.</p>
-              </div>
-              <a href="#contact" class="section-compact-action" aria-label="Написать">
-                <span>Написать</span>
-                <span class="section-compact-action-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-
-            <p class="card-desc" style="margin:1.5rem 0 0;max-width:none">С чем можно прийти:</p>
-            <div class="chip-group" style="margin-top:.5rem">
-              <span class="chip">не знаю, с чего начать</span>
-              <span class="chip">интерфейсом неудобно пользоваться</span>
-              <span class="chip">навести порядок в процессе</span>
-              <span class="chip">нужна автоматизация без лишнего софта</span>
-            </div>
-
-            <p class="card-desc" style="margin:1rem 0 0;max-width:none">Темы, где есть опыт:</p>
-            <div class="chip-group" style="margin-top:.5rem">
-              <span class="chip">Сайты</span>
-              <span class="chip">Телеграм-боты</span>
-              <span class="chip">Автоматизация</span>
-              <span class="chip">Учёт</span>
-              <span class="chip">Процессы</span>
-              <span class="chip">Инфраструктура</span>
-            </div>
-
-            <div class="cards-grid cards-grid--2">
-              <div class="card">
-                <h3 class="card-title">Интерфейс под задачу</h3>
-                <p class="card-desc">Каждый экран отвечает на один вопрос — без инструкций, мёртвых зон и лишних кнопок.</p>
-                <p class="card-desc">Получаете: аудит экранов, план перестройки и готовую сборку — заявки и формы работают сразу.</p>
-                <p class="card-price">6 дней · 6 000 ₽ прямых расходов</p>
-              </div>
-              <div class="card">
-                <h3 class="card-title">Физический процесс — в цифру</h3>
-                <p class="card-desc">Порядок в процессе и связка с цифрой: кто что делает, где живут данные, что считается автоматически. Учёт и автоматизация вместо рутины.</p>
-                <p class="card-desc">Получаете: схему процесса, учёт без слепых зон и автоматику там, где она нужна.</p>
-                <p class="card-price">8 дней · 10 000 ₽ прямых расходов</p>
-              </div>
-            </div>
-
-            <p class="section-text" style="margin-top:1.5rem">Не уверены, с чего начать? Знакомство бесплатно — в Telegram <a href="https://t.me/igorli_bot" target="_blank" style="font-weight:700;color:var(--color-primary)">@igorli_bot</a>.</p>
-
-            <p class="section-text" style="margin-top:1.5rem">Задача не про это? Честно скажу, где ваш следующий шаг — даже вне моих услуг.</p>
-          </section>
-
-          <!-- ==== Works ==== -->
-          <section class="section" id="work">
-            <div class="section-head section-head-row">
-              <div>
-                <h2 class="section-title">Наработки</h2>
-              </div>
-              <a href="#contact" class="section-compact-action" aria-label="Написать">
-                <span>Написать</span>
-                <span class="section-compact-action-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-
-            <div class="card-list">
-              <div class="work-item">
-                <h3 class="work-title">Визитка для частного мастера</h3>
-                <p class="work-desc">Заявки напрямую в Telegram — без лишнего софта и сложных форм.</p>
-                <div class="chip-group"><span class="chip">Сайт</span></div>
-              </div>
-              <div class="work-item">
-                <h3 class="work-title">Бот приёма заявок</h3>
-                <p class="work-desc">Принимает заявки, распределяет по менеджерам и уведомляет без участия человека.</p>
-                <div class="chip-group"><span class="chip">Бот</span></div>
-              </div>
-              <div class="work-item">
-                <h3 class="work-title">Учёт для команды из 4 человек</h3>
-                <p class="work-desc">Ключевые показатели видны сразу, сверка быстрая и ручная — без перегруза.</p>
-                <div class="chip-group"><span class="chip">Автоматизация</span><span class="chip">Учёт</span></div>
-              </div>
-              <div class="work-item">
-                <h3 class="work-title">Каталог для завода</h3>
-                <p class="work-desc">Структура, товары и форма обратной связи для производства со штатом 180 человек.</p>
-                <div class="chip-group"><span class="chip">Сайт</span></div>
-              </div>
-              <div class="work-item">
-                <h3 class="work-title">Бот для ивент-агентства</h3>
-                <p class="work-desc">Запись гостей и напоминания перед мероприятием — без ручной рутины.</p>
-                <div class="chip-group"><span class="chip">Бот</span></div>
-              </div>
-              <div class="work-item">
-                <h3 class="work-title">Сквозной учёт театра</h3>
-                <p class="work-desc">Заявки, расписание и афиша — руководитель видит картину целиком, без ручных отчётов.</p>
-                <div class="chip-group"><span class="chip">Автоматизация</span><span class="chip">Учёт</span></div>
-              </div>
-            </div>
-          </section>
-
-          
-
-          <!-- ==== About ==== -->
-          <section class="section" id="about">
-            <div class="section-head">
-              <h2 class="section-title">Меня зовут Игорь Ли</h2>
-              <p class="section-text">Работал от театра до ивент-агентства: от команды в 4 человека до производства со штатом 180.</p>
-              <p class="section-text">Этот сайт — мой опыт и подход: так я берусь за задачу, когда приходит клиент.</p>
-            </div>
-          </section>
-
-          <!-- ==== Final CTA ==== -->
-          <section class="section" id="contact">
-            <div class="surface">
-              <div class="cta-block">
-                <div>
-                  <h2 class="section-title">Хотите разобраться системно — начните с правильного входа</h2>
-                  <p class="section-text">Посмотрите наработки или сразу разбор задачи — не откладывайте на абстрактное «потом».</p>
-                </div>
-                <div class="bottom-cta-actions" role="group" aria-label="Основные действия">
-                  <a href="https://t.me/igorli_bot" target="_blank" class="bottom-cta-item bottom-cta-item--primary">Написать в Telegram</a>
-                  <a href="mailto:igorli333@yandex.ru?subject=Есть%20вопросы" class="bottom-cta-item bottom-cta-item--secondary">Написать на почту</a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-        </main>
-      </div>
-
-      <!-- ==== Footer ==== -->
-      <footer class="site-footer">
-        <div class="site-footer__inner">
-          <div class="site-footer__legal">
-            &copy; 2026 Игорь Ли
-          </div>
-          <div class="site-footer__meta">
-            <a href="mailto:igorli333@yandex.ru?subject=Политика%20персональных%20данных" class="site-footer__privacy">Политика обработки персональных данных</a>
-            <span class="site-footer__version" aria-label="Версия сайта 1.0.0" title="Версия сайта 1.0.0">v1.0.0</span>
-          </div>
-        </div>
-      </footer>
-    </div>
-
-    <!-- ==== Mobile drawer ==== -->
-    <div class="drawer-side">
-      <label for="my-drawer" class="drawer-overlay" aria-label="Закрыть меню"></label>
-      <aside class="drawer-panel">
-        <div class="drawer-profile">
-          <a href="#home">
-            <div class="avatar">
-              <div class="drawer-avatar">
-                <img src="https://lh3.googleusercontent.com/d/1PY3_XJDdYML9zvOiXC3AGIQLE9JuVudf" alt="Игорь Ли"
-                     class="avatar-img" width="300" height="300" decoding="async" loading="lazy">
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="drawer-menu">
-          <ul class="menu">
-            <li><a class="menu-link is-active" data-sidebar-item="home" href="#home"><span class="menu-link__label">Главная</span></a></li>
-            <li><a class="menu-link" data-sidebar-item="services" href="#services"><span class="menu-link__label">Услуги</span></a></li>
-            <li><a class="menu-link" data-sidebar-item="work" href="#work"><span class="menu-link__label">Наработки</span></a></li>
-            <li><a class="menu-link" data-sidebar-item="about" href="#about"><span class="menu-link__label">Обо мне</span></a></li>
-            <li>
-              <a class="menu-link" data-sidebar-item="telegram" href="https://t.me/igorli_bot" target="_blank" aria-label="Telegram — сотрудничество и идеи" title="@igorli_bot · Telegram">
-                <svg class="menu-link__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m20.7 3.7-2.9 16.1c-.2 1.1-.8 1.4-1.7.9l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.8c.4-.3-.1-.5-.6-.2L5.8 13.8l-4.6-1.4c-1-.3-1-1 .2-1.5L19.3 4c.8-.3 1.5.2 1.4-.3Z" fill="currentColor"/></svg>
-                <span class="menu-link__label">@igorli_bot · Telegram</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="drawer-foot">
-          <div class="social-icons">
-            <a href="https://t.me/igorli_bot" target="_blank" class="social-icon" aria-label="Telegram" title="Telegram"><svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-            <a href="mailto:igorli333@yandex.ru" class="social-icon" aria-label="Почта" title="Почта"><svg viewBox="0 0 24 24"><path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z"/><path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"/></svg></a>
-          </div>
-        </div>
-      </aside>
-    </div>
-
+  <div class="intro">
+    <h1 class="intro__name">Игорь Ли</h1>
+    <p class="intro__status">интерфейсы и процессы без недопониманий</p>
+    <p class="intro__label">продуктовый дизайнер / ux ui специалист</p>
   </div>
-</div>
 
-<script>
-(function () {
-  /* ---------- Theme switcher ---------- */
-  var ALLOWED = ["igorli", "igorli-dark", "circuit"];
+  <div class="blog">
+    <h2 class="blog__title">Услуги</h2>
 
-  function getStoredTheme() {
-    try {
-      var saved = window.localStorage.getItem("theme") || "igorli";
-      return ALLOWED.indexOf(saved) !== -1 ? saved : "igorli";
-    } catch (e) { return "igorli"; }
-  }
+    <div class="posts-grid">
+      <a href="work.html#interfaces" class="post">
+        <h3 class="post__title">Разработка и переработка интерфейсов</h3>
+        <p class="post__text">Проектирую структуру и логику интерфейса так, чтобы клиенты и сотрудники сами во всём разбирались и быстро получали результат — без инструкций и недопониманий.</p>
+        <span class="post__hint">Примеры <span class="post__hint-arrow" aria-hidden="true">→</span></span>
+      </a>
 
-  function applyTheme(theme) {
-    if (ALLOWED.indexOf(theme) === -1) return;
-    document.documentElement.setAttribute("data-theme", theme);
-    try { window.localStorage.setItem("theme", theme); } catch (e) {}
-    var mobileSelect = document.getElementById("theme-select-mobile");
-    if (mobileSelect) mobileSelect.value = theme;
+      <a href="work.html#processes" class="post">
+        <h3 class="post__title">Оцифровка процессов</h3>
+        <p class="post__text">Проектирую учёт и процессы так, чтобы реальная картина бизнеса была видна сразу, — что происходит, где застревают задачи и куда уходят ресурсы. Без ручных отчётов и недопониманий.</p>
+        <span class="post__hint">Примеры <span class="post__hint-arrow" aria-hidden="true">→</span></span>
+      </a>
+    </div>
 
-    var items = document.querySelectorAll('[data-sidebar-item]');
-    for (var i = 0; i < items.length; i++) items[i].classList.remove("is-active");
-    var active = document.querySelector('[data-sidebar-item="home"]');
-    if (active) active.classList.add("is-active");
-  }
-
-  applyTheme(getStoredTheme());
-
-  var mobileSelect = document.getElementById("theme-select-mobile");
-  if (mobileSelect) {
-    mobileSelect.addEventListener("change", function () {
-      applyTheme(mobileSelect.value);
-    });
-  }
-
-  /* ---------- Drawer close on anchor click ---------- */
-  var drawerToggle = document.getElementById("my-drawer");
-  var menuLinks = document.querySelectorAll(".drawer-panel a[href^='#']");
-  function closeDrawer() {
-    if (drawerToggle) drawerToggle.checked = false;
-  }
-  for (var i = 0; i < menuLinks.length; i++) {
-    menuLinks[i].addEventListener("click", function (e) {
-      var href = this.getAttribute("href");
-      if (href && href.length > 1) {
-        setTimeout(closeDrawer, 60);
-      }
-    });
-  }
-  document.querySelectorAll('.drawer-panel a[target="_blank"]').forEach(function (a) {
-    a.addEventListener("click", closeDrawer);
-  });
-
-  /* ---------- Scrollspy for sidebar ---------- */
-  var sections = ["home", "services", "work", "about"];
-  var spyEls = {};
-  for (var s = 0; s < sections.length; s++) {
-    var el = document.getElementById(sections[s]);
-    if (el) spyEls[sections[s]] = el;
-  }
-  function setActive(id) {
-    var items = document.querySelectorAll('[data-sidebar-item]');
-    for (var i = 0; i < items.length; i++) {
-      items[i].classList.toggle("is-active", items[i].getAttribute("data-sidebar-item") === id);
-    }
-  }
-  var spyObserver = new IntersectionObserver(function (entries) {
-    var visible = [];
-    for (var i = 0; i < entries.length; i++) {
-      if (entries[i].isIntersecting) visible.push(entries[i].target.id);
-    }
-    if (visible.length) {
-      var top = visible[visible.length - 1];
-      if (top === "home" && entries[0] && entries[0].target.id !== "home") return;
-      setActive(top);
-    }
-  }, { rootMargin: "-20% 0px -70% 0px" });
-  for (var key in spyEls) spyObserver.observe(spyEls[key]);
-})();
-</script>
+    <div class="contact">
+      <a href="https://t.me/igorli_bot" target="_blank" rel="noopener" class="contact__link">Написать в Telegram</a>
+    </div>
+  </div>
 </body>
 </html>
